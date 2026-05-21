@@ -1,16 +1,14 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-// Initialisation de Stripe avec la clé secrète
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-02-24.acacia',
+  apiVersion: '2026-04-22.dahlia', // Correction ici
 })
 
 export async function POST(request: Request) {
   try {
     const { planId, name, amount, interval } = await request.json()
 
-    // Vérifier que la clé secrète est présente
     if (!process.env.STRIPE_SECRET_KEY) {
       return NextResponse.json(
         { error: 'Clé secrète Stripe manquante. Configurez STRIPE_SECRET_KEY.' },
@@ -18,7 +16,6 @@ export async function POST(request: Request) {
       )
     }
 
-    // Création de la session Checkout
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
