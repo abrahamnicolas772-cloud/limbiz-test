@@ -1,0 +1,100 @@
+{
+  "nav": {
+    "home": "Akèy", "services": "Sèvis", "pricing": "Pri", "books": "Liv", "contact": "Kontak", "login": "Konekte", "bookCall": "Reserve yon konsiltasyon"
+  },
+  "hero": {
+    "badge": "KONSTRUI LI. MAKE LI. GRANPI LI.", "title1": "Biznis ou.", "title2": "Estrateji nou.", "title3": "Potansyèl", "title4": "san limit.",
+    "subtitle": "LIMBIZ™ ede antreprenè, imigran ak ti pwopriyetè biznis bati biznis solid nan peyi Etazini.",
+    "btn1": "Kòmanse biznis ou", "btn2": "Gade sèvis nou yo", "trusted": "Konfye pa lidè endistri yo", "verifiedClient": "Kliyan verifye"
+  },
+  "services": {
+    "premium": "Sèvis Premium", "title": "Sa nou", "titleHighlight": "ofri", "learnMore": "Aprann plis",
+    "card1": { "title": "Kreyasyon LLC", "desc": "Anrejistreman legal konplè." },
+    "card2": { "title": "Kredi biznis", "desc": "Bati kredi epi jwenn finansman." },
+    "card3": { "title": "Kreyasyon e-commerce", "desc": "Lanse boutik ou sou entènèt." },
+    "card4": { "title": "Gidans trademark", "desc": "Pwoteje mak ou." }
+  },
+  "whyChooseUs": {
+    "whyUs": "Poukisa nou", "title": "Poukisa", "titleHighlight": "chwazi nou", "videoCaption": "Vwayaj biznis insipre — gade an bouk",
+    "feature1": { "title": "Livrezon rapid", "desc": "Lansman nan kèk semèn" },
+    "feature2": { "title": "Design premium", "desc": "Estetik prim" },
+    "feature3": { "title": "Fokalize sou konvèsyon", "desc": "Estrateji ki baze sou ROI" },
+    "feature4": { "title": "Sipò dedye", "desc": "Asistans priyorite 24/7" }
+  },
+  "testimonials": {
+    "title": "Kliyan", "titleHighlight": "renmen", "subtitle": "Sa patnè nou yo di",
+    "text1": "Limbiz te bay yon eksperyans dijital fasinan. Konvèsyon nou ogmante pa 47% nan twa mwa.",
+    "text2": "Yon atizay premium. Chak detay chante liksye. Envestisè nou yo te sezi.",
+    "text3": "Travay ak Limbiz te elve mak nou nan yon nivo siperyè. Mwen rekòmande anpil.",
+    "verifiedByGoogle": "Verifye pa Google", "rated": "Note", "on": "sou"
+  },
+  "pricing": {
+    "title": "Pri", "titleHighlight": "fleksib", "monthly": "Chak mwa", "yearly": "Chak ane", "save16": "Ekonomize 16%",
+    "starter": "Demaraj", "pro": "Pwofesyonèl", "enterprise": "Antrepriz", "mostPopular": "Pi popilè", "getStarted": "Kòmanse", "contactSales": "Kontakte lavant",
+    "features": { "starter": ["1 pwojè", "Analiz debaz", "Sipò imel"], "pro": ["Pwojè san limit", "Analiz avanse", "Sipò priyorite", "Entegrasyon pèsonalize"], "enterprise": ["Garanti SLA", "Ekip dedye", "Opsyon sou plas", "Sipò VIP 24/7"] }
+  },
+  "faq": {
+    "title": "Kesyon?", "titleHighlight": "Repons.", "subtitle": "Tout sa ou bezwen konnen",
+    "q1": { "q": "Ki tan ou pran pou livrezon?", "a": "Pifò pwojè yo lanse nan 4 a 6 semèn." },
+    "q2": { "q": "Èske ou ofri sipò apre lansman?", "a": "Wi, nou ofri plan retni ak sipò 24/7." },
+    "q3": { "q": "Èske ou ka entegre zouti mwen yo?", "a": "Absoliman, nou entegre CRM ak API pèsonalize." },
+    "q4": { "q": "Kisa ki fè pwosesis konsepsyon ou an inik?", "a": "Nou konbine UX ki baze sou done ak estetik futurist." },
+    "q5": { "q": "Èske ou ofri optimizasyon SEO?", "a": "Wi, tout sit nou yo bati ak pi bon pratik SEO." }
+  },
+  "googleReviews": {
+    "title": "Avi", "titleHighlight": "Google", "reviews": "avi", "googleReview": "Avi Google", "directions": "Jwenn direksyon", "seeAll": "Wè tout avi sou Google",
+    "text1": "Limbiz te transfòme prezans nou sou entènèt. Rezilta yo enpòtan.", "text2": "Yon eksperyans eksepsyonèl. Design la bèl.", "text3": "Sèvis premium depi kòmansman rive nan fen.",
+    "date1": "2 semèn de sa", "date2": "1 mwa de sa", "date3": "3 semèn de sa"
+  },
+  "cta": {
+    "title": "Prepare pou", "titleHighlight": "elaji", "subtitle": "biznis ou?", "ctaSubtitle": "Annou bati lavni ansanm.",
+    "name": "Non konplè", "email": "Adrès imel", "message": "Ki jan nou ka ede w?", "btn": "Voye", "success": "Mèsi! Nou pral reponn ou byento."
+  },
+  "footer": {
+    "services": "Sèvis", "company": "Konpayi", "support": "Sipò", "connect": "Konekte",
+    "privacy": "Konfidansyalite", "terms": "Kondisyon", "refund": "Ranbousman", "disclaimer": "Avètisman", "cookies": "Bonbon", "rights": "Tout dwa rezève.",
+    "emailPlaceholder": "Adrès imel ou", "subscribe": "Abòne", "subscribed": "Abòne!"
+  },
+  "trustedStats": {
+    "whyChooseUs": "Poukisa chwazi nou", "trustedBy": "Konfye pa", "innovators": "inovatè",
+    "description": "Nou kolabore ak mak ki gen vizyon pou rezilta mezirab.",
+    "clientsWorldwide": "Kliyan atravè lemond", "satisfactionRate": "To satisfaksyon", "premiumSupport": "Sipò premium", "awardsWon": "Prim ranpòte"
+  },
+  "newsletter": {
+    "title": "Rete", "titleHighlight": "konekte", "subtitle": "Resevwa gid eksklizif nou yo.",
+    "subscribe": "Abòne", "success": "Mèsi pou abònman ou!", "acceptCookies": "Aksepte bonbon", "learnMore": "Aprann plis"
+  },
+  "servicesPage": {
+    "title": "Sèvis", "titleHighlight": "nou yo", "subtitle": "Solisyon konplè pou lanse biznis ou.",
+    "llc": { "title": "Kreyasyon LLC", "desc": "Anrejistreman legal konplè.", "features": ["Obtni EIN", "Akò operasyon", "Ajan anrejistre"] },
+    "credit": { "title": "Kredi biznis", "desc": "Bati kredi epi jwenn finansman.", "features": ["Pwofil kredi", "Preparasyon finansman", "Pitch deck"] },
+    "ecommerce": { "title": "Kreyasyon e-commerce", "desc": "Lanse boutik ou sou entènèt.", "features": ["Shopify/WooCommerce", "Peman Gateway", "SEO"] },
+    "trademark": { "title": "Gidans trademark", "desc": "Pwoteje mak ou.", "features": ["Rechèch trademark", "Depo aplikasyon", "Siveyans"] },
+    "structuring": { "title": "Estrateji biznis", "desc": "Optimize estrikti ou.", "features": ["Estrateji taks", "Pwoteksyon byen", "Planifikasyon siksesyon"] },
+    "publishing": { "title": "Edison & pwodwi dijital", "desc": "Pibliye liv ak pwodwi dijital.", "features": ["Foma eBook", "Kouvèti Design", "Piblikasyon Amazon"] },
+    "ctaTitle": "Prepare pou kòmanse?", "ctaButton1": "Gade pri", "ctaButton2": "Kontakte nou"
+  },
+  "pricingPage": {
+    "title": "Pri", "titleHighlight": "transparan", "subtitle": "Chwazi plan ki adapte biznis ou.",
+    "monthly": "Chak mwa", "yearly": "Chak ane", "save16": "Ekonomize 16%", "month": "mwa", "year": "ane",
+    "starter": "Demaraj", "professional": "Pwofesyonèl", "enterprise": "Antrepriz", "mostPopular": "Pi popilè",
+    "starterDesc": "Pafè pou startup", "professionalDesc": "Pou konpayi k ap grandi", "enterpriseDesc": "Solisyon sou mezi",
+    "getStarted": "Kòmanse", "contactSales": "Kontakte lavant",
+    "features": { "starter": ["1 pwojè", "Analiz debaz", "Sipò imel"], "professional": ["Pwojè san limit", "Analiz avanse", "Sipò priyorite", "Entegrasyon pèsonalize"], "enterprise": ["Garanti SLA", "Ekip dedye", "Opsyon sou plas", "Sipò VIP 24/7"] },
+    "bundleTitle": "Pack pèsonalize", "bundleDesc": "Ekonomize jiska 20% lè w konbine plizyè sèvis", "bundleButton": "Mande yon devi"
+  },
+  "booksPage": {
+    "title": "Liv &", "titleHighlight": "Pwodwi dijital", "subtitle": "Resous premium pou akselere siksè antreprenarya ou.",
+    "reviews": "avi", "buyNow": "Achte kounye a", "buy": "Achte", "ourEbooks": "eBooks nou yo",
+    "startup": { "title": "The Startup Blueprint", "subtitle": "Soti nan lide rive nan premye 10K$" },
+    "credit": { "title": "Business Credit Mastery", "subtitle": "Bati kredi biznis ou vit" },
+    "ecommerce": { "title": "E-Commerce Empire", "subtitle": "Kreye yon boutik sou entènèt pwofitab" },
+    "trademark": { "title": "Trademark Your Brand", "subtitle": "Pwoteje pwopriyete entelektyèl ou" }
+  },
+  "contactPage": {
+    "title": "Kontakte-", "titleHighlight": "nou", "subtitle": "Ann pale de pwojè ou.",
+    "name": "Non konplè *", "email": "Adrès imel *", "phone": "Nimewo telefòn", "message": "Mesaj ou *",
+    "send": "Voye mesaj", "success": "Mèsi! Nou pral kontakte ou byento.",
+    "coordinates": "Kowdone nou yo", "social": "Swiv nou"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "Home", "services": "Services", "pricing": "Pricing", "books": "Books", "contact": "Contact", "login": "Login", "bookCall": "Book a Consultation"
+  },
+  "hero": {
+    "badge": "BUILD IT. BRAND IT. GROW IT.", "title1": "Your Business.", "title2": "Our Strategy.", "title3": "Unlimited", "title4": "Potential.",
+    "subtitle": "LIMBIZ™ helps entrepreneurs, immigrants, and small business owners build strong, compliant, and profitable businesses in the U.S.",
+    "btn1": "Start Your Business", "btn2": "View Our Services", "trusted": "Trusted by industry leaders", "verifiedClient": "Verified Client"
+  },
+  "services": {
+    "premium": "Premium Services", "title": "What We", "titleHighlight": "Offer", "learnMore": "Learn More",
+    "card1": { "title": "LLC Formation & Business Setup", "desc": "Complete legal registration and compliance." },
+    "card2": { "title": "Business Credit & Funding", "desc": "Build credit and secure capital." },
+    "card3": { "title": "E-Commerce Setup", "desc": "Launch your online store." },
+    "card4": { "title": "Trademark Guidance", "desc": "Protect your brand." }
+  },
+  "whyChooseUs": {
+    "whyUs": "Why Us", "title": "Why", "titleHighlight": "Choose Us", "videoCaption": "Inspiring business journey — watch in loop",
+    "feature1": { "title": "Fast Delivery", "desc": "Launch in weeks, not months" },
+    "feature2": { "title": "Premium Design", "desc": "Award-winning aesthetics" },
+    "feature3": { "title": "Conversion Focused", "desc": "ROI-driven strategies" },
+    "feature4": { "title": "Dedicated Support", "desc": "24/7 priority assistance" }
+  },
+  "testimonials": {
+    "title": "Client", "titleHighlight": "Love", "subtitle": "What our partners say",
+    "text1": "Limbiz delivered a breathtaking digital experience. Our conversion rates increased by 47% within three months.",
+    "text2": "Absolutely premium craftsmanship. Every detail screams luxury. Our investors were blown away.",
+    "text3": "Working with Limbiz elevated our brand to a whole new level. Highly recommended for any high-end SaaS.",
+    "verifiedByGoogle": "Verified by Google", "rated": "Rated", "on": "on"
+  },
+  "pricing": {
+    "title": "Flexible", "titleHighlight": "Pricing", "monthly": "Monthly", "yearly": "Yearly", "save16": "Save 16%",
+    "starter": "Starter", "pro": "Professional", "enterprise": "Enterprise", "mostPopular": "Most Popular", "getStarted": "Get Started", "contactSales": "Contact Sales",
+    "features": { "starter": ["1 Project", "Basic Analytics", "Email Support"], "pro": ["Unlimited Projects", "Advanced Analytics", "Priority Support", "Custom Integrations"], "enterprise": ["SLA Guarantee", "Dedicated Team", "On‑premise Option", "24/7 VIP Support"] }
+  },
+  "faq": {
+    "title": "Questions?", "titleHighlight": "Answers.", "subtitle": "Everything you need to know",
+    "q1": { "q": "What is your typical turnaround time?", "a": "Most projects launch within 4-6 weeks." },
+    "q2": { "q": "Do you offer post-launch support?", "a": "Yes, we offer retainer plans and 24/7 support." },
+    "q3": { "q": "Can you integrate with my existing tools?", "a": "Absolutely, we integrate with CRMs, analytics, and custom APIs." },
+    "q4": { "q": "What makes your design process unique?", "a": "We combine data-driven UX with futuristic aesthetics to maximize conversion." },
+    "q5": { "q": "Do you provide SEO optimization?", "a": "Yes, all our sites are built with SEO best practices." }
+  },
+  "googleReviews": {
+    "title": "Google", "titleHighlight": "Reviews", "reviews": "reviews", "googleReview": "Google review", "directions": "Get directions", "seeAll": "See all reviews on Google",
+    "text1": "Limbiz transformed our online presence. The team is professional and the results are impressive.",
+    "text2": "An exceptional experience. The design is beautiful and customer support is responsive.",
+    "text3": "Premium service from start to finish. Limbiz understood our needs perfectly.",
+    "date1": "2 weeks ago", "date2": "1 month ago", "date3": "3 weeks ago"
+  },
+  "cta": {
+    "title": "Ready To", "titleHighlight": "Scale", "subtitle": "Your Business?", "ctaSubtitle": "Let's build the future together.",
+    "name": "Full name", "email": "Email address", "message": "How can we help?", "btn": "Submit", "success": "Thank you! We'll get back to you soon."
+  },
+  "footer": {
+    "services": "Services", "company": "Company", "support": "Support", "connect": "Connect",
+    "privacy": "Privacy", "terms": "Terms", "refund": "Refund", "disclaimer": "Disclaimer", "cookies": "Cookies", "rights": "All rights reserved.",
+    "emailPlaceholder": "Your email address", "subscribe": "Subscribe", "subscribed": "Subscribed!"
+  },
+  "trustedStats": {
+    "whyChooseUs": "Why choose us", "trustedBy": "Trusted by", "innovators": "innovators",
+    "description": "We partner with forward-thinking brands to deliver measurable results.",
+    "clientsWorldwide": "Clients Worldwide", "satisfactionRate": "Satisfaction Rate", "premiumSupport": "Premium Support", "awardsWon": "Awards Won"
+  },
+  "newsletter": {
+    "title": "Stay", "titleHighlight": "connected", "subtitle": "Receive our exclusive guides and special offers.",
+    "subscribe": "Subscribe", "success": "Thank you for subscribing!", "acceptCookies": "Accept cookies", "learnMore": "Learn more"
+  },
+  "servicesPage": {
+    "title": "Our", "titleHighlight": "Services", "subtitle": "Comprehensive solutions to launch and scale your business.",
+    "llc": { "title": "LLC Formation & Business Setup", "desc": "Complete legal registration and compliance.", "features": ["EIN Registration", "Operating Agreement", "Registered Agent"] },
+    "credit": { "title": "Business Credit & Funding", "desc": "Build business credit and secure capital.", "features": ["Credit Profile", "Funding Preparation", "Investor Pitch Deck"] },
+    "ecommerce": { "title": "E-Commerce Setup", "desc": "Launch your online store with expert guidance.", "features": ["Shopify/WooCommerce", "Payment Gateway", "SEO Optimization"] },
+    "trademark": { "title": "Trademark Guidance", "desc": "Protect your brand with trademark registration.", "features": ["Trademark Search", "Application Filing", "Monitoring"] },
+    "structuring": { "title": "Business Structuring", "desc": "Optimize your business structure for tax and liability.", "features": ["Tax Strategy", "Asset Protection", "Succession Planning"] },
+    "publishing": { "title": "Publishing & Digital Products", "desc": "Publish books and digital products to scale your brand.", "features": ["eBook Formatting", "Cover Design", "Amazon Publishing"] },
+    "ctaTitle": "Ready to get started?", "ctaButton1": "View Pricing", "ctaButton2": "Contact Us"
+  },
+  "pricingPage": {
+    "title": "Transparent", "titleHighlight": "Pricing", "subtitle": "Choose the perfect plan for your business journey.",
+    "monthly": "Monthly", "yearly": "Yearly", "save16": "Save 16%", "month": "month", "year": "year",
+    "starter": "Starter", "professional": "Professional", "enterprise": "Enterprise", "mostPopular": "Most Popular",
+    "starterDesc": "Perfect for startups", "professionalDesc": "For growing companies", "enterpriseDesc": "Tailored solutions",
+    "getStarted": "Get Started", "contactSales": "Contact Sales",
+    "features": { "starter": ["1 Project", "Basic Analytics", "Email Support"], "professional": ["Unlimited Projects", "Advanced Analytics", "Priority Support", "Custom Integrations"], "enterprise": ["SLA Guarantee", "Dedicated Team", "On‑premise Option", "24/7 VIP Support"] },
+    "bundleTitle": "Custom Bundle", "bundleDesc": "Save up to 20% when you combine multiple services", "bundleButton": "Request a Quote"
+  },
+  "booksPage": {
+    "title": "Books &", "titleHighlight": "Digital Products", "subtitle": "Premium resources to accelerate your entrepreneurial success.",
+    "reviews": "reviews", "buyNow": "Buy Now", "buy": "Buy", "ourEbooks": "Our eBooks",
+    "startup": { "title": "The Startup Blueprint", "subtitle": "From Idea to First $10K" },
+    "credit": { "title": "Business Credit Mastery", "subtitle": "Build Business Credit Fast" },
+    "ecommerce": { "title": "E-Commerce Empire", "subtitle": "Build a Profitable Online Store" },
+    "trademark": { "title": "Trademark Your Brand", "subtitle": "Protect Your Intellectual Property" }
+  },
+  "contactPage": {
+    "title": "Contact", "titleHighlight": "Us", "subtitle": "Let's discuss your project.",
+    "name": "Full name *", "email": "Email address *", "phone": "Phone number", "message": "Your message *",
+    "send": "Send Message", "success": "Thank you! We'll contact you soon.",
+    "coordinates": "Our coordinates", "social": "Follow us"
+  }
+}

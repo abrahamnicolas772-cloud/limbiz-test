@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "Accueil", "services": "Services", "pricing": "Tarifs", "books": "Livres", "contact": "Contact", "login": "Connexion", "bookCall": "Réserver une consultation"
+  },
+  "hero": {
+    "badge": "CONSTRUISEZ. MARQUEZ. ", "title1": "Votre entreprise.", "title2": " stratégie.", "title3": "Potentiel", "title4": "illimité.",
+    "subtitle": "LIMBIZ™ aide les entrepreneurs, immigrants et propriétaires de petites entreprises à bâtir des entreprises solides, conformes et rentables aux États-Unis.",
+    "btn1": "Démarrer votre entreprise", "btn2": "Voir nos services", "trusted": "Approuvé par les leaders de l'industrie", "verifiedClient": "Client vérifié"
+  },
+  "services": {
+    "premium": "Services Premium", "title": "Ce que nous", "titleHighlight": "proposons", "learnMore": "En savoir plus",
+    "card1": { "title": "Création d'entreprise", "desc": "Enregistrement légal complet et conformité." },
+    "card2": { "title": "Crédit professionnel", "desc": "Construisez votre crédit et obtenez du financement." },
+    "card3": { "title": "Création e-commerce", "desc": "Lancez votre boutique en ligne." },
+    "card4": { "title": "Dépôt de marque", "desc": "Protégez votre marque." }
+  },
+  "whyChooseUs": {
+    "whyUs": "Pourquoi nous", "title": "Pourquoi nous", "titleHighlight": "choisir", "videoCaption": "Un parcours inspirant — à regarder en boucle",
+    "feature1": { "title": "Livraison rapide", "desc": "Lancement en semaines, pas en mois" },
+    "feature2": { "title": "Design premium", "desc": "Esthétique primée" },
+    "feature3": { "title": "Axé sur la conversion", "desc": "Stratégies axées sur le ROI" },
+    "feature4": { "title": "Support dédié", "desc": "Assistance prioritaire 24/7" }
+  },
+  "testimonials": {
+    "title": "Nos", "titleHighlight": "clients", "subtitle": "Ce que nos partenaires disent",
+    "text1": "Limbiz a offert une expérience numérique époustouflante. Nos taux de conversion ont augmenté de 47% en trois mois.",
+    "text2": "Un savoir-faire absolument premium. Chaque détail respire le luxe. Nos investisseurs ont été époustouflés.",
+    "text3": "Travailler avec Limbiz a élevé notre marque à un tout autre niveau. Hautement recommandé.",
+    "verifiedByGoogle": "Vérifié par Google", "rated": "Noté", "on": "sur"
+  },
+  "pricing": {
+    "title": "Tarifs", "titleHighlight": "flexibles", "monthly": "Mensuel", "yearly": "Annuel", "save16": "Économisez 16%",
+    "starter": "Démarrage", "pro": "Professionnel", "enterprise": "Entreprise", "mostPopular": "Le plus populaire", "getStarted": "Commencer", "contactSales": "Contacter les ventes",
+    "features": { "starter": ["1 projet", "Analyses de base", "Support email"], "pro": ["Projets illimités", "Analyses avancées", "Support prioritaire", "Intégrations personnalisées"], "enterprise": ["Garantie SLA", "Équipe dédiée", "Option sur site", "Support VIP 24/7"] }
+  },
+  "faq": {
+    "title": "Des questions ?", "titleHighlight": "Des réponses.", "subtitle": "Tout ce que vous devez savoir",
+    "q1": { "q": "Quel est votre délai de livraison typique ?", "a": "La plupart des projets sont lancés en 4 à 6 semaines." },
+    "q2": { "q": "Proposez-vous un support après le lancement ?", "a": "Oui, nous proposons des forfaits de retenue et un support 24/7." },
+    "q3": { "q": "Pouvez-vous intégrer mes outils existants ?", "a": "Absolument, nous intégrons les CRM, les analyses et les API personnalisées." },
+    "q4": { "q": "Qu'est-ce qui rend votre processus de conception unique ?", "a": "Nous combinons une UX basée sur les données avec une esthétique futuriste." },
+    "q5": { "q": "Proposez-vous l'optimisation SEO ?", "a": "Oui, tous nos sites sont construits avec les meilleures pratiques SEO." }
+  },
+  "googleReviews": {
+    "title": "Avis", "titleHighlight": "Google", "reviews": "avis", "googleReview": "Avis Google", "directions": "Obtenir l'itinéraire", "seeAll": "Voir tous les avis sur Google",
+    "text1": "Limbiz a transformé notre présence en ligne. L'équipe est professionnelle et les résultats sont impressionnants.",
+    "text2": "Une expérience exceptionnelle. Le design est magnifique et le support client est réactif.",
+    "text3": "Service premium du début à la fin. Limbiz a parfaitement compris nos besoins.",
+    "date1": "il y a 2 semaines", "date2": "il y a 1 mois", "date3": "il y a 3 semaines"
+  },
+  "cta": {
+    "title": "Prêt à", "titleHighlight": "développer", "subtitle": "votre entreprise ?", "ctaSubtitle": "Construisons l'avenir ensemble.",
+    "name": "Nom complet", "email": "Adresse email", "message": "Comment pouvons-nous vous aider ?", "btn": "Envoyer", "success": "Merci ! Nous vous répondrons bientôt."
+  },
+  "footer": {
+    "services": "Services", "company": "Entreprise", "support": "Support", "connect": "Connectez-vous",
+    "privacy": "Confidentialité", "terms": "Conditions", "refund": "Remboursement", "disclaimer": "Avertissement", "cookies": "Cookies", "rights": "Tous droits réservés.",
+    "emailPlaceholder": "Votre adresse email", "subscribe": "S'abonner", "subscribed": "Abonné !"
+  },
+  "trustedStats": {
+    "whyChooseUs": "Pourquoi nous choisir", "trustedBy": "Approuvé par les", "innovators": "innovateurs",
+    "description": "Nous collaborons avec des marques avant-gardistes pour offrir des résultats mesurables.",
+    "clientsWorldwide": "Clients dans le monde", "satisfactionRate": "Taux de satisfaction", "premiumSupport": "Support premium", "awardsWon": "Prix remportés"
+  },
+  "newsletter": {
+    "title": "Restez", "titleHighlight": "connecté", "subtitle": "Recevez nos guides exclusifs et offres spéciales.",
+    "subscribe": "S'abonner", "success": "Merci pour votre inscription !", "acceptCookies": "Accepter les cookies", "learnMore": "En savoir plus"
+  },
+  "servicesPage": {
+    "title": "Nos", "titleHighlight": "Services", "subtitle": "Des solutions complètes pour lancer et développer votre entreprise.",
+    "llc": { "title": "Création d'entreprise", "desc": "Enregistrement légal complet et conformité.", "features": ["Obtention EIN", "Accord d'exploitation", "Agent enregistré"] },
+    "credit": { "title": "Crédit professionnel", "desc": "Construisez votre crédit et obtenez du financement.", "features": ["Profil de crédit", "Préparation au financement", "Pitch deck investisseur"] },
+    "ecommerce": { "title": "Création e-commerce", "desc": "Lancez votre boutique en ligne avec des conseils d'experts.", "features": ["Shopify/WooCommerce", "Passerelle de paiement", "Optimisation SEO"] },
+    "trademark": { "title": "Dépôt de marque", "desc": "Protégez votre marque avec un dépôt de marque.", "features": ["Recherche de marque", "Dépôt de demande", "Surveillance"] },
+    "structuring": { "title": "Structure d'entreprise", "desc": "Optimisez votre structure fiscale et juridique.", "features": ["Stratégie fiscale", "Protection d'actifs", "Planification successorale"] },
+    "publishing": { "title": "Édition & produits digitaux", "desc": "Publiez des livres et produits digitaux.", "features": ["Formatage eBook", "Design de couverture", "Publication Amazon"] },
+    "ctaTitle": "Prêt à commencer ?", "ctaButton1": "Voir les tarifs", "ctaButton2": "Nous contacter"
+  },
+  "pricingPage": {
+    "title": "Tarifs", "titleHighlight": "transparents", "subtitle": "Choisissez la formule parfaite pour votre parcours entrepreneurial.",
+    "monthly": "Mensuel", "yearly": "Annuel", "save16": "Économisez 16%", "month": "mois", "year": "an",
+    "starter": "Démarrage", "professional": "Professionnel", "enterprise": "Entreprise", "mostPopular": "Le plus populaire",
+    "starterDesc": "Parfait pour les startups", "professionalDesc": "Pour les entreprises en croissance", "enterpriseDesc": "Solutions sur mesure",
+    "getStarted": "Commencer", "contactSales": "Contacter les ventes",
+    "features": { "starter": ["1 projet", "Analyses de base", "Support email"], "professional": ["Projets illimités", "Analyses avancées", "Support prioritaire", "Intégrations personnalisées"], "enterprise": ["Garantie SLA", "Équipe dédiée", "Option sur site", "Support VIP 24/7"] },
+    "bundleTitle": "Pack personnalisé", "bundleDesc": "Économisez jusqu'à 20% en combinant plusieurs services", "bundleButton": "Demander un devis"
+  },
+  "booksPage": {
+    "title": "Livres &", "titleHighlight": "Produits digitaux", "subtitle": "Des ressources premium pour accélérer votre succès entrepreneurial.",
+    "reviews": "avis", "buyNow": "Acheter maintenant", "buy": "Acheter", "ourEbooks": "Nos eBooks",
+    "startup": { "title": "The Startup Blueprint", "subtitle": "De l'idée aux premiers 10K$" },
+    "credit": { "title": "Business Credit Mastery", "subtitle": "Construisez votre crédit pro rapidement" },
+    "ecommerce": { "title": "E-Commerce Empire", "subtitle": "Créez une boutique en ligne rentable" },
+    "trademark": { "title": "Trademark Your Brand", "subtitle": "Protégez votre propriété intellectuelle" }
+  },
+  "contactPage": {
+    "title": "Contactez-", "titleHighlight": "nous", "subtitle": "Parlons de votre projet.",
+    "name": "Nom complet *", "email": "Adresse email *", "phone": "Numéro de téléphone", "message": "Votre message *",
+    "send": "Envoyer le message", "success": "Merci ! Nous vous contacterons bientôt.",
+    "coordinates": "Nos coordonnées", "social": "Suivez-nous"
+  }
+}

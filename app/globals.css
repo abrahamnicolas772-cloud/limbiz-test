@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-black text-white font-sans antialiased;
+  }
+  /* Glassmorphism */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+  }
+  .hover\:shadow-neon:hover {
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+  }
+  /* Grain et animations */
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px;
+  }
+  @keyframes float-glow {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+    50% { transform: translate(20px, -20px) scale(1.2); opacity: 0.35; }
+    100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+  }
+  .animate-float-glow {
+    animation: float-glow 12s ease-in-out infinite;
+  }
+  .animation-delay-1500 {
+    animation-delay: 1.5s;
+  }
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .animate-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.08), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 8s infinite;
+  }
+}
+
+@keyframes float-glow {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+  50% { transform: translate(20px, -20px) scale(1.2); opacity: 0.35; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+}
+.animate-float-glow {
+  animation: float-glow 12s ease-in-out infinite;
+}
+.animation-delay-1500 { animation-delay: 1.5s; }
+.animation-delay-3000 { animation-delay: 3s; }
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.animate-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.08), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 8s infinite;
+}
