@@ -4,13 +4,13 @@ export async function POST(request: Request) {
   try {
     const { amount } = await request.json()
     
-    const response = await fetch('https://api-m.sandbox.paypal.com/v2/checkout/orders', {
+    const response = await fetch('https://api-m.sandbox.paypal.com/v/checkout/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Basic ${Buffer.from(
           `${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}:${process.env.PAYPAL_SECRET_KEY}`
-        ).toString('base64')}`
+        ).toString('base')}`
       },
       body: JSON.stringify({
         intent: 'CAPTURE',
@@ -26,6 +26,6 @@ export async function POST(request: Request) {
     const data = await response.json()
     return NextResponse.json({ id: data.id })
   } catch (error) {
-    return NextResponse.json({ error: 'Erreur PayPal' }, { status: 500 })
+    return NextResponse.json({ error: 'Erreur PayPal' }, { status:  })
   }
 }

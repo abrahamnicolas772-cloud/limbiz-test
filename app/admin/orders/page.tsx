@@ -9,7 +9,7 @@ export default function AdminOrders() {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const { data } = await supabase.from('orders').select('*, services(*)').order('created_at', { ascending: false })
+      const { data } = await supabase.from('orders').select(', services()').order('created_at', { ascending: false })
       setOrders(data || [])
     }
     fetchOrders()
@@ -22,32 +22,32 @@ export default function AdminOrders() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-white mb-6">Commandes</h1>
-      <div className="space-y-4">
+      <h className="text-xl font-bold text-white mb-">Commandes</h>
+      <div className="space-y-">
         {orders.map((order) => (
-          <div key={order.id} className="bg-white/5 rounded-2xl p-5 border border-white/10">
-            <div className="flex flex-wrap justify-between items-start gap-3">
+          <div key={order.id} className="bg-white/ rounded-xl p- border border-white/">
+            <div className="flex flex-wrap justify-between items-start gap-">
               <div>
-                <h3 className="text-lg font-bold text-white">Commande #{order.id}</h3>
-                <p className="text-white/50 text-sm">{order.services?.name}</p>
+                <h className="text-lg font-bold text-white">Commande {order.id}</h>
+                <p className="text-white/ text-sm">{order.services?.name}</p>
               </div>
               <select
                 value={order.status}
                 onChange={(e) => updateStatus(order.id, e.target.value)}
-                className="px-3 py-1 bg-white/10 rounded-lg text-white text-sm"
+                className="px- py- bg-white/ rounded-lg text-white text-sm"
               >
                 <option value="pending">En attente</option>
                 <option value="in_progress">En cours</option>
-                <option value="completed">Termin√©</option>
+                <option value="completed">Termin√</option>
               </select>
             </div>
-            <div className="mt-3">
-              <div className="flex justify-between text-white/50 text-xs mb-1">
+            <div className="mt-">
+              <div className="flex justify-between text-white/ text-xs mb-">
                 <span>Progression</span>
                 <span>{order.progress}%</span>
               </div>
-              <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-500 rounded-full" style={{ width: `${order.progress}%` }} />
+              <div className="h- bg-white/ rounded-full overflow-hidden">
+                <div className="h-full bg-blue- rounded-full" style={{ width: `${order.progress}%` }} />
               </div>
             </div>
           </div>

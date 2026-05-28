@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { AuthProvider } from '@/context/AuthContext'
-import Chatbot from '@/components/Chatbot'   // ← Import du chatbot
+import Chatbot from '@/components/Chatbot'   //  Import du chatbot
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           {children}
-          <Chatbot />   {/* ← Ajout du chatbot (visible partout) */}
+          <Chatbot />   {/  Ajout du chatbot (visible partout) /}
         </AuthProvider>
       </body>
     </html>

@@ -7,7 +7,7 @@ const ParticleBackground = () => {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('d')
     if (!ctx) return
 
     let animationFrameId: number
@@ -28,36 +28,36 @@ const ParticleBackground = () => {
 
     const initParticles = () => {
       particles = []
-      const particleCount = Math.min(80, Math.floor(window.innerWidth / 20))
-      for (let i = 0; i < particleCount; i++) {
+      const particleCount = Math.min(, Math.floor(window.innerWidth / ))
+      for (let i = ; i < particleCount; i++) {
         particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          alpha: Math.random() * 0.3 + 0.1,
-          speedX: (Math.random() - 0.5) * 0.3,
-          speedY: (Math.random() - 0.5) * 0.2,
+          x: Math.random()  canvas.width,
+          y: Math.random()  canvas.height,
+          radius: Math.random()  . + .,
+          alpha: Math.random()  . + .,
+          speedX: (Math.random() - .)  .,
+          speedY: (Math.random() - .)  .,
         })
       }
     }
 
     const draw = () => {
       if (!ctx || !canvas) return
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.clearRect(, , canvas.width, canvas.height)
       
       particles.forEach(p => {
         ctx.beginPath()
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(59, 130, 246, ${p.alpha})`
+        ctx.arc(p.x, p.y, p.radius, , Math.PI  )
+        ctx.fillStyle = `rgba(, , , ${p.alpha})`
         ctx.fill()
         
         p.x += p.speedX
         p.y += p.speedY
         
-        if (p.x < 0) p.x = canvas.width
-        if (p.x > canvas.width) p.x = 0
-        if (p.y < 0) p.y = canvas.height
-        if (p.y > canvas.height) p.y = 0
+        if (p.x < ) p.x = canvas.width
+        if (p.x > canvas.width) p.x = 
+        if (p.y < ) p.y = canvas.height
+        if (p.y > canvas.height) p.y = 
       })
       
       animationFrameId = requestAnimationFrame(draw)
@@ -76,8 +76,8 @@ const ParticleBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
-      style={{ opacity: 0.5 }}
+      className="fixed top- left- w-full h-full pointer-events-none z-"
+      style={{ opacity: . }}
     />
   )
 }

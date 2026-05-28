@@ -1,7 +1,7 @@
 'use client'
 
-import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
+import in from 'inext'
+import { initReactInext } from 'react-inext'
 
 // Traductions
 import en from '../public/locales/en/common.json'
@@ -14,8 +14,8 @@ const resources = {
   ht: { common: ht }
 }
 
-i18n
-  .use(initReactI18next)
+in
+  .use(initReactInext)
   .init({
     resources,
     lng: 'en',
@@ -26,4 +26,4 @@ i18n
     }
   })
 
-export default i18n
+export default in

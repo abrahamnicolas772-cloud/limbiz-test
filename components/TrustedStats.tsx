@@ -4,50 +4,50 @@ import { useRef } from 'react'
 import { FiUsers, FiTrendingUp, FiHeadphones, FiAward } from 'react-icons/fi'
 
 const stats = [
-  { value: '100+', label: 'Clients Worldwide', icon: <FiUsers size={24} /> },
-  { value: '95%', label: 'Satisfaction Rate', icon: <FiTrendingUp size={24} /> },
-  { value: '24/7', label: 'Premium Support', icon: <FiHeadphones size={24} /> },
-  { value: '50+', label: 'Awards Won', icon: <FiAward size={24} /> },
+  { value: '+', label: 'Clients Worldwide', icon: <FiUsers size={} /> },
+  { value: '%', label: 'Satisfaction Rate', icon: <FiTrendingUp size={} /> },
+  { value: '/', label: 'Premium Support', icon: <FiHeadphones size={} /> },
+  { value: '+', label: 'Awards Won', icon: <FiAward size={} /> },
 ]
 
 export default function TrustedStats() {
   const ref = useRef(null)
 
   return (
-    <section className="py-24 relative overflow-hidden bg-black/30 border-y border-white/10">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
+    <section className="py- relative overflow-hidden bg-black/ border-y border-white/">
+      <div className="absolute inset- -z-">
+        <div className="absolute top- left-/ w- h- bg-blue-/ rounded-full blur-xl" />
+        <div className="absolute bottom- right-/ w- h- bg-purple-/ rounded-full blur-xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-xl mx-auto px- sm:px- lg:px-">
+        <div className="grid md:grid-cols- gap- items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: , x: - }}
+            whileInView={{ opacity: , x:  }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: . }}
             className="text-center md:text-left"
           >
-            <p className="text-blue-400 text-sm font-semibold tracking-wider uppercase mb-2">Why choose us</p>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Trusted by <span className="text-blue-500">innovators</span></h2>
-            <p className="mt-4 text-white/60 max-w-md leading-relaxed">We partner with forward-thinking brands to deliver measurable results and exceptional digital experiences.</p>
+            <p className="text-blue- text-sm font-semibold tracking-wider uppercase mb-">Why choose us</p>
+            <h className="text-xl md:text-xl font-bold tracking-tight">Trusted by <span className="text-blue-">innovators</span></h>
+            <p className="mt- text-white/ max-w-md leading-relaxed">We partner with forward-thinking brands to deliver measurable results and exceptional digital experiences.</p>
           </motion.div>
 
-          <div ref={ref} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div ref={ref} className="grid grid-cols- sm:grid-cols- lg:grid-cols- gap-">
             {stats.map((stat, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: , y:  }}
+                whileInView={{ opacity: , y:  }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                whileHover={{ y: -8 }}
-                className="glass-card p-5 text-center backdrop-blur-sm border border-white/10 rounded-2xl cursor-pointer hover:border-blue-500/40 transition group"
+                transition={{ delay: idx  ., duration: . }}
+                whileHover={{ y: - }}
+                className="glass-card p- text-center backdrop-blur-sm border border-white/ rounded-xl cursor-pointer hover:border-blue-/ transition group"
               >
-                <div className="text-blue-400 mb-2 flex justify-center group-hover:scale-110 transition">{stat.icon}</div>
-                <div className="text-2xl md:text-3xl font-bold text-white">{stat.value}</div>
-                <div className="mt-1 text-white/50 text-xs uppercase tracking-wide">{stat.label}</div>
+                <div className="text-blue- mb- flex justify-center group-hover:scale- transition">{stat.icon}</div>
+                <div className="text-xl md:text-xl font-bold text-white">{stat.value}</div>
+                <div className="mt- text-white/ text-xs uppercase tracking-wide">{stat.label}</div>
               </motion.div>
             ))}
           </div>

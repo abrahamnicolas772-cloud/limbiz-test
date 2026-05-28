@@ -7,7 +7,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     const { data: { user } } = await supabase.auth.getUser()
     
     if (!user) {
-      return NextResponse.json({ error: 'Non authentifi√©' }, { status: 401 })
+      return NextResponse.json({ error: 'Non authentifi√' }, { status:  })
     }
     
     const { admin_reply, status } = await request.json()
@@ -24,11 +24,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
       .single()
     
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 })
+      return NextResponse.json({ error: error.message }, { status:  })
     }
     
     return NextResponse.json(ticket)
   } catch (error) {
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
+    return NextResponse.json({ error: 'Erreur serveur' }, { status:  })
   }
 }

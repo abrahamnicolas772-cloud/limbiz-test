@@ -9,7 +9,7 @@ export default function AdminUsers() {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const { data } = await supabase.from('profiles').select('*').order('created_at', { ascending: false })
+      const { data } = await supabase.from('profiles').select('').order('created_at', { ascending: false })
       setUsers(data || [])
     }
     fetchUsers()
@@ -17,24 +17,24 @@ export default function AdminUsers() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-white mb-6">Utilisateurs</h1>
+      <h className="text-xl font-bold text-white mb-">Utilisateurs</h>
       <div className="overflow-x-auto">
         <table className="w-full text-left">
-          <thead className="border-b border-white/10">
-            <tr className="text-white/50 text-sm">
-              <th className="pb-2">ID</th>
-              <th className="pb-2">Nom</th>
-              <th className="pb-2">Email</th>
-              <th className="pb-2">Date</th>
+          <thead className="border-b border-white/">
+            <tr className="text-white/ text-sm">
+              <th className="pb-">ID</th>
+              <th className="pb-">Nom</th>
+              <th className="pb-">Email</th>
+              <th className="pb-">Date</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user.id} className="border-b border-white/5">
-                <td className="py-3 text-white/60 text-xs">{user.id.slice(0, 8)}...</td>
-                <td className="py-3 text-white">{user.full_name || '-'}</td>
-                <td className="py-3 text-white/60">{user.id}</td>
-                <td className="py-3 text-white/60">{new Date(user.created_at).toLocaleDateString()}</td>
+              <tr key={user.id} className="border-b border-white/">
+                <td className="py- text-white/ text-xs">{user.id.slice(, )}...</td>
+                <td className="py- text-white">{user.full_name || '-'}</td>
+                <td className="py- text-white/">{user.id}</td>
+                <td className="py- text-white/">{new Date(user.created_at).toLocaleDateString()}</td>
               </tr>
             ))}
           </tbody>

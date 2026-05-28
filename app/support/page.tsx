@@ -35,7 +35,7 @@ export default function SupportPage() {
     if (!user) { setLoading(false); return }
     const { data } = await supabase
       .from('tickets')
-      .select('*')
+      .select('')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
     setTickets(data || [])
@@ -61,9 +61,9 @@ export default function SupportPage() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'open': return <span className="px-2 py-0.5 text-xs rounded-full bg-yellow-500/20 text-yellow-400">En attente</span>
-      case 'resolved': return <span className="px-2 py-0.5 text-xs rounded-full bg-green-500/20 text-green-400">R√©solu</span>
-      case 'closed': return <span className="px-2 py-0.5 text-xs rounded-full bg-gray-500/20 text-gray-400">Ferm√©</span>
+      case 'open': return <span className="px- py-. text-xs rounded-full bg-yellow-/ text-yellow-">En attente</span>
+      case 'resolved': return <span className="px- py-. text-xs rounded-full bg-green-/ text-green-">R√solu</span>
+      case 'closed': return <span className="px- py-. text-xs rounded-full bg-gray-/ text-gray-">Ferm√</span>
       default: return null
     }
   }
@@ -71,74 +71,74 @@ export default function SupportPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-black relative overflow-hidden pt-24">
-        <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none" />
-        <div className="absolute inset-0 -z-0">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-pulse-slow" />
-          <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-purple-500/15 rounded-full blur-[110px] animate-pulse-slow" />
+      <main className="min-h-screen bg-black relative overflow-hidden pt-">
+        <div className="absolute inset- bg-noise opacity- pointer-events-none" />
+        <div className="absolute inset- -z-">
+          <div className="absolute top- left-/ w- h- bg-blue-/ rounded-full blur-[px] animate-pulse-slow" />
+          <div className="absolute bottom- right-/ w- h- bg-purple-/ rounded-full blur-[px] animate-pulse-slow" />
         </div>
 
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
+        <div className="max-w-xl mx-auto px- py-">
+          <div className="flex flex-wrap justify-between items-center gap- mb-">
             <div>
-              <h1 className="text-4xl font-bold text-white">Support client</h1>
-              <p className="text-white/50 mt-1">Une question ? Notre √©quipe vous r√©pond sous 24h</p>
+              <h className="text-xl font-bold text-white">Support client</h>
+              <p className="text-white/ mt-">Une question ? Notre √quipe vous r√pond sous h</p>
             </div>
             <button
               onClick={() => setShowForm(!showForm)}
-              className="px-4 py-2 bg-blue-600 rounded-xl text-white text-sm font-semibold flex items-center gap-2 hover:bg-blue-500 transition"
+              className="px- py- bg-blue- rounded-xl text-white text-sm font-semibold flex items-center gap- hover:bg-blue- transition"
             >
-              <FiPlus size={16} /> Nouveau ticket
+              <FiPlus size={} /> Nouveau ticket
             </button>
           </div>
 
           {showForm && (
-            <motion.form initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} onSubmit={createTicket} className="bg-white/5 rounded-2xl p-6 mb-8 border border-white/10">
-              <div className="mb-4">
-                <label className="block text-white/60 text-sm mb-1">Cat√©gorie</label>
-                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white">
-                  <option value="general">G√©n√©ral</option>
+            <motion.form initial={{ opacity: , y:  }} animate={{ opacity: , y:  }} onSubmit={createTicket} className="bg-white/ rounded-xl p- mb- border border-white/">
+              <div className="mb-">
+                <label className="block text-white/ text-sm mb-">Cat√gorie</label>
+                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white">
+                  <option value="general">G√n√ral</option>
                   <option value="order">Commande</option>
                   <option value="document">Document</option>
                   <option value="payment">Paiement</option>
                   <option value="technical">Technique</option>
                 </select>
               </div>
-              <div className="mb-4">
-                <label className="block text-white/60 text-sm mb-1">Sujet</label>
-                <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white" required />
+              <div className="mb-">
+                <label className="block text-white/ text-sm mb-">Sujet</label>
+                <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white" required />
               </div>
-              <div className="mb-4">
-                <label className="block text-white/60 text-sm mb-1">Message</label>
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={4} className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white resize-none" required />
+              <div className="mb-">
+                <label className="block text-white/ text-sm mb-">Message</label>
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={} className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white resize-none" required />
               </div>
-              <button type="submit" className="px-4 py-2 bg-blue-600 rounded-xl text-white">Envoyer</button>
+              <button type="submit" className="px- py- bg-blue- rounded-xl text-white">Envoyer</button>
             </motion.form>
           )}
 
           {loading ? (
-            <div className="flex justify-center py-12"><div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" /></div>
-          ) : tickets.length === 0 ? (
-            <div className="text-center py-16 bg-white/5 rounded-2xl">
-              <FiHelpCircle className="text-5xl text-white/20 mx-auto mb-3" />
-              <p className="text-white/40">Aucun ticket de support</p>
+            <div className="flex justify-center py-"><div className="w- h- border- border-blue- border-t-transparent rounded-full animate-spin" /></div>
+          ) : tickets.length ===  ? (
+            <div className="text-center py- bg-white/ rounded-xl">
+              <FiHelpCircle className="text-xl text-white/ mx-auto mb-" />
+              <p className="text-white/">Aucun ticket de support</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-">
               {tickets.map((ticket, idx) => (
-                <motion.div key={ticket.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 }} className="bg-white/5 rounded-2xl p-5 border border-white/10">
-                  <div className="flex flex-wrap justify-between items-start gap-3 mb-3">
+                <motion.div key={ticket.id} initial={{ opacity: , y:  }} animate={{ opacity: , y:  }} transition={{ delay: idx  . }} className="bg-white/ rounded-xl p- border border-white/">
+                  <div className="flex flex-wrap justify-between items-start gap- mb-">
                     <div>
-                      <h3 className="text-lg font-bold text-white">{ticket.subject}</h3>
-                      <p className="text-white/40 text-sm">{new Date(ticket.created_at).toLocaleDateString()}</p>
+                      <h className="text-lg font-bold text-white">{ticket.subject}</h>
+                      <p className="text-white/ text-sm">{new Date(ticket.created_at).toLocaleDateString()}</p>
                     </div>
                     {getStatusBadge(ticket.status)}
                   </div>
-                  <p className="text-white/60 text-sm mb-3">{ticket.message}</p>
+                  <p className="text-white/ text-sm mb-">{ticket.message}</p>
                   {ticket.admin_reply && (
-                    <div className="bg-blue-600/10 rounded-xl p-3 mt-3">
-                      <p className="text-blue-400 text-xs font-semibold mb-1">R√©ponse de Limbiz :</p>
-                      <p className="text-white/60 text-sm">{ticket.admin_reply}</p>
+                    <div className="bg-blue-/ rounded-xl p- mt-">
+                      <p className="text-blue- text-xs font-semibold mb-">R√ponse de Limbiz :</p>
+                      <p className="text-white/ text-sm">{ticket.admin_reply}</p>
                     </div>
                   )}
                 </motion.div>

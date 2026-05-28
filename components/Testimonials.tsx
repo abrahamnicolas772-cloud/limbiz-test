@@ -5,56 +5,56 @@ import { FiChevronLeft, FiChevronRight, FiStar } from 'react-icons/fi'
 import { SiGoogle } from 'react-icons/si'
 
 const testimonials = [
-  { id: 1, name: 'Sarah Chen', role: 'CEO, Lumina AI', text: 'Limbiz delivered a breathtaking digital experience. Our conversion rates increased by 47% within three months. The futuristic design perfectly captures our brand essence.', rating: 5, avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop', verified: true },
-  { id: 2, name: 'Marcus Rodriguez', role: 'Founder, Finova', text: 'Absolutely premium craftsmanship. Every detail, from the glassmorphism to the micro-interactions, screams luxury. Our investors were blown away by the new platform.', rating: 5, avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop', verified: true },
-  { id: 3, name: 'Elena Weiss', role: 'CMO, Stratosphere', text: 'Working with Limbiz elevated our brand to a whole new level. The testimonial carousel itself is a work of art. Highly recommended for any high-end SaaS.', rating: 5, avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop', verified: true }
+  { id: , name: 'Sarah Chen', role: 'CEO, Lumina AI', text: 'Limbiz delivered a breathtaking digital experience. Our conversion rates increased by % within three months. The futuristic design perfectly captures our brand essence.', rating: , avatar: 'https://images.unsplash.com/photo--becb?w=&h=&fit=crop', verified: true },
+  { id: , name: 'Marcus Rodriguez', role: 'Founder, Finova', text: 'Absolutely premium craftsmanship. Every detail, from the glassmorphism to the micro-interactions, screams luxury. Our investors were blown away by the new platform.', rating: , avatar: 'https://images.unsplash.com/photo--addfd?w=&h=&fit=crop', verified: true },
+  { id: , name: 'Elena Weiss', role: 'CMO, Stratosphere', text: 'Working with Limbiz elevated our brand to a whole new level. The testimonial carousel itself is a work of art. Highly recommended for any high-end SaaS.', rating: , avatar: 'https://images.unsplash.com/photo--bdaa?w=&h=&fit=crop', verified: true }
 ]
 
 export default function Testimonials() {
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState()
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
   useEffect(() => {
     if (!isAutoPlaying) return
-    const interval = setInterval(() => setCurrent((prev) => (prev + 1) % testimonials.length), 6000)
+    const interval = setInterval(() => setCurrent((prev) => (prev + ) % testimonials.length), )
     return () => clearInterval(interval)
   }, [isAutoPlaying])
 
-  const next = () => { setIsAutoPlaying(false); setCurrent((prev) => (prev + 1) % testimonials.length); setTimeout(() => setIsAutoPlaying(true), 3000) }
-  const prev = () => { setIsAutoPlaying(false); setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length); setTimeout(() => setIsAutoPlaying(true), 3000) }
+  const next = () => { setIsAutoPlaying(false); setCurrent((prev) => (prev + ) % testimonials.length); setTimeout(() => setIsAutoPlaying(true), ) }
+  const prev = () => { setIsAutoPlaying(false); setCurrent((prev) => (prev -  + testimonials.length) % testimonials.length); setTimeout(() => setIsAutoPlaying(true), ) }
 
   return (
-    <section className="relative py-28 overflow-hidden bg-black">
-      <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none" />
-      <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px] -z-0" />
-      <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-purple-500/15 rounded-full blur-[90px] -z-0" />
+    <section className="relative py- overflow-hidden bg-black">
+      <div className="absolute inset- bg-noise opacity- pointer-events-none" />
+      <div className="absolute top- left-/ w- h- bg-blue-/ rounded-full blur-[px] -z-" />
+      <div className="absolute bottom- right-/ w- h- bg-purple-/ rounded-full blur-[px] -z-" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">Client <span className="text-blue-400">Love</span></h2>
-          <p className="mt-3 text-white/40 text-sm uppercase tracking-wider font-light">What our partners say</p>
+      <div className="max-w-xl mx-auto px- sm:px- lg:px- relative z-">
+        <div className="text-center mb-">
+          <h className="text-xl md:text-xl font-bold tracking-tight text-white">Client <span className="text-blue-">Love</span></h>
+          <p className="mt- text-white/ text-sm uppercase tracking-wider font-light">What our partners say</p>
         </div>
 
         <div className="relative flex items-center justify-center">
-          <button onClick={prev} className="absolute left-0 md:-left-16 z-20 p-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-white/70 hover:text-white transition"><FiChevronLeft size={22} /></button>
-          <div className="w-full max-w-3xl overflow-hidden">
+          <button onClick={prev} className="absolute left- md:-left- z- p- rounded-full bg-white/ backdrop-blur-xl border border-white/ text-white/ hover:text-white transition"><FiChevronLeft size={} /></button>
+          <div className="w-full max-w-xl overflow-hidden">
             <AnimatePresence mode="wait">
-              <motion.div key={current} initial={{ opacity: 0, y: 30, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -20, scale: 0.95 }} transition={{ duration: 0.5 }} className="glass-premium p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl backdrop-blur-xl">
-                <div className="flex justify-center gap-1 mb-6">{[...Array(testimonials[current].rating)].map((_, i) => <FiStar key={i} className="fill-yellow-400 text-yellow-400 w-5 h-5" />)}</div>
-                <p className="text-white/80 text-lg md:text-xl leading-relaxed text-center max-w-2xl mx-auto italic font-light">“{testimonials[current].text}”</p>
-                <div className="flex flex-col items-center mt-8">
-                  <div className="relative"><img src={testimonials[current].avatar} alt={testimonials[current].name} className="w-16 h-16 rounded-full object-cover border-2 border-blue-500/30 shadow-lg" /><div className="absolute -inset-1 rounded-full bg-blue-400/20 blur-md -z-10" /></div>
-                  <div className="flex flex-wrap items-center justify-center gap-2 mt-4"><h4 className="text-white font-semibold text-lg">{testimonials[current].name}</h4>{testimonials[current].verified && (<div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/10 border border-white/20 text-[10px] text-white/80 font-medium"><SiGoogle className="w-3 h-3 text-blue-400" /><span>Verified by Google</span></div>)}</div>
-                  <p className="text-white/40 text-sm font-light">{testimonials[current].role}</p>
+              <motion.div key={current} initial={{ opacity: , y: , scale: . }} animate={{ opacity: , y: , scale:  }} exit={{ opacity: , y: -, scale: . }} transition={{ duration: . }} className="glass-premium p- md:p- rounded-xl border border-white/ shadow-xl backdrop-blur-xl">
+                <div className="flex justify-center gap- mb-">{[...Array(testimonials[current].rating)].map((_, i) => <FiStar key={i} className="fill-yellow- text-yellow- w- h-" />)}</div>
+                <p className="text-white/ text-lg md:text-xl leading-relaxed text-center max-w-xl mx-auto italic font-light">“{testimonials[current].text}”</p>
+                <div className="flex flex-col items-center mt-">
+                  <div className="relative"><img src={testimonials[current].avatar} alt={testimonials[current].name} className="w- h- rounded-full object-cover border- border-blue-/ shadow-lg" /><div className="absolute -inset- rounded-full bg-blue-/ blur-md -z-" /></div>
+                  <div className="flex flex-wrap items-center justify-center gap- mt-"><h className="text-white font-semibold text-lg">{testimonials[current].name}</h>{testimonials[current].verified && (<div className="flex items-center gap- px- py-. rounded-full bg-white/ border border-white/ text-[px] text-white/ font-medium"><SiGoogle className="w- h- text-blue-" /><span>Verified by Google</span></div>)}</div>
+                  <p className="text-white/ text-sm font-light">{testimonials[current].role}</p>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
-          <button onClick={next} className="absolute right-0 md:-right-16 z-20 p-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-white/70 hover:text-white transition"><FiChevronRight size={22} /></button>
+          <button onClick={next} className="absolute right- md:-right- z- p- rounded-full bg-white/ backdrop-blur-xl border border-white/ text-white/ hover:text-white transition"><FiChevronRight size={} /></button>
         </div>
 
-        <div className="flex justify-center gap-3 mt-10">{testimonials.map((_, idx) => (<button key={idx} onClick={() => { setIsAutoPlaying(false); setCurrent(idx); setTimeout(() => setIsAutoPlaying(true), 3000) }} className={`h-1.5 rounded-full transition-all duration-500 ${idx === current ? 'w-8 bg-gradient-to-r from-blue-400 to-purple-400 shadow-neon' : 'w-1.5 bg-white/30'}`} />))}</div>
-        <div className="text-center mt-10"><a href="https://fr.trustpilot.com/review/limbiz.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm transition group"><span className="text-yellow-400 text-base">★★★★★</span><span>Rated 4.9/5 on</span><span className="text-blue-400 font-semibold">Trustpilot</span><span className="group-hover:translate-x-0.5 transition">→</span></a></div>
+        <div className="flex justify-center gap- mt-">{testimonials.map((_, idx) => (<button key={idx} onClick={() => { setIsAutoPlaying(false); setCurrent(idx); setTimeout(() => setIsAutoPlaying(true), ) }} className={`h-. rounded-full transition-all duration- ${idx === current ? 'w- bg-gradient-to-r from-blue- to-purple- shadow-neon' : 'w-. bg-white/'}`} />))}</div>
+        <div className="text-center mt-"><a href="https://fr.trustpilot.com/review/limbiz.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap- text-white/ hover:text-white text-sm transition group"><span className="text-yellow- text-base"></span><span>Rated ./ on</span><span className="text-blue- font-semibold">Trustpilot</span><span className="group-hover:translate-x-. transition"></span></a></div>
       </div>
     </section>
   )

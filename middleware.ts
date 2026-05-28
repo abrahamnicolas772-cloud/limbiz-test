@@ -25,7 +25,7 @@ export async function middleware(req: NextRequest) {
   
   const { data: { session } } = await supabase.auth.getSession()
   
-  // Routes prot√©g√©es
+  // Routes prot√g√es
   const isAdminRoute = req.nextUrl.pathname.startsWith('/admin')
   const isAuthRoute = req.nextUrl.pathname.startsWith('/login') || 
                       req.nextUrl.pathname.startsWith('/register') ||
@@ -43,5 +43,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/login', '/register', '/forgot-password']
+  matcher: ['/admin/:path', '/login', '/register', '/forgot-password']
 }

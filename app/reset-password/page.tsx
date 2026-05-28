@@ -16,12 +16,12 @@ export default function ResetPasswordPage() {
   const router = useRouter()
   const supabase = createClient()
 
-  // Vérifier si l'utilisateur a un token valide (via la session)
+  // V�rifier si l'utilisateur a un token valide (via la session)
   useEffect(() => {
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) {
-        setError('Lien invalide ou expiré. Veuillez refaire une demande de réinitialisation.')
+        setError('Lien invalide ou expir�. Veuillez refaire une demande de r�initialisation.')
       }
     }
     checkSession()
@@ -33,8 +33,8 @@ export default function ResetPasswordPage() {
       setError('Les mots de passe ne correspondent pas')
       return
     }
-    if (password.length < 6) {
-      setError('Le mot de passe doit contenir au moins 6 caractères')
+    if (password.length < ) {
+      setError('Le mot de passe doit contenir au moins  caractères')
       return
     }
 
@@ -47,63 +47,63 @@ export default function ResetPasswordPage() {
     if (error) {
       setError(error.message)
     } else {
-      setMessage('Mot de passe modifié avec succès ! Vous allez être redirigé...')
+      setMessage('Mot de passe modifi� avec succès ! Vous allez être redirig�...')
       setTimeout(() => {
         router.push('/login')
-      }, 2000)
+      }, )
     }
     setLoading(false)
   }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
-      <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 w-full max-w-md border border-white/10">
-        <h1 className="text-2xl font-bold text-white mb-2">Nouveau mot de passe</h1>
-        <p className="text-white/50 text-sm mb-6">
-          Choisissez un mot de passe sécurisé pour votre compte.
+    <div className="min-h-screen bg-black flex items-center justify-center p-">
+      <div className="bg-white/ backdrop-blur-xl rounded-xl p- w-full max-w-md border border-white/">
+        <h className="text-xl font-bold text-white mb-">Nouveau mot de passe</h>
+        <p className="text-white/ text-sm mb-">
+          Choisissez un mot de passe s�curis� pour votre compte.
         </p>
 
         {message && (
-          <div className="mb-4 p-3 bg-green-500/20 text-green-400 rounded-xl text-sm flex items-center gap-2">
+          <div className="mb- p- bg-green-/ text-green- rounded-xl text-sm flex items-center gap-">
             <FiCheckCircle /> {message}
           </div>
         )}
         {error && (
-          <div className="mb-4 p-3 bg-red-500/20 text-red-400 rounded-xl text-sm">
+          <div className="mb- p- bg-red-/ text-red- rounded-xl text-sm">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-">
           <div>
-            <label className="block text-white/60 text-sm mb-1">Nouveau mot de passe</label>
+            <label className="block text-white/ text-sm mb-">Nouveau mot de passe</label>
             <div className="relative">
-              <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" />
+              <FiLock className="absolute left- top-/ -translate-y-/ text-white/" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 rounded-xl text-white"
+                className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                className="absolute right- top-/ -translate-y-/ text-white/ hover:text-white"
               >
-                {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+                {showPassword ? <FiEyeOff size={} /> : <FiEye size={} />}
               </button>
             </div>
           </div>
           <div>
-            <label className="block text-white/60 text-sm mb-1">Confirmer le mot de passe</label>
+            <label className="block text-white/ text-sm mb-">Confirmer le mot de passe</label>
             <div className="relative">
-              <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" />
+              <FiLock className="absolute left- top-/ -translate-y-/ text-white/" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white"
+                className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white"
                 required
               />
             </div>
@@ -111,14 +111,14 @@ export default function ResetPasswordPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 bg-blue-600 rounded-xl text-white font-semibold hover:bg-blue-500 transition disabled:opacity-50"
+            className="w-full py- bg-blue- rounded-xl text-white font-semibold hover:bg-blue- transition disabled:opacity-"
           >
             {loading ? 'Changement...' : 'Modifier le mot de passe'}
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <Link href="/login" className="text-white/40 text-sm hover:text-white">
+        <div className="mt- text-center">
+          <Link href="/login" className="text-white/ text-sm hover:text-white">
             Retour à la connexion
           </Link>
         </div>

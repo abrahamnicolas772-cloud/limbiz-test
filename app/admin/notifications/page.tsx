@@ -23,7 +23,7 @@ export default function AdminNotifications() {
       type: 'admin',
       read: false
     })
-    alert('Notification envoy√©e')
+    alert('Notification envoy√e')
     setTitle('')
     setMessage('')
     setSelectedUser('')
@@ -31,24 +31,24 @@ export default function AdminNotifications() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-white mb-6">Notifications</h1>
-      <form onSubmit={sendNotification} className="max-w-lg space-y-4 bg-white/5 p-6 rounded-2xl border border-white/10">
+      <h className="text-xl font-bold text-white mb-">Notifications</h>
+      <form onSubmit={sendNotification} className="max-w-lg space-y- bg-white/ p- rounded-xl border border-white/">
         <div>
-          <label className="block text-white/60 text-sm mb-1">Utilisateur</label>
-          <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)} className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white" required>
-            <option value="">S√©lectionner</option>
+          <label className="block text-white/ text-sm mb-">Utilisateur</label>
+          <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)} className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white" required>
+            <option value="">S√lectionner</option>
             {users.map((user) => <option key={user.id} value={user.id}>{user.full_name || user.id}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-white/60 text-sm mb-1">Titre</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white" required />
+          <label className="block text-white/ text-sm mb-">Titre</label>
+          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white" required />
         </div>
         <div>
-          <label className="block text-white/60 text-sm mb-1">Message</label>
-          <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={3} className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white" required />
+          <label className="block text-white/ text-sm mb-">Message</label>
+          <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={} className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white" required />
         </div>
-        <button type="submit" className="px-4 py-2 bg-blue-600 rounded-xl text-white font-semibold">Envoyer</button>
+        <button type="submit" className="px- py- bg-blue- rounded-xl text-white font-semibold">Envoyer</button>
       </form>
     </div>
   )

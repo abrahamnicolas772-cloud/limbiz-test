@@ -7,75 +7,75 @@ import { FiBriefcase, FiCreditCard, FiShoppingCart, FiShield, FiTrendingUp, FiUs
 
 const servicesList = [
   {
-    icon: <FiBriefcase size={28} />,
-    title: 'Création d\'entreprise',
-    desc: 'Formation LLC, EIN, conformité légale.',
+    icon: <FiBriefcase size={} />,
+    title: 'Cr�ation d\'entreprise',
+    desc: 'Formation LLC, EIN, conformit� l�gale.',
     details: [
-      '✅ Dépôt des statuts auprès de l\'État',
-      '✅ Obtenez votre numéro EIN (IRS)',
-      '✅ Rédaction de l\'accord d\'exploitation',
-      '✅ Agent enregistré inclus pour 1 an',
-      '✅ Kit d\'accueil entrepreneur',
+      ' D�pôt des statuts auprès de l\'État',
+      ' Obtenez votre num�ro EIN (IRS)',
+      ' R�daction de l\'accord d\'exploitation',
+      ' Agent enregistr� inclus pour  an',
+      ' Kit d\'accueil entrepreneur',
     ],
   },
   {
-    icon: <FiCreditCard size={28} />,
-    title: 'Crédit professionnel',
-    desc: 'Construisez votre crédit et obtenez du financement.',
+    icon: <FiCreditCard size={} />,
+    title: 'Cr�dit professionnel',
+    desc: 'Construisez votre cr�dit et obtenez du financement.',
     details: [
-      '✅ Création de votre profil crédit entreprise',
-      '✅ Recommandation de cartes et lignes de crédit',
-      '✅ Accompagnement DUNS et Paydex',
-      '✅ Stratégie net-30',
-      '✅ Préparation au financement (prêts, marges)',
+      ' Cr�ation de votre profil cr�dit entreprise',
+      ' Recommandation de cartes et lignes de cr�dit',
+      ' Accompagnement DUNS et Paydex',
+      ' Strat�gie net-',
+      ' Pr�paration au financement (prêts, marges)',
     ],
   },
   {
-    icon: <FiShoppingCart size={28} />,
-    title: 'Création e-commerce',
+    icon: <FiShoppingCart size={} />,
+    title: 'Cr�ation e-commerce',
     desc: 'Lancez votre boutique en ligne.',
     details: [
-      '✅ Choix de la plateforme (Shopify, WooCommerce)',
-      '✅ Configuration des paiements (Stripe/PayPal)',
-      '✅ Design de la boutique responsive',
-      '✅ Import des premiers produits',
-      '✅ SEO et optimisation de conversion',
+      ' Choix de la plateforme (Shopify, WooCommerce)',
+      ' Configuration des paiements (Stripe/PayPal)',
+      ' Design de la boutique responsive',
+      ' Import des premiers produits',
+      ' SEO et optimisation de conversion',
     ],
   },
   {
-    icon: <FiShield size={28} />,
-    title: 'Dépôt de marque',
-    desc: 'Protégez votre marque.',
+    icon: <FiShield size={} />,
+    title: 'D�pôt de marque',
+    desc: 'Prot�gez votre marque.',
     details: [
-      '✅ Recherche d\'antériorité USPTO',
-      '✅ Préparation du dossier de marque',
-      '✅ Dépôt électronique (TEAS)',
-      '✅ Suivi de l’examen par l’examinateur',
-      '✅ Certificat d’enregistrement',
+      ' Recherche d\'ant�riorit� USPTO',
+      ' Pr�paration du dossier de marque',
+      ' D�pôt �lectronique (TEAS)',
+      ' Suivi de l’examen par l’examinateur',
+      ' Certificat d’enregistrement',
     ],
   },
   {
-    icon: <FiTrendingUp size={28} />,
+    icon: <FiTrendingUp size={} />,
     title: 'Structure d\'entreprise',
     desc: 'Optimisez votre structure fiscale.',
     details: [
-      '✅ Analyse de votre situation (C-Corp, S-Corp, LLC)',
-      '✅ Recommandation fiscale personnalisée',
-      '✅ Mise à jour des statuts',
-      '✅ Planification successorale',
-      '✅ Optimisation des impôts',
+      ' Analyse de votre situation (C-Corp, S-Corp, LLC)',
+      ' Recommandation fiscale personnalis�e',
+      ' Mise à jour des statuts',
+      ' Planification successorale',
+      ' Optimisation des impôts',
     ],
   },
   {
-    icon: <FiUsers size={28} />,
+    icon: <FiUsers size={} />,
     title: 'Édition & produits digitaux',
     desc: 'Publiez livres et contenus.',
     details: [
-      '✅ Création de contenu (eBook, formation)',
-      '✅ Mise en page professionnelle',
-      '✅ Distribution Amazon KDP / Apple Books',
-      '✅ Création de produits numériques (templates, guides)',
-      '✅ Stratégie de lancement',
+      ' Cr�ation de contenu (eBook, formation)',
+      ' Mise en page professionnelle',
+      ' Distribution Amazon KDP / Apple Books',
+      ' Cr�ation de produits num�riques (templates, guides)',
+      ' Strat�gie de lancement',
     ],
   },
 ]
@@ -90,50 +90,50 @@ export default function ServicesPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-28 min-h-screen bg-black relative overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none" />
-        <div className="absolute inset-0 -z-0">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-pulse-slow" />
-          <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-purple-500/15 rounded-full blur-[110px] animate-pulse-slow" />
+      <main className="pt- min-h-screen bg-black relative overflow-hidden">
+        {/ Background /}
+        <div className="absolute inset- bg-noise opacity- pointer-events-none" />
+        <div className="absolute inset- -z-">
+          <div className="absolute top- left-/ w- h- bg-blue-/ rounded-full blur-[px] animate-pulse-slow" />
+          <div className="absolute bottom- right-/ w- h- bg-purple-/ rounded-full blur-[px] animate-pulse-slow" />
         </div>
 
-        {/* Hero */}
-        <section className="relative py-20 text-center px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">Nos <span className="text-blue-500">Services</span></h1>
-          <p className="mt-4 text-white/60 max-w-2xl mx-auto">Des solutions complètes pour lancer et développer votre entreprise.</p>
+        {/ Hero /}
+        <section className="relative py- text-center px-">
+          <h className="text-xl md:text-xl lg:text-xl font-bold">Nos <span className="text-blue-">Services</span></h>
+          <p className="mt- text-white/ max-w-xl mx-auto">Des solutions complètes pour lancer et d�velopper votre entreprise.</p>
         </section>
 
-        {/* Services Grid */}
-        <section className="py-12 max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/ Services Grid /}
+        <section className="py- max-w-xl mx-auto px-">
+          <div className="grid md:grid-cols- lg:grid-cols- gap-">
             {servicesList.map((service, idx) => {
               const isExpanded = expandedId === idx
               return (
                 <div
                   key={idx}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg"
+                  className="bg-white/ backdrop-blur-sm border border-white/ rounded-xl p- transition-all duration- hover:border-blue-/ hover:shadow-lg"
                 >
-                  <div className="text-blue-400 mb-4">{service.icon}</div>
-                  <h3 className="text-xl font-bold text-white">{service.title}</h3>
-                  <p className="text-white/50 text-sm mt-2">{service.desc}</p>
+                  <div className="text-blue- mb-">{service.icon}</div>
+                  <h className="text-xl font-bold text-white">{service.title}</h>
+                  <p className="text-white/ text-sm mt-">{service.desc}</p>
                   
-                  {/* Bouton En savoir plus */}
+                  {/ Bouton En savoir plus /}
                   <button
                     onClick={() => toggleDetails(idx)}
-                    className="mt-4 text-blue-400 text-sm flex items-center gap-1 hover:gap-2 transition-all cursor-pointer"
+                    className="mt- text-blue- text-sm flex items-center gap- hover:gap- transition-all cursor-pointer"
                   >
                     {isExpanded ? 'Voir moins' : 'En savoir plus'}
-                    <FiArrowRight size={14} className={isExpanded ? 'rotate-90' : ''} />
+                    <FiArrowRight size={} className={isExpanded ? 'rotate-' : ''} />
                   </button>
 
-                  {/* Détails supplémentaires (affichés si ouvert) */}
+                  {/ D�tails suppl�mentaires (affich�s si ouvert) /}
                   {isExpanded && (
-                    <div className="mt-4 pt-4 border-t border-white/10 animate-fadeIn">
-                      <ul className="space-y-2">
+                    <div className="mt- pt- border-t border-white/ animate-fadeIn">
+                      <ul className="space-y-">
                         {service.details.map((detail, i) => (
-                          <li key={i} className="text-white/70 text-sm flex items-start gap-2">
-                            <span className="text-blue-400 mt-0.5">•</span>
+                          <li key={i} className="text-white/ text-sm flex items-start gap-">
+                            <span className="text-blue- mt-.">•</span>
                             {detail}
                           </li>
                         ))}
@@ -146,21 +146,21 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-16 max-w-4xl mx-auto px-4 text-center">
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
-            <h2 className="text-2xl font-bold">Besoin d'un conseil personnalisé ?</h2>
-            <p className="mt-2 text-white/60 text-sm">Nos experts sont là pour vous guider.</p>
-            <div className="flex flex-wrap justify-center gap-4 mt-6">
+        {/ CTA /}
+        <section className="py- max-w-xl mx-auto px- text-center">
+          <div className="bg-white/ backdrop-blur-sm border border-white/ rounded-xl p-">
+            <h className="text-xl font-bold">Besoin d'un conseil personnalis� ?</h>
+            <p className="mt- text-white/ text-sm">Nos experts sont là pour vous guider.</p>
+            <div className="flex flex-wrap justify-center gap- mt-">
               <button
                 onClick={() => window.location.href = '/pricing'}
-                className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white font-semibold transition hover:scale-105 cursor-pointer"
+                className="px- py-. bg-gradient-to-r from-blue- to-purple- rounded-full text-white font-semibold transition hover:scale- cursor-pointer"
               >
                 Voir les tarifs
               </button>
               <button
                 onClick={() => window.location.href = '/contact'}
-                className="px-6 py-2.5 border border-white/30 rounded-full text-white font-semibold transition hover:bg-white/10 cursor-pointer"
+                className="px- py-. border border-white/ rounded-full text-white font-semibold transition hover:bg-white/ cursor-pointer"
               >
                 Contacter un expert
               </button>

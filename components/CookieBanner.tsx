@@ -29,20 +29,20 @@ export default function CookieBanner() {
   return (
     <div style={{
       position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: 99999,
-      width: '90%',
-      maxWidth: '600px',
-      background: 'linear-gradient(135deg, #2563EB, #7C3AED)',
-      borderRadius: '24px',
-      padding: '32px',
+      top: '%',
+      left: '%',
+      transform: 'translate(-%, -%)',
+      zIndex: ,
+      width: '%',
+      maxWidth: 'px',
+      background: 'linear-gradient(deg, EB, CAED)',
+      borderRadius: 'px',
+      padding: 'px',
       color: 'white',
       textAlign: 'center',
-      boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)'
+      boxShadow: ' px px -px rgba(,,,.)'
     }}>
-      {/* ... même contenu ... */}
+      {/ ... même contenu ... /}
     </div>
   )
 }

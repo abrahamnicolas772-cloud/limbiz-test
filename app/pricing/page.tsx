@@ -14,41 +14,41 @@ const plans = [
   {
     id: 'starter',
     name: 'Starter',
-    price: 499,
-    priceYearly: 449,
-    desc: 'Id√©al pour d√©marrer votre activit√©',
+    price: ,
+    priceYearly: ,
+    desc: 'Id√al pour d√marrer votre activit√',
     features: [
       'Formation LLC compl√®te',
       'Obtenez un EIN',
       'Conseils juridiques de base',
-      'Support email 5j/7',
-      'Acc√®s aux documents l√©gaux',
+      'Support email j/',
+      'Acc√®s aux documents l√gaux',
       'Template d\'accord d\'exploitation'
     ],
     cta: 'Commencer',
     popular: false,
-    icon: <FiBriefcase size={24} />,
-    color: 'from-blue-600 to-blue-400'
+    icon: <FiBriefcase size={} />,
+    color: 'from-blue- to-blue-'
   },
   {
     id: 'professional',
     name: 'Professional',
-    price: 999,
-    priceYearly: 899,
-    desc: 'Pour les entrepreneurs s√©rieux',
+    price: ,
+    priceYearly: ,
+    desc: 'Pour les entrepreneurs s√rieux',
     features: [
       'Tout ce qui est dans Starter',
-      'Cr√©dit professionnel',
+      'Cr√dit professionnel',
       'E-commerce setup complet',
-      'Support prioritaire 7j/7',
-      'Conseils personnalis√©s mensuels',
+      'Support prioritaire j/',
+      'Conseils personnalis√s mensuels',
       'Template de business plan',
-      'D√©p√¥t de marque inclus'
+      'D√p√¥t de marque inclus'
     ],
     cta: 'Choisir Pro',
     popular: true,
-    icon: <FiStar size={24} />,
-    color: 'from-purple-600 to-blue-600'
+    icon: <FiStar size={} />,
+    color: 'from-purple- to-blue-'
   },
   {
     id: 'enterprise',
@@ -58,54 +58,54 @@ const plans = [
     desc: 'Solution sur mesure',
     features: [
       'Tout ce qui est dans Professional',
-      'D√©di√© account manager',
-      'Support 24/7 t√©l√©phonique',
-      'Strat√©gie personnalis√©e',
+      'D√di√ account manager',
+      'Support / t√l√phonique',
+      'Strat√gie personnalis√e',
       'Audit fiscal complet',
-      'Formation √©quipe',
-      'API & int√©grations sur mesure'
+      'Formation √quipe',
+      'API & int√grations sur mesure'
     ],
     cta: 'Nous contacter',
     popular: false,
-    icon: <FiUsers size={24} />,
-    color: 'from-blue-700 to-purple-700'
+    icon: <FiUsers size={} />,
+    color: 'from-blue- to-purple-'
   }
 ]
 
 const consultations = [
   { 
-    name: 'Consultation D√©couverte', 
-    duration: '30 min', 
+    name: 'Consultation D√couverte', 
+    duration: ' min', 
     price: 'Gratuit', 
-    desc: 'Premier √©change pour cerner vos besoins',
-    icon: <FiCalendar size={20} />,
+    desc: 'Premier √change pour cerner vos besoins',
+    icon: <FiCalendar size={} />,
     popular: true
   },
   { 
-    name: 'Consultation Strat√©gique', 
-    duration: '60 min', 
-    price: '$199', 
+    name: 'Consultation Strat√gique', 
+    duration: ' min', 
+    price: '$', 
     desc: 'Analyse approfondie et plan d\'action',
-    icon: <FiTrendingUp size={20} />,
+    icon: <FiTrendingUp size={} />,
     popular: false
   },
   { 
     name: 'Pack Mentor', 
-    duration: '3 x 60 min', 
-    price: '$499', 
-    desc: 'Accompagnement personnalis√© sur 3 mois',
-    icon: <FiUsers size={20} />,
+    duration: ' x  min', 
+    price: '$', 
+    desc: 'Accompagnement personnalis√ sur  mois',
+    icon: <FiUsers size={} />,
     popular: false
   }
 ]
 
 const faqs = [
-  { q: "Quelle est la diff√©rence entre les formules ?", a: "La formule Starter est id√©ale pour d√©marrer, Professional inclut le cr√©dit pro et l'e-commerce, Enterprise est une solution sur mesure avec accompagnement d√©di√©." },
-  { q: "Puis-je passer √† la formule sup√©rieure ?", a: "Oui, vous pouvez √©voluer vers une formule sup√©rieure √† tout moment, sans frais suppl√©mentaires." },
-  { q: "Y a-t-il des frais cach√©s ?", a: "Non, tous nos tarifs sont transparents. Ce que vous voyez est ce que vous payez." },
-  { q: "Quels sont les d√©lais de cr√©ation ?", a: "La cr√©ation d'une LLC prend g√©n√©ralement 4 √† 6 semaines selon l'√©tat." },
-  { q: "Proposez-vous des paiements √©chelonn√©s ?", a: "Oui, nous proposons des plans de paiement en 3 ou 6 fois sans frais." },
-  { q: "Que se passe-t-il apr√®s mon achat ?", a: "Un expert vous contacte sous 24h pour lancer les d√©marches." }
+  { q: "Quelle est la diff√rence entre les formules ?", a: "La formule Starter est id√ale pour d√marrer, Professional inclut le cr√dit pro et l'e-commerce, Enterprise est une solution sur mesure avec accompagnement d√di√." },
+  { q: "Puis-je passer √† la formule sup√rieure ?", a: "Oui, vous pouvez √voluer vers une formule sup√rieure √† tout moment, sans frais suppl√mentaires." },
+  { q: "Y a-t-il des frais cach√s ?", a: "Non, tous nos tarifs sont transparents. Ce que vous voyez est ce que vous payez." },
+  { q: "Quels sont les d√lais de cr√ation ?", a: "La cr√ation d'une LLC prend g√n√ralement  √†  semaines selon l'√tat." },
+  { q: "Proposez-vous des paiements √chelonn√s ?", a: "Oui, nous proposons des plans de paiement en  ou  fois sans frais." },
+  { q: "Que se passe-t-il apr√®s mon achat ?", a: "Un expert vous contacte sous h pour lancer les d√marches." }
 ]
 
 export default function PricingPage() {
@@ -114,7 +114,7 @@ export default function PricingPage() {
   const [selectedFaq, setSelectedFaq] = useState<number | null>(null)
   const [processingPlan, setProcessingPlan] = useState<string | null>(null)
 
-  const handlePayment = async (plan: typeof plans[0]) => {
+  const handlePayment = async (plan: typeof plans[]) => {
     if (plan.id === 'enterprise') {
       router.push('/contact')
       return
@@ -145,100 +145,100 @@ export default function PricingPage() {
         throw new Error('URL de paiement manquante')
       }
     } catch (error: any) {
-      console.error('Paiement √©chou√©', error)
-      alert(`‚ùå ${error.message || 'Erreur lors du paiement. V√©rifiez que la cl√© secr√®te Stripe est configur√©e.'}`)
+      console.error('Paiement √chou√', error)
+      alert(`‚ùå ${error.message || 'Erreur lors du paiement. V√rifiez que la cl√ secr√®te Stripe est configur√e.'}`)
     } finally {
       setProcessingPlan(null)
     }
   }
 
-  const scrollToContact = () => router.push('/#contact')
+  const scrollToContact = () => router.push('/contact')
 
   return (
     <>
       <Navbar />
-      <main className="pt-28 min-h-screen bg-black relative overflow-hidden">
-        {/* Background premium */}
-        <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none" />
-        <div className="absolute inset-0 -z-0">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-pulse-slow" />
-          <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-purple-500/15 rounded-full blur-[110px] animate-pulse-slow animation-delay-1500" />
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-[130px] animate-pulse-slow animation-delay-3000" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent" />
+      <main className="pt- min-h-screen bg-black relative overflow-hidden">
+        {/ Background premium /}
+        <div className="absolute inset- bg-noise opacity- pointer-events-none" />
+        <div className="absolute inset- -z-">
+          <div className="absolute top- left-/ w- h- bg-blue-/ rounded-full blur-[px] animate-pulse-slow" />
+          <div className="absolute bottom- right-/ w- h- bg-purple-/ rounded-full blur-[px] animate-pulse-slow animation-delay-" />
+          <div className="absolute top-/ left-/ w- h- bg-cyan-/ rounded-full blur-[px] animate-pulse-slow animation-delay-" />
+          <div className="absolute inset- bg-gradient-to-b from-transparent via-blue-/ to-transparent" />
         </div>
 
-        {/* Hero section */}
-        <section className="relative py-20 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <span className="text-blue-400 text-sm font-semibold uppercase tracking-wider">Tarifs transparents</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-2">
-                Des formules pour <span className="text-blue-500">tous les projets</span>
-              </h1>
-              <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
+        {/ Hero section /}
+        <section className="relative py- overflow-hidden">
+          <div className="max-w-xl mx-auto px- sm:px- lg:px- text-center">
+            <motion.div initial={{ opacity: , y:  }} animate={{ opacity: , y:  }}>
+              <span className="text-blue- text-sm font-semibold uppercase tracking-wider">Tarifs transparents</span>
+              <h className="text-xl md:text-xl lg:text-xl font-bold mt-">
+                Des formules pour <span className="text-blue-">tous les projets</span>
+              </h>
+              <p className="mt- text-white/ text-lg max-w-xl mx-auto">
                 Choisissez l‚Äôaccompagnement qui correspond √† vos besoins. Pas de surprise, juste de la valeur.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Bascule mensuel / annuel */}
-        <div className="flex justify-center items-center gap-4 mb-8">
-          <span className={`text-sm font-medium transition ${!isYearly ? 'text-white' : 'text-white/40'}`}>Paiement mensuel</span>
-          <button onClick={() => setIsYearly(!isYearly)} className="relative w-16 h-8 rounded-full bg-white/10 border border-white/20 transition-all duration-300 focus:outline-none">
-            <div className={`absolute top-1 w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 ${isYearly ? 'translate-x-8' : 'translate-x-1'}`} />
+        {/ Bascule mensuel / annuel /}
+        <div className="flex justify-center items-center gap- mb-">
+          <span className={`text-sm font-medium transition ${!isYearly ? 'text-white' : 'text-white/'}`}>Paiement mensuel</span>
+          <button onClick={() => setIsYearly(!isYearly)} className="relative w- h- rounded-full bg-white/ border border-white/ transition-all duration- focus:outline-none">
+            <div className={`absolute top- w- h- rounded-full bg-gradient-to-r from-blue- to-purple- transition-all duration- ${isYearly ? 'translate-x-' : 'translate-x-'}`} />
           </button>
-          <span className={`text-sm font-medium transition ${isYearly ? 'text-white' : 'text-white/40'}`}>
-            Paiement annuel <span className="text-green-400 text-xs">(-10%)</span>
+          <span className={`text-sm font-medium transition ${isYearly ? 'text-white' : 'text-white/'}`}>
+            Paiement annuel <span className="text-green- text-xs">(-%)</span>
           </span>
         </div>
 
-        {/* Grille des prix */}
-        <section className="py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-3 gap-8">
+        {/ Grille des prix /}
+        <section className="py-">
+          <div className="max-w-xl mx-auto px- sm:px- lg:px-">
+            <div className="grid md:grid-cols- gap-">
               {plans.map((plan, idx) => {
                 const displayPrice = plan.price ? (isYearly ? plan.priceYearly : plan.price) : null
-                const savings = plan.price ? Math.round((plan.price - (plan.priceYearly || 0)) / plan.price * 100) : 0
+                const savings = plan.price ? Math.round((plan.price - (plan.priceYearly || )) / plan.price  ) : 
                 return (
                   <motion.div
                     key={plan.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: , y:  }}
+                    whileInView={{ opacity: , y:  }}
                     viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className={`relative rounded-2xl transition-all duration-300 hover:-translate-y-2 ${
+                    transition={{ delay: idx  . }}
+                    className={`relative rounded-xl transition-all duration- hover:-translate-y- ${
                       plan.popular 
-                        ? 'bg-gradient-to-b from-blue-600/20 to-purple-600/20 border-2 border-blue-500/50 shadow-neon' 
-                        : 'glass-card border border-white/10'
+                        ? 'bg-gradient-to-b from-blue-/ to-purple-/ border- border-blue-/ shadow-neon' 
+                        : 'glass-card border border-white/'
                     }`}
                   >
                     {plan.popular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg z-10">
+                      <div className="absolute -top- left-/ -translate-x-/ bg-gradient-to-r from-blue- to-purple- text-white text-xs font-bold px- py- rounded-full shadow-lg z-">
                         üåü Le plus populaire
                       </div>
                     )}
-                    <div className="p-6">
-                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r ${plan.color} flex items-center justify-center mb-4 shadow-lg`}>
+                    <div className="p-">
+                      <div className={`w- h- rounded-xl bg-gradient-to-r ${plan.color} flex items-center justify-center mb- shadow-lg`}>
                         {plan.icon}
                       </div>
-                      <h3 className="text-2xl font-bold text-white">{plan.name}</h3>
-                      <p className="text-white/40 text-sm mt-1">{plan.desc}</p>
-                      <div className="mt-4">
+                      <h className="text-xl font-bold text-white">{plan.name}</h>
+                      <p className="text-white/ text-sm mt-">{plan.desc}</p>
+                      <div className="mt-">
                         {displayPrice ? (
                           <>
-                            <span className="text-4xl font-bold text-white">{displayPrice}</span>
-                            <span className="text-white/50 text-sm"> / {isYearly ? 'an' : 'mois'}</span>
-                            {isYearly && savings > 0 && <span className="block text-green-400 text-xs mt-1">√âconomisez {savings}%</span>}
+                            <span className="text-xl font-bold text-white">{displayPrice}</span>
+                            <span className="text-white/ text-sm"> / {isYearly ? 'an' : 'mois'}</span>
+                            {isYearly && savings >  && <span className="block text-green- text-xs mt-">√âconomisez {savings}%</span>}
                           </>
                         ) : (
-                          <span className="text-2xl font-bold text-white">Sur mesure</span>
+                          <span className="text-xl font-bold text-white">Sur mesure</span>
                         )}
                       </div>
-                      <ul className="mt-6 space-y-3">
+                      <ul className="mt- space-y-">
                         {plan.features.map((feature, i) => (
-                          <li key={i} className="flex items-start gap-2 text-white/70 text-sm">
-                            <FiCheckCircle className="text-blue-500 mt-0.5 flex-shrink-0" size={14} />
+                          <li key={i} className="flex items-start gap- text-white/ text-sm">
+                            <FiCheckCircle className="text-blue- mt-. flex-shrink-" size={} />
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -246,14 +246,14 @@ export default function PricingPage() {
                       <button
                         onClick={() => handlePayment(plan)}
                         disabled={processingPlan === plan.id}
-                        className={`mt-8 w-full py-3 rounded-xl font-semibold transition-all duration-300 ${
+                        className={`mt- w-full py- rounded-xl font-semibold transition-all duration- ${
                           plan.popular
-                            ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:scale-105 shadow-lg shadow-blue-500/30'
-                            : 'border border-white/20 text-white hover:bg-white/10'
-                        } ${processingPlan === plan.id ? 'opacity-50 cursor-wait' : ''}`}
+                            ? 'bg-gradient-to-r from-blue- to-purple- text-white hover:scale- shadow-lg shadow-blue-/'
+                            : 'border border-white/ text-white hover:bg-white/'
+                        } ${processingPlan === plan.id ? 'opacity- cursor-wait' : ''}`}
                       >
                         {processingPlan === plan.id ? 'Chargement...' : plan.cta}
-                        {!processingPlan && plan.cta !== 'Nous contacter' && <FiArrowRight className="inline ml-1" size={16} />}
+                        {!processingPlan && plan.cta !== 'Nous contacter' && <FiArrowRight className="inline ml-" size={} />}
                       </button>
                     </div>
                   </motion.div>
@@ -263,38 +263,38 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Consultations individuelles */}
-<section className="py-16">
-  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold">Consultations <span className="text-blue-500">individuelles</span></h2>
-      <p className="text-white/50 text-sm mt-2">Une approche personnalis√©e pour r√©pondre √† vos besoins sp√©cifiques</p>
+        {/ Consultations individuelles /}
+<section className="py-">
+  <div className="max-w-xl mx-auto px- sm:px- lg:px-">
+    <div className="text-center mb-">
+      <h className="text-xl md:text-xl font-bold">Consultations <span className="text-blue-">individuelles</span></h>
+      <p className="text-white/ text-sm mt-">Une approche personnalis√e pour r√pondre √† vos besoins sp√cifiques</p>
     </div>
-    <div className="grid md:grid-cols-3 gap-6">
+    <div className="grid md:grid-cols- gap-">
       {consultations.map((consult, idx) => (
         <motion.div
           key={idx}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: , y:  }}
+          whileInView={{ opacity: , y:  }}
           viewport={{ once: true }}
-          transition={{ delay: idx * 0.1 }}
-          className={`glass-card p-6 rounded-2xl transition-all duration-300 hover:shadow-neon ${
-            consult.popular ? 'border border-blue-500/40' : 'border border-white/10'
+          transition={{ delay: idx  . }}
+          className={`glass-card p- rounded-xl transition-all duration- hover:shadow-neon ${
+            consult.popular ? 'border border-blue-/' : 'border border-white/'
           }`}
         >
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">{consult.icon}</div>
-            {consult.popular && <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full">Recommand√©</span>}
+          <div className="flex items-center gap- mb-">
+            <div className="w- h- rounded-xl bg-blue-/ flex items-center justify-center">{consult.icon}</div>
+            {consult.popular && <span className="text-xs bg-blue- text-white px- py-. rounded-full">Recommand√</span>}
           </div>
-          <h3 className="text-xl font-bold text-white">{consult.name}</h3>
-          <p className="text-white/40 text-sm mt-1">{consult.duration}</p>
-          <p className="text-2xl font-bold text-blue-400 mt-2">{consult.price}</p>
-          <p className="text-white/50 text-sm mt-2">{consult.desc}</p>
+          <h className="text-xl font-bold text-white">{consult.name}</h>
+          <p className="text-white/ text-sm mt-">{consult.duration}</p>
+          <p className="text-xl font-bold text-blue- mt-">{consult.price}</p>
+          <p className="text-white/ text-sm mt-">{consult.desc}</p>
           <button 
             onClick={() => router.push('/contact')} 
-            className="mt-4 w-full py-2 border border-white/20 rounded-xl text-white text-sm font-medium hover:bg-white/10 transition"
+            className="mt- w-full py- border border-white/ rounded-xl text-white text-sm font-medium hover:bg-white/ transition"
           >
-            R√©server <FiCalendar className="inline ml-1" size={14} />
+            R√server <FiCalendar className="inline ml-" size={} />
           </button>
         </motion.div>
       ))}
@@ -302,39 +302,39 @@ export default function PricingPage() {
   </div>
 </section>
 
-        {/* Bundle sur mesure */}
-        <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="glass-premium p-8 md:p-10 rounded-3xl text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                <FiShoppingCart size={28} className="text-white" />
+        {/ Bundle sur mesure /}
+        <section className="py-">
+          <div className="max-w-xl mx-auto px- sm:px- lg:px-">
+            <motion.div initial={{ opacity: , y:  }} whileInView={{ opacity: , y:  }} viewport={{ once: true }} className="glass-premium p- md:p- rounded-xl text-center">
+              <div className="w- h- mx-auto mb- bg-gradient-to-r from-blue- to-purple- rounded-xl flex items-center justify-center shadow-lg">
+                <FiShoppingCart size={} className="text-white" />
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold">Besoin d‚Äôun pack sur mesure ?</h3>
-              <p className="mt-3 text-white/60 text-sm max-w-md mx-auto">Combinez plusieurs services et b√©n√©ficiez d‚Äôune r√©duction allant jusqu‚Äô√† 20%.</p>
-              <button onClick={scrollToContact} className="mt-6 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white font-semibold inline-flex items-center gap-2 hover:scale-105 transition">
-                Demander un devis personnalis√© <FiArrowRight size={16} />
+              <h className="text-xl md:text-xl font-bold">Besoin d‚Äôun pack sur mesure ?</h>
+              <p className="mt- text-white/ text-sm max-w-md mx-auto">Combinez plusieurs services et b√n√ficiez d‚Äôune r√duction allant jusqu‚Äô√† %.</p>
+              <button onClick={scrollToContact} className="mt- px- py- bg-gradient-to-r from-blue- to-purple- rounded-full text-white font-semibold inline-flex items-center gap- hover:scale- transition">
+                Demander un devis personnalis√ <FiArrowRight size={} />
               </button>
             </motion.div>
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-center gap-2 mb-8">
-              <FiHelpCircle className="text-blue-400" size={28} />
-              <h2 className="text-2xl md:text-3xl font-bold">Questions fr√©quentes</h2>
+        {/ FAQ /}
+        <section className="py-">
+          <div className="max-w-xl mx-auto px- sm:px- lg:px-">
+            <div className="flex items-center justify-center gap- mb-">
+              <FiHelpCircle className="text-blue-" size={} />
+              <h className="text-xl md:text-xl font-bold">Questions fr√quentes</h>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-">
               {faqs.map((faq, idx) => (
-                <motion.div key={idx} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.05 }} className="glass-card rounded-xl overflow-hidden">
-                  <button onClick={() => setSelectedFaq(selectedFaq === idx ? null : idx)} className="w-full p-5 text-left flex justify-between items-center">
+                <motion.div key={idx} initial={{ opacity: , y:  }} whileInView={{ opacity: , y:  }} viewport={{ once: true }} transition={{ delay: idx  . }} className="glass-card rounded-xl overflow-hidden">
+                  <button onClick={() => setSelectedFaq(selectedFaq === idx ? null : idx)} className="w-full p- text-left flex justify-between items-center">
                     <span className="font-semibold text-white">{faq.q}</span>
-                    <FiArrowRight className={`text-blue-400 transition-transform duration-300 ${selectedFaq === idx ? 'rotate-90' : ''}`} size={18} />
+                    <FiArrowRight className={`text-blue- transition-transform duration- ${selectedFaq === idx ? 'rotate-' : ''}`} size={} />
                   </button>
                   {selectedFaq === idx && (
-                    <div className="px-5 pb-5">
-                      <p className="text-white/50 text-sm">{faq.a}</p>
+                    <div className="px- pb-">
+                      <p className="text-white/ text-sm">{faq.a}</p>
                     </div>
                   )}
                 </motion.div>
@@ -343,14 +343,14 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="py-16 mb-12">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold">Vous avez un projet complexe ?</h3>
-              <p className="mt-2 text-white/50 text-sm">Discutons de vos objectifs et trouvons la solution id√©ale ensemble.</p>
-              <button onClick={scrollToContact} className="mt-5 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white font-semibold inline-flex items-center gap-2 hover:scale-105 transition">
-                <FiMessageSquare size={18} /> Contacter un expert
+        {/ Final CTA /}
+        <section className="py- mb-">
+          <div className="max-w-xl mx-auto px- sm:px- lg:px- text-center">
+            <motion.div initial={{ opacity: , scale: . }} whileInView={{ opacity: , scale:  }} viewport={{ once: true }} className="bg-gradient-to-r from-blue-/ to-purple-/ rounded-xl p- border border-white/">
+              <h className="text-xl font-bold">Vous avez un projet complexe ?</h>
+              <p className="mt- text-white/ text-sm">Discutons de vos objectifs et trouvons la solution id√ale ensemble.</p>
+              <button onClick={scrollToContact} className="mt- px- py- bg-gradient-to-r from-blue- to-purple- rounded-full text-white font-semibold inline-flex items-center gap- hover:scale- transition">
+                <FiMessageSquare size={} /> Contacter un expert
               </button>
             </motion.div>
           </div>

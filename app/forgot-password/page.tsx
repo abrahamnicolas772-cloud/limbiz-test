@@ -25,41 +25,41 @@ export default function ForgotPasswordPage() {
     if (error) {
       setError(error.message)
     } else {
-      setMessage('Un email de r√©initialisation vous a √©t√© envoy√©. V√©rifiez votre bo√Æte de r√©ception.')
+      setMessage('Un email de r√initialisation vous a √t√ envoy√. V√rifiez votre bo√te de r√ception.')
       setEmail('')
     }
     setLoading(false)
   }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
-      <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 w-full max-w-md border border-white/10">
-        <h1 className="text-2xl font-bold text-white mb-2">Mot de passe oubli√© ?</h1>
-        <p className="text-white/50 text-sm mb-6">
-          Entrez votre email et nous vous enverrons un lien pour r√©initialiser votre mot de passe.
+    <div className="min-h-screen bg-black flex items-center justify-center p-">
+      <div className="bg-white/ backdrop-blur-xl rounded-xl p- w-full max-w-md border border-white/">
+        <h className="text-xl font-bold text-white mb-">Mot de passe oubli√ ?</h>
+        <p className="text-white/ text-sm mb-">
+          Entrez votre email et nous vous enverrons un lien pour r√initialiser votre mot de passe.
         </p>
 
         {message && (
-          <div className="mb-4 p-3 bg-green-500/20 text-green-400 rounded-xl text-sm">
+          <div className="mb- p- bg-green-/ text-green- rounded-xl text-sm">
             {message}
           </div>
         )}
         {error && (
-          <div className="mb-4 p-3 bg-red-500/20 text-red-400 rounded-xl text-sm">
+          <div className="mb- p- bg-red-/ text-red- rounded-xl text-sm">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-">
           <div>
-            <label className="block text-white/60 text-sm mb-1">Email</label>
+            <label className="block text-white/ text-sm mb-">Email</label>
             <div className="relative">
-              <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" />
+              <FiMail className="absolute left- top-/ -translate-y-/ text-white/" />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white"
+                className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white"
                 required
               />
             </div>
@@ -67,15 +67,15 @@ export default function ForgotPasswordPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 bg-blue-600 rounded-xl text-white font-semibold hover:bg-blue-500 transition disabled:opacity-50"
+            className="w-full py- bg-blue- rounded-xl text-white font-semibold hover:bg-blue- transition disabled:opacity-"
           >
             {loading ? 'Envoi...' : 'Envoyer le lien'}
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <Link href="/login" className="text-white/40 text-sm hover:text-white inline-flex items-center gap-1">
-            <FiArrowLeft size={14} /> Retour √† la connexion
+        <div className="mt- text-center">
+          <Link href="/login" className="text-white/ text-sm hover:text-white inline-flex items-center gap-">
+            <FiArrowLeft size={} /> Retour √† la connexion
           </Link>
         </div>
       </div>

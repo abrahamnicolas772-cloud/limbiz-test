@@ -5,7 +5,7 @@ export const createClient = () => {
   const cookieStore = cookies()
   
   console.log('🔑 Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
-  console.log('🔑 Supabase Key:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...')
+  console.log('🔑 Supabase Key:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(, ) + '...')
   
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

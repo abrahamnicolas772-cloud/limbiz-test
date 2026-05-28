@@ -20,7 +20,7 @@ export default function Navbar() {
   const [langOpen, setLangOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
+    const handleScroll = () => setScrolled(window.scrollY > )
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -62,77 +62,77 @@ export default function Navbar() {
     router.push('/')
   }
 
-  const displayName = profile?.full_name || user?.email?.split('@')[0] || 'Compte'
+  const displayName = profile?.full_name || user?.email?.split('@')[] || 'Compte'
 
   const changeLanguage = (lng: string) => {
-    console.log('Langue changée:', lng)
+    console.log('Langue chang�e:', lng)
     setLangOpen(false)
   }
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-lg' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <img src="/LOGO1.png" alt="Limbiz Logo" className="h-10 w-auto md:h-12" />
+    <nav className={`fixed top- left- w-full z- transition-all duration- ${scrolled ? 'bg-black/ backdrop-blur-xl border-b border-white/ shadow-lg' : 'bg-transparent'}`}>
+      <div className="max-w-xl mx-auto px- sm:px- lg:px-">
+        <div className="flex items-center justify-between h- md:h-">
+          {/ Logo /}
+          <Link href="/" className="flex-shrink-">
+            <img src="/LOGO.png" alt="Limbiz Logo" className="h- w-auto md:h-" />
           </Link>
 
-          {/* Liens desktop */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            <Link href="/" className="text-white/70 hover:text-white text-sm font-medium transition">Accueil</Link>
-            <Link href="/services" className="text-white/70 hover:text-white">Services</Link>
-            <Link href="/pricing" className="text-white/70 hover:text-white">Tarifs</Link>
-            <Link href="/books" className="text-white/70 hover:text-white">Livres</Link>
-            <Link href="/contact" className="text-white/70 hover:text-white">Contact</Link>
+          {/ Liens desktop /}
+          <div className="hidden md:flex items-center gap- lg:gap-">
+            <Link href="/" className="text-white/ hover:text-white text-sm font-medium transition">Accueil</Link>
+            <Link href="/services" className="text-white/ hover:text-white">Services</Link>
+            <Link href="/pricing" className="text-white/ hover:text-white">Tarifs</Link>
+            <Link href="/books" className="text-white/ hover:text-white">Livres</Link>
+            <Link href="/contact" className="text-white/ hover:text-white">Contact</Link>
           </div>
 
-          {/* Boutons desktop */}
-          <div className="hidden md:flex items-center gap-3">
-            {/* 🔔 Cloche de notifications (fonctionnelle) */}
+          {/ Boutons desktop /}
+          <div className="hidden md:flex items-center gap-">
+            {/ 🔔 Cloche de notifications (fonctionnelle) /}
             <NotificationBell />
 
-            {/* Sélecteur de langue */}
+            {/ S�lecteur de langue /}
             <div className="relative">
-              <button onClick={() => setLangOpen(!langOpen)} className="lang-button flex items-center gap-1 px-3 py-2 text-sm text-white/70 hover:text-white transition">
-                <FiGlobe size={16} /> EN
+              <button onClick={() => setLangOpen(!langOpen)} className="lang-button flex items-center gap- px- py- text-sm text-white/ hover:text-white transition">
+                <FiGlobe size={} /> EN
               </button>
               {langOpen && (
-                <div className="lang-popup absolute right-0 mt-2 w-28 bg-black/90 backdrop-blur-xl rounded-xl border border-white/10 py-2 z-50">
-                  <button onClick={() => changeLanguage('en')} className="block w-full text-left px-4 py-1.5 text-sm text-white/70 hover:text-white hover:bg-white/10">English</button>
-                  <button onClick={() => changeLanguage('fr')} className="block w-full text-left px-4 py-1.5 text-sm text-white/70 hover:text-white hover:bg-white/10">Français</button>
-                  <button onClick={() => changeLanguage('ht')} className="block w-full text-left px-4 py-1.5 text-sm text-white/70 hover:text-white hover:bg-white/10">Kreyòl</button>
+                <div className="lang-popup absolute right- mt- w- bg-black/ backdrop-blur-xl rounded-xl border border-white/ py- z-">
+                  <button onClick={() => changeLanguage('en')} className="block w-full text-left px- py-. text-sm text-white/ hover:text-white hover:bg-white/">English</button>
+                  <button onClick={() => changeLanguage('fr')} className="block w-full text-left px- py-. text-sm text-white/ hover:text-white hover:bg-white/">Français</button>
+                  <button onClick={() => changeLanguage('ht')} className="block w-full text-left px- py-. text-sm text-white/ hover:text-white hover:bg-white/">Kreyòl</button>
                 </div>
               )}
             </div>
 
-            {/* Utilisateur */}
+            {/ Utilisateur /}
             {user ? (
               <div className="relative">
-                <button onClick={() => setDropdownOpen(!dropdownOpen)} className="user-menu flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 transition">
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">
-                    {displayName.charAt(0).toUpperCase()}
+                <button onClick={() => setDropdownOpen(!dropdownOpen)} className="user-menu flex items-center gap- px- py-. bg-white/ rounded-full border border-white/ hover:bg-white/ transition">
+                  <div className="w- h- rounded-full bg-gradient-to-r from-blue- to-purple- flex items-center justify-center text-white text-sm font-bold">
+                    {displayName.charAt().toUpperCase()}
                   </div>
-                  <span className="text-white/90 text-sm font-medium hidden sm:inline">{displayName}</span>
-                  <FiChevronDown size={14} className="text-white/50" />
+                  <span className="text-white/ text-sm font-medium hidden sm:inline">{displayName}</span>
+                  <FiChevronDown size={} className="text-white/" />
                 </button>
 
                 {dropdownOpen && (
-                  <div className="user-popup absolute right-0 mt-2 w-56 bg-black/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-xl z-50">
-                    <div className="p-2 border-b border-white/10">
-                      <p className="text-white/60 text-xs">Connecté</p>
+                  <div className="user-popup absolute right- mt- w- bg-black/ backdrop-blur-xl rounded-xl border border-white/ shadow-xl z-">
+                    <div className="p- border-b border-white/">
+                      <p className="text-white/ text-xs">Connect�</p>
                       <p className="text-white font-medium truncate">{user.email}</p>
                     </div>
-                    <div className="p-2 space-y-1">
-                      <Link href="/orders" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition"><FiShoppingBag size={16} /> Mes commandes</Link>
-                      <Link href="/vault" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition"><FiFolder size={16} /> Mes documents</Link>
-                      <Link href="/support" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition"><FiMessageSquare size={16} /> Support</Link>
-                      {/* Lien Administration (visible pour tout utilisateur connecté – à restreindre plus tard) */}
-                      <Link href="/admin" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition">
-                        <FiSettings size={16} /> Administration
+                    <div className="p- space-y-">
+                      <Link href="/orders" onClick={() => setDropdownOpen(false)} className="flex items-center gap- px- py- text-white/ hover:bg-white/ rounded-xl transition"><FiShoppingBag size={} /> Mes commandes</Link>
+                      <Link href="/vault" onClick={() => setDropdownOpen(false)} className="flex items-center gap- px- py- text-white/ hover:bg-white/ rounded-xl transition"><FiFolder size={} /> Mes documents</Link>
+                      <Link href="/support" onClick={() => setDropdownOpen(false)} className="flex items-center gap- px- py- text-white/ hover:bg-white/ rounded-xl transition"><FiMessageSquare size={} /> Support</Link>
+                      {/ Lien Administration (visible pour tout utilisateur connect� – à restreindre plus tard) /}
+                      <Link href="/admin" onClick={() => setDropdownOpen(false)} className="flex items-center gap- px- py- text-white/ hover:bg-white/ rounded-xl transition">
+                        <FiSettings size={} /> Administration
                       </Link>
-                      <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2 text-red-400 hover:bg-red-500/10 rounded-xl transition">
-                        <FiLogOut size={16} /> Déconnexion
+                      <button onClick={handleLogout} className="w-full flex items-center gap- px- py- text-red- hover:bg-red-/ rounded-xl transition">
+                        <FiLogOut size={} /> D�connexion
                       </button>
                     </div>
                   </div>
@@ -140,58 +140,58 @@ export default function Navbar() {
               </div>
             ) : (
               <>
-                <Link href="/login" className="px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition">Connexion</Link>
-                <Link href="/register" className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-white text-sm font-semibold shadow-lg shadow-blue-500/30 transition">S'inscrire</Link>
+                <Link href="/login" className="px- py- text-sm font-medium text-white/ hover:text-white transition">Connexion</Link>
+                <Link href="/register" className="px- py- bg-blue- hover:bg-blue- rounded-full text-white text-sm font-semibold shadow-lg shadow-blue-/ transition">S'inscrire</Link>
               </>
             )}
 
-            {/* Book a Consultation */}
+            {/ Book a Consultation /}
             <div className="relative">
-              <button onClick={() => setShowContactPopup(!showContactPopup)} className="booking-button flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-white text-sm font-semibold shadow-lg shadow-blue-500/30 transition">
-                📅 Book a Consultation
+              <button onClick={() => setShowContactPopup(!showContactPopup)} className="booking-button flex items-center gap- px- py- bg-blue- hover:bg-blue- rounded-full text-white text-sm font-semibold shadow-lg shadow-blue-/ transition">
+                Book a Consultation
               </button>
               {showContactPopup && (
-                <div className="contact-popup absolute right-0 mt-2 w-64 bg-black/90 backdrop-blur-xl rounded-2xl border border-white/20 p-4 z-50">
-                  <p className="text-white/50 text-xs mb-2">Contactez-nous</p>
-                  <a href="tel:+15551234567" className="flex items-center gap-2 text-white hover:text-blue-400 py-1">📞 +1 (555) 123-4567</a>
-                  <a href="mailto:hello@limbiz.com" className="flex items-center gap-2 text-white hover:text-blue-400 py-1">✉️ hello@limbiz.com</a>
-                  <a href="https://wa.me/15551234567" target="_blank" className="flex items-center gap-2 text-white hover:text-green-400 py-1">💬 WhatsApp</a>
+                <div className="contact-popup absolute right- mt- w- bg-black/ backdrop-blur-xl rounded-xl border border-white/ p- z-">
+                  <p className="text-white/ text-xs mb-">Contactez-nous</p>
+                  <a href="tel:+" className="flex items-center gap- text-white hover:text-blue- py-">📞 + () -</a>
+                  <a href="mailto:hello@limbiz.com" className="flex items-center gap- text-white hover:text-blue- py-"> hello@limbiz.com</a>
+                  <a href="https://wa.me/" target="_blank" className="flex items-center gap- text-white hover:text-green- py-">💬 WhatsApp</a>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Menu mobile */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white p-2">
-            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          {/ Menu mobile /}
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white p-">
+            {isOpen ? <FiX size={} /> : <FiMenu size={} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/ Mobile menu /}
       {isOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10 py-4">
-          <div className="flex flex-col items-center gap-4">
-            <Link href="/" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Accueil</Link>
-            <Link href="/services" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Services</Link>
-            <Link href="/pricing" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Tarifs</Link>
-            <Link href="/books" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Livres</Link>
-            <Link href="/contact" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Contact</Link>
+        <div className="md:hidden bg-black/ backdrop-blur-xl border-t border-white/ py-">
+          <div className="flex flex-col items-center gap-">
+            <Link href="/" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Accueil</Link>
+            <Link href="/services" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Services</Link>
+            <Link href="/pricing" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Tarifs</Link>
+            <Link href="/books" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Livres</Link>
+            <Link href="/contact" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Contact</Link>
             {user ? (
               <>
-                <Link href="/orders" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Mes commandes</Link>
-                <Link href="/vault" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Mes documents</Link>
-                <Link href="/support" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Support</Link>
-                <Link href="/admin" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Administration</Link>
-                <button onClick={handleLogout} className="text-red-400">Déconnexion</button>
+                <Link href="/orders" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Mes commandes</Link>
+                <Link href="/vault" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Mes documents</Link>
+                <Link href="/support" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Support</Link>
+                <Link href="/admin" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Administration</Link>
+                <button onClick={handleLogout} className="text-red-">D�connexion</button>
               </>
             ) : (
               <>
-                <Link href="/login" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">Connexion</Link>
-                <Link href="/register" onClick={() => setIsOpen(false)} className="text-blue-400">Inscription</Link>
+                <Link href="/login" onClick={() => setIsOpen(false)} className="text-white/ hover:text-white">Connexion</Link>
+                <Link href="/register" onClick={() => setIsOpen(false)} className="text-blue-">Inscription</Link>
               </>
             )}
-            <button className="px-4 py-2 bg-blue-600 rounded-full text-white text-sm font-semibold">📅 Book a Consultation</button>
+            <button className="px- py- bg-blue- rounded-full text-white text-sm font-semibold">📅 Book a Consultation</button>
           </div>
         </div>
       )}

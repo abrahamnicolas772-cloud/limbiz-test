@@ -37,84 +37,84 @@ export default function ContactPage() {
       return
     }
     setIsSubmitting(true)
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, ))
     console.log('Form submitted:', formData)
     setIsSubmitting(false)
     setSubmitted(true)
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-    setTimeout(() => setSubmitted(false), 5000)
+    setTimeout(() => setSubmitted(false), )
   }
 
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-black relative overflow-hidden pt-24">
-        {/* Background premium */}
-        <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none" />
-        <div className="absolute inset-0 -z-0">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-pulse-slow" />
-          <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-purple-500/15 rounded-full blur-[110px] animate-pulse-slow" />
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-[130px] animate-pulse-slow animation-delay-1000" />
+      <main className="min-h-screen bg-black relative overflow-hidden pt-">
+        {/ Background premium /}
+        <div className="absolute inset- bg-noise opacity- pointer-events-none" />
+        <div className="absolute inset- -z-">
+          <div className="absolute top- left-/ w- h- bg-blue-/ rounded-full blur-[px] animate-pulse-slow" />
+          <div className="absolute bottom- right-/ w- h- bg-purple-/ rounded-full blur-[px] animate-pulse-slow" />
+          <div className="absolute top-/ left-/ w- h- bg-cyan-/ rounded-full blur-[px] animate-pulse-slow animation-delay-" />
           
-          {/* Grille d√©corative */}
-          <svg className="absolute inset-0 w-full h-full opacity-5" xmlns="http://www.w3.org/2000/svg">
+          {/ Grille d√corative /}
+          <svg className="absolute inset- w-full h-full opacity-" xmlns="http://www.w.org//svg">
             <defs>
-              <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#2563EB" strokeWidth="0.5" />
+              <pattern id="grid" width="" height="" patternUnits="userSpaceOnUse">
+                <path d="M   L    " fill="none" stroke="EB" strokeWidth="." />
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
+            <rect width="%" height="%" fill="url(grid)" />
           </svg>
         </div>
 
-        {/* Hero Section */}
-        <div className="relative text-center px-4 py-16 md:py-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs mb-4 backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+        {/ Hero Section /}
+        <div className="relative text-center px- py- md:py-">
+          <div className="inline-flex items-center gap- px- py- rounded-full bg-blue-/ text-blue- text-xs mb- backdrop-blur-sm">
+            <span className="w-. h-. rounded-full bg-blue- animate-pulse" />
             Contactez-nous
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-            Discutons de votre <span className="text-blue-500">projet</span>
-          </h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Une question ? Un projet ? Notre √©quipe est l√† pour vous r√©pondre sous 24h.
+          <h className="text-xl md:text-xl lg:text-xl font-bold">
+            Discutons de votre <span className="text-blue-">projet</span>
+          </h>
+          <p className="mt- text-white/ text-lg max-w-xl mx-auto">
+            Une question ? Un projet ? Notre √quipe est l√† pour vous r√pondre sous h.
           </p>
         </div>
 
-        {/* Formulaire et infos */}
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Formulaire */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">Envoyez-nous un message</h2>
+        {/ Formulaire et infos /}
+        <div className="max-w-xl mx-auto px- py-">
+          <div className="grid lg:grid-cols- gap-">
+            {/ Formulaire /}
+            <div className="bg-white/ backdrop-blur-sm border border-white/ rounded-xl p- md:p-">
+              <h className="text-xl font-bold text-white mb-">Envoyez-nous un message</h>
               
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid md:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-">
+                <div className="grid md:grid-cols- gap-">
                   <div>
-                    <label className="block text-white/70 text-sm font-medium mb-2">Nom complet *</label>
+                    <label className="block text-white/ text-sm font-medium mb-">Nom complet </label>
                     <div className="relative">
-                      <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" size={16} />
+                      <FiUser className="absolute left- top-/ -translate-y-/ text-white/" size={} />
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 transition"
+                        className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white placeholder-white/ focus:outline-none focus:border-blue-/ transition"
                         placeholder="Jean Dupont"
                         required
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-white/70 text-sm font-medium mb-2">Email *</label>
+                    <label className="block text-white/ text-sm font-medium mb-">Email </label>
                     <div className="relative">
-                      <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" size={16} />
+                      <FiMail className="absolute left- top-/ -translate-y-/ text-white/" size={} />
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 transition"
+                        className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white placeholder-white/ focus:outline-none focus:border-blue-/ transition"
                         placeholder="jean@exemple.com"
                         required
                       />
@@ -122,34 +122,34 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols- gap-">
                   <div>
-                    <label className="block text-white/70 text-sm font-medium mb-2">T√©l√©phone</label>
+                    <label className="block text-white/ text-sm font-medium mb-">T√l√phone</label>
                     <div className="relative">
-                      <FiPhone className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" size={16} />
+                      <FiPhone className="absolute left- top-/ -translate-y-/ text-white/" size={} />
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 transition"
-                        placeholder="+1 234 567 890"
+                        className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white placeholder-white/ focus:outline-none focus:border-blue-/ transition"
+                        placeholder="+   "
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-white/70 text-sm font-medium mb-2">Sujet</label>
+                    <label className="block text-white/ text-sm font-medium mb-">Sujet</label>
                     <div className="relative">
-                      <FiMessageSquare className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" size={16} />
+                      <FiMessageSquare className="absolute left- top-/ -translate-y-/ text-white/" size={} />
                       <select
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-blue-500/50 transition"
+                        className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white focus:outline-none focus:border-blue-/ transition"
                       >
-                        <option value="">S√©lectionnez un sujet</option>
-                        <option value="creation-entreprise">Cr√©ation d'entreprise</option>
-                        <option value="credit-professionnel">Cr√©dit professionnel</option>
+                        <option value="">S√lectionnez un sujet</option>
+                        <option value="creation-entreprise">Cr√ation d'entreprise</option>
+                        <option value="credit-professionnel">Cr√dit professionnel</option>
                         <option value="ecommerce">E-commerce</option>
                         <option value="partenariat">Partenariat</option>
                         <option value="autre">Autre</option>
@@ -159,104 +159,104 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-white/70 text-sm font-medium mb-2">Message *</label>
+                  <label className="block text-white/ text-sm font-medium mb-">Message </label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={5}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 transition resize-none"
-                    placeholder="D√©crivez votre projet..."
+                    rows={}
+                    className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white placeholder-white/ focus:outline-none focus:border-blue-/ transition resize-none"
+                    placeholder="D√crivez votre projet..."
                     required
                   />
                 </div>
 
-                {error && <p className="text-red-400 text-sm">{error}</p>}
+                {error && <p className="text-red- text-sm">{error}</p>}
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold flex items-center justify-center gap-2 transition hover:scale-105 disabled:opacity-70"
+                  className="w-full py- bg-gradient-to-r from-blue- to-purple- rounded-xl text-white font-semibold flex items-center justify-center gap- transition hover:scale- disabled:opacity-"
                 >
-                  {isSubmitting ? 'Envoi en cours...' : <><FiSend size={18} /> Envoyer le message</>}
+                  {isSubmitting ? 'Envoi en cours...' : <><FiSend size={} /> Envoyer le message</>}
                 </button>
 
                 {submitted && (
-                  <div className="flex items-center justify-center gap-2 text-green-400 text-sm">
-                    <FiCheckCircle /> Merci ! Nous vous r√©pondrons sous 24h.
+                  <div className="flex items-center justify-center gap- text-green- text-sm">
+                    <FiCheckCircle /> Merci ! Nous vous r√pondrons sous h.
                   </div>
                 )}
               </form>
             </div>
 
-            {/* Infos contact */}
-            <div className="space-y-6">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Nos coordonn√©es</h2>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                      <FiMail className="text-blue-400" size={20} />
+            {/ Infos contact /}
+            <div className="space-y-">
+              <div className="bg-white/ backdrop-blur-sm border border-white/ rounded-xl p-">
+                <h className="text-xl font-bold text-white mb-">Nos coordonn√es</h>
+                <div className="space-y-">
+                  <div className="flex items-center gap-">
+                    <div className="w- h- rounded-xl bg-blue-/ flex items-center justify-center">
+                      <FiMail className="text-blue-" size={} />
                     </div>
                     <div>
-                      <p className="text-white/40 text-xs">Email</p>
-                      <a href="mailto:hello@limbiz.com" className="text-white hover:text-blue-400 transition">hello@limbiz.com</a>
+                      <p className="text-white/ text-xs">Email</p>
+                      <a href="mailto:hello@limbiz.com" className="text-white hover:text-blue- transition">hello@limbiz.com</a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                      <FiPhone className="text-blue-400" size={20} />
+                  <div className="flex items-center gap-">
+                    <div className="w- h- rounded-xl bg-blue-/ flex items-center justify-center">
+                      <FiPhone className="text-blue-" size={} />
                     </div>
                     <div>
-                      <p className="text-white/40 text-xs">T√©l√©phone</p>
-                      <a href="tel:+15551234567" className="text-white hover:text-blue-400 transition">+1 (555) 123-4567</a>
+                      <p className="text-white/ text-xs">T√l√phone</p>
+                      <a href="tel:+" className="text-white hover:text-blue- transition">+ () -</a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                      <FaWhatsapp className="text-green-400" size={20} />
+                  <div className="flex items-center gap-">
+                    <div className="w- h- rounded-xl bg-blue-/ flex items-center justify-center">
+                      <FaWhatsapp className="text-green-" size={} />
                     </div>
                     <div>
-                      <p className="text-white/40 text-xs">WhatsApp</p>
-                      <a href="https://wa.me/15551234567" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green-400 transition">+1 (555) 123-4567</a>
+                      <p className="text-white/ text-xs">WhatsApp</p>
+                      <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green- transition">+ () -</a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                      <FiMapPin className="text-blue-400" size={20} />
+                  <div className="flex items-center gap-">
+                    <div className="w- h- rounded-xl bg-blue-/ flex items-center justify-center">
+                      <FiMapPin className="text-blue-" size={} />
                     </div>
                     <div>
-                      <p className="text-white/40 text-xs">Adresse</p>
-                      <p className="text-white">123 Innovation Drive, Suite 100, Austin, TX 78701</p>
+                      <p className="text-white/ text-xs">Adresse</p>
+                      <p className="text-white"> Innovation Drive, Suite , Austin, TX </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                      <FiClock className="text-blue-400" size={20} />
+                  <div className="flex items-center gap-">
+                    <div className="w- h- rounded-xl bg-blue-/ flex items-center justify-center">
+                      <FiClock className="text-blue-" size={} />
                     </div>
                     <div>
-                      <p className="text-white/40 text-xs">Horaires</p>
-                      <p className="text-white">Lundi - Vendredi: 9h - 18h (EST)</p>
+                      <p className="text-white/ text-xs">Horaires</p>
+                      <p className="text-white">Lundi - Vendredi: h - h (EST)</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* R√©seaux sociaux */}
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Suivez-nous</h2>
-                <div className="flex gap-4">
-                  <a href="#" className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center hover:bg-blue-500 transition group">
-                    <FaLinkedin className="text-blue-400 group-hover:text-white transition" size={22} />
+              {/ R√seaux sociaux /}
+              <div className="bg-white/ backdrop-blur-sm border border-white/ rounded-xl p-">
+                <h className="text-xl font-bold text-white mb-">Suivez-nous</h>
+                <div className="flex gap-">
+                  <a href="" className="w- h- rounded-xl bg-blue-/ flex items-center justify-center hover:bg-blue- transition group">
+                    <FaLinkedin className="text-blue- group-hover:text-white transition" size={} />
                   </a>
-                  <a href="#" className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center hover:bg-blue-500 transition group">
-                    <FaTwitter className="text-blue-400 group-hover:text-white transition" size={22} />
+                  <a href="" className="w- h- rounded-xl bg-blue-/ flex items-center justify-center hover:bg-blue- transition group">
+                    <FaTwitter className="text-blue- group-hover:text-white transition" size={} />
                   </a>
-                  <a href="#" className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center hover:bg-blue-500 transition group">
-                    <FaInstagram className="text-blue-400 group-hover:text-white transition" size={22} />
+                  <a href="" className="w- h- rounded-xl bg-blue-/ flex items-center justify-center hover:bg-blue- transition group">
+                    <FaInstagram className="text-blue- group-hover:text-white transition" size={} />
                   </a>
-                  <a href="#" className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center hover:bg-blue-500 transition group">
-                    <FiGlobe className="text-blue-400 group-hover:text-white transition" size={22} />
+                  <a href="" className="w- h- rounded-xl bg-blue-/ flex items-center justify-center hover:bg-blue- transition group">
+                    <FiGlobe className="text-blue- group-hover:text-white transition" size={} />
                   </a>
                 </div>
               </div>
@@ -264,15 +264,15 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Carte Google Maps */}
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
-            <div className="h-96 w-full">
+        {/ Carte Google Maps /}
+        <div className="max-w-xl mx-auto px- py-">
+          <div className="bg-white/ backdrop-blur-sm border border-white/ rounded-xl overflow-hidden">
+            <div className="h- w-full">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.123456!2d-97.7431!3d30.2672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b599c7e7e7e7%3A0x1234567890abcdef!2sAustin%2C%20TX!5e0!3m2!1sen!2sus!4v1612345678901!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
+                src="https://www.google.com/maps/embed?pb=!m!m!m!d.!d-.!d.!m!f!f!f!m!i!i!f.!m!m!sxbceee%Axabcdef!sAustin%C%TX!e!m!sen!sus!v!m!sen!sus"
+                width="%"
+                height="%"
+                style={{ border:  }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -282,20 +282,20 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* FAQ Contact */}
-        <div className="max-w-4xl mx-auto px-4 py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Questions <span className="text-blue-500">fr√©quentes</span></h2>
+        {/ FAQ Contact /}
+        <div className="max-w-xl mx-auto px- py-">
+          <div className="text-center mb-">
+            <h className="text-xl md:text-xl font-bold">Questions <span className="text-blue-">fr√quentes</span></h>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-">
             {[
-              { q: "Quels sont vos d√©lais de r√©ponse ?", a: "Nous r√©pondons √† tous les messages sous 24h ouvr√©es." },
-              { q: "Proposez-vous des consultations gratuites ?", a: "Oui, nous offrons une premi√®re consultation de 30 minutes gratuite." },
-              { q: "Puis-je √™tre accompagn√© en fran√ßais ?", a: "Absolument, notre √©quipe est bilingue anglais-fran√ßais." }
+              { q: "Quels sont vos d√lais de r√ponse ?", a: "Nous r√pondons √† tous les messages sous h ouvr√es." },
+              { q: "Proposez-vous des consultations gratuites ?", a: "Oui, nous offrons une premi√®re consultation de  minutes gratuite." },
+              { q: "Puis-je √™tre accompagn√ en fran√ßais ?", a: "Absolument, notre √quipe est bilingue anglais-fran√ßais." }
             ].map((faq, idx) => (
-              <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl hover:border-blue-500/30 transition">
-                <h3 className="font-semibold text-white">{faq.q}</h3>
-                <p className="text-white/50 text-sm mt-1">{faq.a}</p>
+              <div key={idx} className="bg-white/ backdrop-blur-sm border border-white/ p- rounded-xl hover:border-blue-/ transition">
+                <h className="font-semibold text-white">{faq.q}</h>
+                <p className="text-white/ text-sm mt-">{faq.a}</p>
               </div>
             ))}
           </div>
