@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { FiMenu, FiX, FiLogOut, FiSettings, FiShoppingBag, FiFolder, FiMessageSquare, FiChevronDown, FiPhone, FiMail, FiGlobe } from 'react-icons/fi'
-import { FaWhatsapp } from 'react-icons/fa'
-import NotificationBell from './NotificationBell'
 
 export default function Navbar() {
   const supabase = createClient()
@@ -73,12 +70,10 @@ export default function Navbar() {
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-lg' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <img src="/LOGO1.png" alt="Limbiz Logo" className="h-10 w-auto md:h-12" />
           </Link>
 
-          {/* Liens desktop */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link href="/" className="text-white/70 hover:text-white text-sm font-medium transition">Accueil</Link>
             <Link href="/services" className="text-white/70 hover:text-white">Services</Link>
@@ -87,15 +82,11 @@ export default function Navbar() {
             <Link href="/contact" className="text-white/70 hover:text-white">Contact</Link>
           </div>
 
-          {/* Boutons desktop */}
           <div className="hidden md:flex items-center gap-3">
-            {/* NotificationBell */}
-            <NotificationBell />
-
-            {/* Sélecteur de langue */}
+            {/* Sélecteur de langue sans icône */}
             <div className="relative">
-              <button onClick={() => setLangOpen(!langOpen)} className="lang-button flex items-center gap-1 px-3 py-2 text-sm text-white/70 hover:text-white transition">
-                <FiGlobe size={16} /> EN
+              <button onClick={() => setLangOpen(!langOpen)} className="lang-button px-3 py-2 text-sm text-white/70 hover:text-white transition">
+                EN
               </button>
               {langOpen && (
                 <div className="lang-popup absolute right-0 mt-2 w-28 bg-black/90 backdrop-blur-xl rounded-xl border border-white/10 py-2 z-50">
@@ -106,7 +97,6 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Utilisateur connecté */}
             {user ? (
               <div className="relative">
                 <button onClick={() => setDropdownOpen(!dropdownOpen)} className="user-menu flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 transition">
@@ -114,7 +104,7 @@ export default function Navbar() {
                     {displayName.charAt(0).toUpperCase()}
                   </div>
                   <span className="text-white/90 text-sm font-medium hidden sm:inline">{displayName}</span>
-                  <FiChevronDown size={14} className="text-white/50" />
+                  <span className="text-white/50 text-sm ml-1">▼</span>
                 </button>
 
                 {dropdownOpen && (
@@ -124,21 +114,11 @@ export default function Navbar() {
                       <p className="text-white font-medium truncate">{user.email}</p>
                     </div>
                     <div className="p-2 space-y-1">
-                      <Link href="/orders" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition">
-                        <FiShoppingBag size={16} /> Mes commandes
-                      </Link>
-                      <Link href="/vault" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition">
-                        <FiFolder size={16} /> Mes documents
-                      </Link>
-                      <Link href="/support" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition">
-                        <FiMessageSquare size={16} /> Support
-                      </Link>
-                      <Link href="/admin" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition">
-                        <FiSettings size={16} /> Administration
-                      </Link>
-                      <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2 text-red-400 hover:bg-red-500/10 rounded-xl transition">
-                        <FiLogOut size={16} /> Déconnexion
-                      </button>
+                      <Link href="/orders" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition">Mes commandes</Link>
+                      <Link href="/vault" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition">Mes documents</Link>
+                      <Link href="/support" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition">Support</Link>
+                      <Link href="/admin" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2 text-white/80 hover:bg-white/10 rounded-xl transition">Administration</Link>
+                      <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2 text-red-400 hover:bg-red-500/10 rounded-xl transition">Déconnexion</button>
                     </div>
                   </div>
                 )}
@@ -150,9 +130,9 @@ export default function Navbar() {
               </>
             )}
 
-            {/* Book a Consultation */}
+            {/* Book a Consultation sans icône */}
             <div className="relative">
-              <button onClick={() => setShowContactPopup(!showContactPopup)} className="booking-button flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-white text-sm font-semibold shadow-lg shadow-blue-500/30 transition">
+              <button onClick={() => setShowContactPopup(!showContactPopup)} className="booking-button px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-white text-sm font-semibold shadow-lg shadow-blue-500/30 transition">
                 Book a Consultation
               </button>
               {showContactPopup && (
@@ -166,14 +146,12 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Menu mobile button */}
           <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white p-2">
-            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+            {isOpen ? '✕' : '☰'}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10 py-4">
           <div className="flex flex-col items-center gap-4">

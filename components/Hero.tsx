@@ -1,8 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiPhone, FiMail } from 'react-icons/fi'
-import { FaWhatsapp } from 'react-icons/fa'
 
 export default function Hero() {
   return (
@@ -28,10 +26,10 @@ export default function Hero() {
                 LIMBIZ™ helps entrepreneurs, immigrants, and small business owners build strong, compliant, and profitable businesses in the U.S. We handle the foundation so you can focus on growth.
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
-                <button className="flex items-center gap-2 px-5 py-2 bg-blue-600 hover:bg-blue-500 rounded-full font-semibold text-white shadow-lg transition">
+                <button className="px-5 py-2 bg-blue-600 hover:bg-blue-500 rounded-full font-semibold text-white shadow-lg transition">
                   Start Your Business
                 </button>
-                <button className="flex items-center gap-2 px-5 py-2 border border-white/30 rounded-full font-semibold text-white backdrop-blur-sm hover:bg-white/10 transition">
+                <button className="px-5 py-2 border border-white/30 rounded-full font-semibold text-white backdrop-blur-sm hover:bg-white/10 transition">
                   View Our Services →
                 </button>
               </div>
@@ -66,16 +64,11 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="fixed right-5 top-1/2 -translate-y-1/2 flex flex-col gap-3 bg-black/60 backdrop-blur-md p-2 rounded-2xl border border-white/20 z-50">
-        <a href="tel:+15551234567" className="p-2 rounded-xl hover:bg-blue-500/20 transition flex flex-col items-center text-xs text-white/70 hover:text-white group">
-          <FiPhone size={18} className="group-hover:scale-110 transition" /><span className="text-[9px] mt-1">Call</span>
-        </a>
-        <a href="https://wa.me/15551234567" target="_blank" className="p-2 rounded-xl hover:bg-green-500/20 transition flex flex-col items-center text-xs text-white/70 hover:text-white group">
-          <FaWhatsapp size={18} className="group-hover:scale-110 transition" /><span className="text-[9px] mt-1">WhatsApp</span>
-        </a>
-        <a href="mailto:hello@limbiz.com" className="p-2 rounded-xl hover:bg-gray-500/20 transition flex flex-col items-center text-xs text-white/70 hover:text-white group">
-          <FiMail size={18} className="group-hover:scale-110 transition" /><span className="text-[9px] mt-1">Email</span>
-        </a>
+      {/* Contact flottant sans icônes */}
+      <div className="fixed right-5 top-1/2 -translate-y-1/2 flex flex-col gap-3 bg-black/60 backdrop-blur-md p-2 rounded-2xl border border-white/20 z-50 text-center text-xs">
+        <a href="tel:+15551234567" className="p-2 rounded-xl hover:bg-blue-500/20 transition block">Call</a>
+        <a href="https://wa.me/15551234567" target="_blank" className="p-2 rounded-xl hover:bg-green-500/20 transition block">WhatsApp</a>
+        <a href="mailto:hello@limbiz.com" className="p-2 rounded-xl hover:bg-gray-500/20 transition block">Email</a>
       </div>
     </section>
   )
