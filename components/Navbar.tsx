@@ -191,7 +191,7 @@ export default function Navbar() {
                 <Link href="/register" onClick={() => setIsOpen(false)} className="text-blue-">Inscription</Link>
               </>
             )}
-            <button className="px- py- bg-blue- rounded-full text-white text-sm font-semibold">📅 Book a Consultation</button>
+            <button className="px- py- bg-blue- rounded-full text-white text-sm font-semibold"> Book a Consultation</button>
           </div>
         </div>
       )}
