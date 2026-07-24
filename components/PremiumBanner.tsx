@@ -1,40 +1,30 @@
 'use client'
 
-import { FiX, FiBell, FiArrowRight } from 'react-icons/fi'
-import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
 
 export default function PremiumBanner() {
-  const router = useRouter()
-
-  const handleContactClick = () => {
-    router.push('/contact')
-  }
-
   return (
-    <div className="fixed top- left-/ -translate-x-/ z-[] w-[%] max-w-xl bg-gradient-to-r from-red- to-red- rounded-xl shadow-xl p-">
-      <div className="flex items-center justify-between gap-">
-        <div className="flex items-center gap-">
-          <div className="w- h- rounded-full bg-white/ flex items-center justify-center">
-            <FiBell className="text-white" size={} />
+    <section className="py-12 bg-gradient-to-r from-amber-600 to-orange-600">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl">
+              ‚≠ê
+            </div>
+            <div>
+              <h3 className="text-white font-bold text-lg">Go Premium</h3>
+              <p className="text-amber-100 text-sm">Unlock exclusive features and priority support</p>
+            </div>
           </div>
-          <div>
-            <h className="text-white font-bold text-sm md:text-base">
-              üöÄ Offre sp√ciale premium
-            </h>
-            <p className="text-white/ text-xs md:text-sm">
-              B√n√ficiez de -% sur votre premi√®re consultation. Offre limit√e !
-            </p>
-          </div>
-        </div>
-        <div className="flex items-center gap-">
-          <button
-            onClick={handleContactClick}
-            className="px- py- bg-white text-red- rounded-full text-xs md:text-sm font-semibold hover:bg-white/ transition flex items-center gap-"
-          >
-            En profiter <FiArrowRight size={} />
+          <button className="px-6 py-3 bg-white text-amber-700 font-semibold rounded-full hover:bg-amber-50 transition-colors">
+            Upgrade Now
           </button>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   )
 }

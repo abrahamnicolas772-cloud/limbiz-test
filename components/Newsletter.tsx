@@ -1,74 +1,67 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-inext'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiSend, FiCheckCircle, FiShield, FiMail, FiLock } from 'react-icons/fi'
 
-export default function NewsletterConsent() {
-  const { t } = useTranslation('common')
+export default function Newsletter() {
   const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
-  const [error, setError] = useState('')
-  const [cookieConsent, setCookieConsent] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
 
-  useEffect(() => {
-    const hasConsent = localStorage.getItem('cookie-consent')
-    if (hasConsent === 'true') setCookieConsent(true)
-  }, [])
-
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email) { setError(t('newsletter.emailRequired')); return }
-    if (!email.includes('@')) { setError(t('newsletter.invalidEmail')); return }
-    localStorage.setItem('newsletter-email', email)
-    localStorage.setItem('cookie-consent', 'true')
-    setCookieConsent(true)
-    setSubscribed(true)
-    setEmail('')
-    setError('')
-    console.log('Newsletter subscribed:', email)
-    setTimeout(() => setSubscribed(false), )
-  }
-
-  const handleCookieAccept = () => {
-    localStorage.setItem('cookie-consent', 'true')
-    setCookieConsent(true)
+    if (email) setSubmitted(true)
   }
 
   return (
-    <section className="relative py- overflow-hidden bg-black">
-      <div className="absolute inset- bg-noise opacity- pointer-events-none" />
-      <div className="absolute inset- -z-">
-        <div className="absolute top-/ left-/ w- h- bg-blue-/ rounded-full blur-[px] animate-pulse-slow" />
-        <div className="absolute bottom-/ right-/ w- h- bg-purple-/ rounded-full blur-[px] animate-pulse-slow animation-delay-" />
-      </div>
+    <section className="py-16 bg-gradient-to-r from-blue-900 to-purple-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Stay Updated
+          </h2>
+          <p className="text-blue-200 text-lg mb-8 max-w-2xl mx-auto">
+            Get the latest business tips, legal updates, and exclusive offers delivered to your inbox.
+          </p>
 
-      <div className="max-w-xl mx-auto px- sm:px- lg:px- relative z-">
-        <motion.div initial={{ opacity: , y:  }} whileInView={{ opacity: , y:  }} viewport={{ once: true }} transition={{ duration: . }} className="glass-premium rounded-xl border border-white/ shadow-xl backdrop-blur-xl overflow-hidden">
-          <div className="relative p- pb- text-center">
-            <div className="w- h- mx-auto mb- bg-gradient-to-r from-blue- to-purple- rounded-xl flex items-center justify-center shadow-lg shadow-blue-/"><FiMail size={} className="text-white" /></div>
-            <h className="text-xl md:text-xl font-bold tracking-tight">{t('newsletter.title')} <span className="text-blue-">{t('newsletter.titleHighlight')}</span></h>
-            <p className="mt- text-white/ text-sm max-w-md mx-auto">{t('newsletter.subtitle')}</p>
-          </div>
-
-          <div className="p- pt-">
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap- max-w-md mx-auto">
-              <div className="flex- relative"><FiMail className="absolute left- top-/ -translate-y-/ text-white/" size={} /><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t('newsletter.emailPlaceholder')} className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white placeholder-white/ focus:outline-none focus:border-blue-/ transition" /></div>
-              <motion.button type="submit" whileHover={{ scale: . }} whileTap={{ scale: . }} className="px- py- bg-gradient-to-r from-blue- to-purple- rounded-xl text-white font-semibold flex items-center justify-center gap- transition shadow-lg shadow-blue-/">{t('newsletter.subscribe')} <FiSend size={} /></motion.button>
+          {submitted ? (
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              className="text-green-400 text-xl flex items-center justify-center gap-2"
+            >
+              <span>✅</span> Thanks for subscribing!
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <div className="relative flex-1">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">📧</span>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:border-blue-400"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+              >
+                Subscribe <span>🚀</span>
+              </button>
             </form>
-            {error && <p className="text-red- text-xs text-center mt-">{error}</p>}
-            {subscribed && (<motion.div initial={{ opacity: , y:  }} animate={{ opacity: , y:  }} className="flex items-center justify-center gap- text-green- text-sm mt-"><FiCheckCircle /> {t('newsletter.success')}</motion.div>)}
+          )}
+
+          <div className="flex justify-center gap-6 mt-6 text-blue-200 text-sm">
+            <span className="flex items-center gap-1">🔒 No spam</span>
+            <span className="flex items-center gap-1">🛡️ Secure</span>
           </div>
-
-          {!cookieConsent && (<motion.div initial={{ opacity:  }} animate={{ opacity:  }} className="border-t border-white/ bg-black/ p-">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap- max-w-xl mx-auto">
-              <div className="flex items-center gap- text-white/ text-xs"><FiShield size={} className="text-blue-" /><span>{t('newsletter.cookieText')}</span><FiLock size={} className="text-white/" /></div>
-              <div className="flex gap-"><button onClick={handleCookieAccept} className="px- py-. text-xs bg-blue- hover:bg-blue- rounded-full text-white transition">{t('newsletter.acceptCookies')}</button><a href="/privacy" className="px- py-. text-xs border border-white/ rounded-full text-white/ hover:text-white transition">{t('newsletter.learnMore')}</a></div>
-            </div>
-          </motion.div>)}
-
-          {cookieConsent && (<div className="border-t border-white/ bg-black/ p- text-center"><p className="text-white/ text-[px]">🍪 {t('newsletter.cookiesAccepted')}</p></div>)}
         </motion.div>
       </div>
     </section>

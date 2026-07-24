@@ -9,66 +9,34 @@
   body {
     @apply bg-black text-white font-sans antialiased;
   }
-  / Glassmorphism /
+  /* Glassmorphism */
   .glass-card {
-    @apply bg-white/ backdrop-blur-xl border border-white/ rounded-xl;
-    box-shadow:  px px -px rgba(, , , .);
+    @apply bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
   .hover\:shadow-neon:hover {
-    box-shadow:   px rgba(, , , .);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
   }
-  / Grain et animations /
-  .bg-noise {
-    background-image: url("data:image/svg+xml,%Csvg viewBox='   ' xmlns='http://www.w.org//svg'%E%Cfilter id='noise'%E%CfeTurbulence type='fractalNoise' baseFrequency='.' numOctaves='' stitchTiles='stitch'/%E%C/filter%E%Crect width='%' height='%' filter='url(%noise)' opacity='.'/%E%C/svg%E");
-    background-repeat: repeat;
-    background-size: px;
-  }
+  /* Animations */
   @keyframes float-glow {
-    % { transform: translate(, ) scale(); opacity: .; }
-    % { transform: translate(px, -px) scale(.); opacity: .; }
-    % { transform: translate(, ) scale(); opacity: .; }
+    0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+    50% { transform: translate(20px, -20px) scale(1.05); opacity: 1; }
+    100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
   }
   .animate-float-glow {
-    animation: float-glow s ease-in-out infinite;
+    animation: float-glow 6s ease-in-out infinite;
   }
-  .animation-delay- {
-    animation-delay: .s;
+  .animation-delay-1000 {
+    animation-delay: 1.5s;
   }
-  .animation-delay- {
-    animation-delay: s;
+  .animation-delay-2000 {
+    animation-delay: 3s;
   }
   @keyframes shimmer {
-    % { transform: translateX(-%); }
-    % { transform: translateX(%); }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
   .animate-shimmer {
-    position: absolute;
-    inset: ;
-    background: linear-gradient(deg, transparent, rgba(,,,.), transparent);
-    transform: translateX(-%);
-    animation: shimmer s infinite;
+    animation: shimmer 2s infinite;
   }
-}
-
-@keyframes float-glow {
-  % { transform: translate(, ) scale(); opacity: .; }
-  % { transform: translate(px, -px) scale(.); opacity: .; }
-  % { transform: translate(, ) scale(); opacity: .; }
-}
-.animate-float-glow {
-  animation: float-glow s ease-in-out infinite;
-}
-.animation-delay- { animation-delay: .s; }
-.animation-delay- { animation-delay: s; }
-
-@keyframes shimmer {
-  % { transform: translateX(-%); }
-  % { transform: translateX(%); }
-}
-.animate-shimmer {
-  position: absolute;
-  inset: ;
-  background: linear-gradient(deg, transparent, rgba(,,,.), transparent);
-  transform: translateX(-%);
-  animation: shimmer s infinite;
 }

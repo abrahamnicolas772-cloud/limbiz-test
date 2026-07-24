@@ -1,155 +1,113 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/client'
-import { FiMail, FiLock, FiUser, FiEye, FiEyeOff, FiArrowRight } from 'react-icons/fi'
 import { motion } from 'framer-motion'
 
 export default function RegisterPage() {
-  const router = useRouter()
-  const supabase = createClient()
-  const [fullName, setFullName] = useState('')
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
-
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { data: { full_name: fullName } },
-    })
-
-    if (error) {
-      setError(error.message)
-    } else {
-      router.push('/login?registered=true')
-    }
-    setLoading(false)
-  }
-
-  const handleGoogleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
-    })
-    if (error) setError(error.message)
-  }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p- relative overflow-hidden">
-      <div className="absolute inset- bg-noise opacity- pointer-events-none" />
-      <div className="absolute inset- -z-">
-        <div className="absolute top-/ left-/ w- h- bg-blue-/ rounded-full blur-[px] animate-pulse-slow" />
-        <div className="absolute bottom-/ right-/ w- h- bg-purple-/ rounded-full blur-[px] animate-pulse-slow animation-delay-" />
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-12">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-200 via-blue-300 to-[#0f2847]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(30,80,180,0.3),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(10,30,60,0.5),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-900/20 rounded-full blur-3xl" />
       </div>
 
+      <Link href="/" className="absolute top-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-white font-semibold shadow-lg transition-all duration-300 text-sm">
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Back to Home
+      </Link>
+
       <motion.div
-        initial={{ opacity: , y:  }}
-        animate={{ opacity: , y:  }}
-        transition={{ duration: . }}
-        className="w-full max-w-md"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative w-full max-w-4xl rounded-3xl shadow-2xl z-10 overflow-hidden"
       >
-        <div className="glass-premium p- rounded-xl border border-white/ shadow-xl backdrop-blur-xl">
-          <div className="text-center mb-">
-            <img src="/LOGO.png" alt="Limbiz" className="h- mx-auto mb-" />
-            <h className="text-xl font-bold text-white">Inscription</h>
-            <p className="text-white/ text-sm mt-">Cr�ez votre compte gratuitement</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-">
-            <div>
-              <label className="block text-white/ text-sm mb-.">Nom complet</label>
-              <div className="relative">
-                <FiUser className="absolute left- top-/ -translate-y-/ text-white/" size={} />
-                <input
-                  type="text"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white placeholder-white/ focus:border-blue-/ focus:outline-none transition"
-                  placeholder="Jean Dupont"
-                  required
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-white/ text-sm mb-.">Email</label>
-              <div className="relative">
-                <FiMail className="absolute left- top-/ -translate-y-/ text-white/" size={} />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white placeholder-white/ focus:border-blue-/ focus:outline-none transition"
-                  placeholder="vous@exemple.com"
-                  required
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-white/ text-sm mb-.">Mot de passe</label>
-              <div className="relative">
-                <FiLock className="absolute left- top-/ -translate-y-/ text-white/" size={} />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl- pr- py- bg-white/ border border-white/ rounded-xl text-white placeholder-white/ focus:border-blue-/ focus:outline-none transition"
-                  placeholder="••••••••"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right- top-/ -translate-y-/ text-white/ hover:text-white transition"
-                >
-                  {showPassword ? <FiEyeOff size={} /> : <FiEye size={} />}
-                </button>
-              </div>
-            </div>
-            {error && <p className="text-red- text-sm text-center">{error}</p>}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py- bg-gradient-to-r from-blue- to-purple- rounded-xl text-white font-semibold flex items-center justify-center gap- hover:scale- transition disabled:opacity-"
-            >
-              {loading ? 'Inscription...' : 'Cr�er mon compte'}
-              {!loading && <FiArrowRight size={} />}
-            </button>
-          </form>
-
-          <div className="relative my-">
-            <div className="absolute inset- flex items-center"><div className="w-full border-t border-white/" /></div>
-            <div className="relative flex justify-center text-xs"><span className="px- bg-transparent text-white/">OU</span></div>
-          </div>
-
-          <button
-            onClick={handleGoogleLogin}
-            className="w-full py-. border border-white/ rounded-xl text-white font-medium flex items-center justify-center gap- hover:bg-white/ transition"
+        <div className="grid md:grid-cols-2">
+          {/* Formulaire à GAUCHE (inversé par rapport au login) */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-[#060d18] p-8 md:p-10 order-2 md:order-1"
           >
-            <svg className="w- h-" viewBox="   ">
-              <path fill="currentColor" d="M. .c-.-.-.-.-.Hv.h.c-. .-. .-. .v.h.c.-. .-. .-.z" />
-              <path fill="currentColor" d="M c.  .-. .-.l-.-.c-..-. .-. .-. -.-.-.-.H.v.C. . .   z" />
-              <path fill="currentColor" d="M. .c-.-.-.-.-.-.s.-..-.V.H.C. .  .  s. . . .l.-..-.z" />
-              <path fill="currentColor" d="M .c.  .. . .l.-.C. . .    .  . . . .l. .c.-. .-. .-.z" />
-            </svg>
-            S'inscrire avec Google
-          </button>
+            <div className="md:hidden text-center mb-6">
+              <img src="/LOGO1.png" alt="LIMBIZ" className="h-56 w-auto mx-auto" style={{ clipPath: 'inset(0 0 12% 0)' }} />
+              <h2 className="text-xl font-bold text-white" style={{ marginTop: '-20px' }}>Let's Get Started</h2>
+            </div>
 
-          <p className="text-center text-white/ text-sm mt-">
-            D�jà un compte ?{' '}
-            <Link href="/login" className="text-blue- hover:underline">
-              Se connecter
-            </Link>
-          </p>
+            <form className="space-y-4">
+              <div>
+                <label className="block text-white/40 text-xs font-medium mb-1.5">Full Name</label>
+                <div className="relative">
+                  <svg className="absolute left-4 top-3.5 w-4 h-4 text-white/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe" className="w-full pl-11 pr-4 py-3 bg-white/[0.05] border border-white/[0.08] rounded-xl text-white placeholder-white/20 focus:border-blue-500/50 focus:outline-none transition text-sm" required />
+                </div>
+              </div>
+              <div>
+                <label className="block text-white/40 text-xs font-medium mb-1.5">Email Address</label>
+                <div className="relative">
+                  <svg className="absolute left-4 top-3.5 w-4 h-4 text-white/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" className="w-full pl-11 pr-4 py-3 bg-white/[0.05] border border-white/[0.08] rounded-xl text-white placeholder-white/20 focus:border-blue-500/50 focus:outline-none transition text-sm" required />
+                </div>
+              </div>
+              <div>
+                <label className="block text-white/40 text-xs font-medium mb-1.5">Password</label>
+                <div className="relative">
+                  <svg className="absolute left-4 top-3.5 w-4 h-4 text-white/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="w-full pl-11 pr-4 py-3 bg-white/[0.05] border border-white/[0.08] rounded-xl text-white placeholder-white/20 focus:border-blue-500/50 focus:outline-none transition text-sm" required />
+                </div>
+              </div>
+              <button type="submit" className="w-full py-3.5 bg-blue-600 hover:bg-blue-500 rounded-xl text-white font-semibold text-sm shadow-lg shadow-blue-500/20 transition">Create Account</button>
+            </form>
+
+            <p className="mt-4 text-center text-white/40 text-sm">
+              Already a Member? <Link href="/login" className="text-blue-400 hover:text-blue-300 transition font-medium">Sign in here</Link>
+            </p>
+
+            <div className="flex items-center gap-3 my-5">
+              <div className="flex-1 h-px bg-white/[0.08]" />
+              <span className="text-white/20 text-xs uppercase">OR</span>
+              <div className="flex-1 h-px bg-white/[0.08]" />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <button className="py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white/60 hover:text-white hover:bg-white/[0.06] transition text-xs font-medium flex items-center justify-center gap-2">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/></svg>
+                Google
+              </button>
+              <button className="py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white/60 hover:text-white hover:bg-white/[0.06] transition text-xs font-medium flex items-center justify-center gap-2">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Facebook
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Photo à DROITE (inversé par rapport au login) */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative hidden md:flex items-center justify-center min-h-[500px] order-1 md:order-2"
+          >
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=800&fit=crop" alt="Business" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/75" />
+            <div className="absolute inset-0 bg-gradient-to-l from-black/80 via-black/50 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
+            <div className="relative z-10 text-center">
+              <img src="/LOGO1.png" alt="LIMBIZ" className="h-80 w-auto mx-auto" style={{ clipPath: 'inset(0 0 12% 0)' }} />
+              <h2 className="text-3xl font-bold text-white" style={{ marginTop: '-30px' }}>Let's Get Started</h2>
+              <p className="text-white/50 text-sm mt-1">Create your LIMBIZ account</p>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </div>

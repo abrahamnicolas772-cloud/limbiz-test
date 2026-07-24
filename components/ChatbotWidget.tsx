@@ -1,29 +1,13 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { FiSend, FiX, FiMessageSquare } from 'react-icons/fi'
-
-type Message = {
-  id: number
-  text: string
-  sender: 'user' | 'bot'
-}
-
-const initialMessages: Message[] = [
-  { id: , text: "Hi there! 👋 I'm Limbiz AI assistant. How can I help you today?", sender: 'bot' },
-]
-
-const quickReplies = [
-  'Tell me about your services',
-  'Pricing plans',
-  'Business setup process',
-  'Contact a human',
-]
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function ChatbotWidget() {
-  const [isMinimized, setIsMinimized] = useState(false)
-  const [messages, setMessages] = useState<Message[]>(initialMessages)
+  const [isOpen, setIsOpen] = useState(false)
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>([
+    { role: 'assistant', content: '👋 Hi! I\'m your LIMBIZ assistant. How can I help you today?' }
+  ])
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -32,93 +16,119 @@ export default function ChatbotWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  const handleSend = async (text: string) => {
-    if (!text.trim()) return
+  const sendMessage = async () => {
+    if (!input.trim()) return
 
-    const userMessage: Message = { id: messages.length + , text: text, sender: 'user' }
-    setMessages((prev) => [...prev, userMessage])
+    const userMessage = { role: 'user', content: input }
+    setMessages(prev => [...prev, userMessage])
     setInput('')
     setIsTyping(true)
 
+    // Simuler une réponse (à remplacer par API réelle)
     setTimeout(() => {
-      let botResponse = ''
-      const lowerText = text.toLowerCase()
-      if (lowerText.includes('service')) botResponse = 'We offer LLC formation, business credit, e-commerce setup, trademark guidance, and more.'
-      else if (lowerText.includes('price')) botResponse = 'Our pricing starts at $/month for Starter. Professional plan is $/month.'
-      else if (lowerText.includes('setup')) botResponse = 'Business setup takes - weeks. We handle LLC formation and compliance.'
-      else if (lowerText.includes('contact')) botResponse = 'Email: hello@limbiz.com | Phone: + () -'
-      else botResponse = "Thanks! Could you provide more details about what you're looking for?"
-
-      const botMessage: Message = { id: messages.length + , text: botResponse, sender: 'bot' }
-      setMessages((prev) => [...prev, botMessage])
+      const responses = [
+        'Great question! Let me help you with that. You can start by exploring our services or booking a consultation.',
+        'I\'d recommend checking out our LLC Formation service. Would you like me to guide you through the process?',
+        'Our pricing varies by state. You can use the interactive map on our Pricing page to see exact costs.',
+        'We offer support in English, Kreyòl, Français, and Español. How can I assist you today?',
+        'You can book a free consultation with our experts. They\'ll help you create a personalized business plan.',
+      ]
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)]
+      setMessages(prev => [...prev, { role: 'assistant', content: randomResponse }])
       setIsTyping(false)
-    }, )
-  }
-
-  if (isMinimized) {
-    return (
-      <motion.button
-        initial={{ scale:  }}
-        animate={{ scale:  }}
-        whileHover={{ scale: . }}
-        onClick={() => setIsMinimized(false)}
-        className="fixed bottom- right- z- p- bg-gradient-to-r from-blue- to-purple- rounded-full shadow-xl shadow-blue-/"
-      >
-        <FiMessageSquare size={} className="text-white" />
-      </motion.button>
-    )
+    }, 1500)
   }
 
   return (
-    <motion.div
-      initial={{ opacity: , x:  }}
-      animate={{ opacity: , x:  }}
-      className="fixed bottom- right- z- w-[px] h-[px] glass-premium rounded-xl shadow-xl border border-white/ flex flex-col overflow-hidden backdrop-blur-xl"
-    >
-      {/ Header /}
-      <div className="flex justify-between items-center p- border-b border-white/ bg-black/">
-        <div className="flex items-center gap-">
-          <div className="w- h- bg-green- rounded-full animate-pulse" />
-          <span className="text-white font-semibold">Limbiz AI Assistant</span>
-        </div>
-        <button onClick={() => setIsMinimized(true)} className="text-white/ hover:text-white">
-          <FiX size={} />
-        </button>
-      </div>
-
-      {/ Messages /}
-      <div className="flex- overflow-y-auto p- space-y-">
-        {messages.map((msg) => (
-          <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[%] p- rounded-xl text-sm ${msg.sender === 'user' ? 'bg-blue- text-white rounded-br-none' : 'bg-white/ text-white rounded-bl-none border border-white/'}`}>
-              {msg.text}
-            </div>
-          </div>
-        ))}
-        {isTyping && (
-          <div className="flex justify-start">
-            <div className="bg-white/ text-white p- rounded-xl rounded-bl-none border border-white/">
-              <div className="flex gap-"><span className="w- h- bg-white/ rounded-full animate-bounce" /><span className="w- h- bg-white/ rounded-full animate-bounce delay-" /><span className="w- h- bg-white/ rounded-full animate-bounce delay-" /></div>
-            </div>
-          </div>
+    <>
+      {/* Bouton flottant */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 rounded-full shadow-2xl shadow-blue-500/30 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+      >
+        {isOpen ? (
+          <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        ) : (
+          <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         )}
-        <div ref={messagesEndRef} />
-      </div>
+      </button>
 
-      {/ Quick replies & input /}
-      <div className="p- border-t border-white/">
-        <div className="flex flex-wrap gap- mb-">
-          {quickReplies.map((reply) => (
-            <button key={reply} onClick={() => handleSend(reply)} className="px- py-. text-xs bg-white/ hover:bg-white/ rounded-full text-white/ transition">
-              {reply}
-            </button>
-          ))}
-        </div>
-        <form onSubmit={(e) => { e.preventDefault(); handleSend(input) }} className="flex gap-">
-          <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Type your message..." className="flex- px- py- bg-white/ border border-white/ rounded-xl text-white text-sm placeholder-white/ focus:outline-none focus:border-blue-/" />
-          <button type="submit" className="p- bg-blue- hover:bg-blue- rounded-xl text-white transition"><FiSend size={} /></button>
-        </form>
-      </div>
-    </motion.div>
+      {/* Fenêtre de chat */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] bg-[#0a0f1a] border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden"
+          >
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold text-sm">LIMBIZ Assistant</h4>
+                <p className="text-white/60 text-[10px]">Online • Usually replies instantly</p>
+              </div>
+            </div>
+
+            {/* Messages */}
+            <div className="h-80 overflow-y-auto p-4 space-y-3">
+              {messages.map((msg, idx) => (
+                <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm ${
+                    msg.role === 'user' 
+                      ? 'bg-blue-600 text-white rounded-br-md' 
+                      : 'bg-white/[0.05] text-white/80 rounded-bl-md border border-white/[0.05]'
+                  }`}>
+                    {msg.content}
+                  </div>
+                </div>
+              ))}
+              {isTyping && (
+                <div className="flex justify-start">
+                  <div className="bg-white/[0.05] border border-white/[0.05] px-4 py-3 rounded-2xl rounded-bl-md">
+                    <div className="flex gap-1">
+                      {[0,1,2].map(i => (
+                        <motion.div
+                          key={i}
+                          animate={{ opacity: [0.3, 1, 0.3] }}
+                          transition={{ duration: 1, delay: i * 0.2, repeat: Infinity }}
+                          className="w-2 h-2 rounded-full bg-blue-400"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input */}
+            <div className="p-3 border-t border-white/[0.05]">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+                  placeholder="Type your message..."
+                  className="flex-1 px-4 py-2.5 bg-white/[0.05] border border-white/[0.08] rounded-xl text-white placeholder-white/20 text-sm focus:border-blue-500/50 focus:outline-none transition"
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={!input.trim()}
+                  className="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 rounded-xl text-white transition disabled:opacity-50"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }

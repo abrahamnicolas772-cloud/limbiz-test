@@ -1,44 +1,108 @@
 'use client'
+
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiSend, FiCheckCircle } from 'react-icons/fi'
 
 export default function FinalCTA() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleWhatsApp = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formData.name || !formData.email || !formData.message) { setError('Please fill in all fields'); return }
-    if (!formData.email.includes('@')) { setError('Invalid email'); return }
-    console.log('Form submitted:', formData)
+    const text = encodeURIComponent(`Hi LIMBIZ! 👋%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Message:* ${message}`)
+    window.open(`https://wa.me/13212977988?text=${text}`, '_blank')
     setSubmitted(true)
-    setFormData({ name: '', email: '', message: '' })
-    setTimeout(() => setSubmitted(false), )
+    setName(''); setPhone(''); setMessage('')
+    setTimeout(() => setSubmitted(false), 5000)
   }
 
   return (
-    <section className="py- relative overflow-hidden bg-black">
-      <div className="absolute inset- bg-noise opacity- pointer-events-none" />
-      <div className="absolute inset- bg-gradient-to-r from-blue-/ to-purple-/ blur-xl -z-" />
-
-      <div className="max-w-xl mx-auto px- sm:px- lg:px-">
-        <motion.div initial={{ opacity: , y:  }} whileInView={{ opacity: , y:  }} transition={{ duration: . }} viewport={{ once: true }} className="text-center mb-">
-          <h className="text-xl md:text-xl lg:text-xl font-bold">Ready To <span className="text-blue-">Scale</span> Your Business?</h>
-          <p className="mt- text-white/ text-lg">Let's build the future together.</p>
-        </motion.div>
-
-        <motion.div initial={{ opacity: , scale: . }} whileInView={{ opacity: , scale:  }} transition={{ duration: ., delay: . }} viewport={{ once: true }} className="glass-premium p- md:p- rounded-xl border border-white/ shadow-xl">
-          <form onSubmit={handleSubmit} className="space-y-">
-            <div className="grid md:grid-cols- gap-"><input type="text" name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Full name" className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white" required /><input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="Email address" className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white" required /></div>
-            <textarea name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} rows={} placeholder="How can we help?" className="w-full px- py- bg-white/ border border-white/ rounded-xl text-white" required />
-            {error && <p className="text-red- text-sm text-center">{error}</p>}
-            <div className="flex justify-center"><button type="submit" className="px- py-. bg-gradient-to-r from-blue- to-purple- rounded-full font-semibold text-white shadow-lg flex items-center gap- group">Submit <FiSend className="group-hover:translate-x- transition" /></button></div>
-            {submitted && <p className="text-center text-green- text-sm mt-">✓ Thank you! We'll get back to you soon.</p>}
-          </form>
-        </motion.div>
+    <>
+      <div className="relative z-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       </div>
-    </section>
+
+      <section className="relative py-24 md:py-32 overflow-hidden bg-[#060b14]">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,64,175,0.08),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(99,102,241,0.06),transparent_70%)]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="text-center lg:text-left">
+              <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-300 text-[10px] font-semibold uppercase tracking-wider mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" /> Free Consultation
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white/90 tracking-tight leading-[1.1] mb-6">
+                Ready to <span className="font-bold text-blue-400">Build</span> Your Business?
+              </h2>
+              <p className="text-white/35 text-base font-light leading-relaxed max-w-lg mb-8">
+                Book a free consultation with our experts. We'll discuss your goals and create a personalized roadmap for your success.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8">
+                {['No commitment','Free consultation','Personalized advice'].map(t => (
+                  <div key={t} className="flex items-center gap-2 text-white/25 text-xs">
+                    <svg className="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> {t}
+                  </div>
+                ))}
+              </div>
+              <a href="https://wa.me/13212977988" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-green-600 hover:bg-green-500 rounded-full text-white font-semibold text-sm shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-300 group">
+                Chat on WhatsApp
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+              </a>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <div className="relative bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-3xl p-8 shadow-2xl">
+                {submitted ? (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                    <p className="text-white/40 text-sm">We'll get back to you on WhatsApp shortly.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleWhatsApp} className="space-y-4">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-400" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-medium text-sm">Quick WhatsApp</h4>
+                        <p className="text-white/30 text-xs">We reply within minutes</p>
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <svg className="absolute left-4 top-3.5 w-4 h-4 text-white/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} required className="w-full pl-11 pr-4 py-3 bg-white/[0.05] border border-white/[0.08] rounded-xl text-white placeholder-white/20 focus:border-blue-500/50 focus:outline-none transition text-sm" />
+                    </div>
+                    <div className="relative">
+                      <svg className="absolute left-4 top-3.5 w-4 h-4 text-white/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2"/></svg>
+                      <input type="tel" placeholder="Your Phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full pl-11 pr-4 py-3 bg-white/[0.05] border border-white/[0.08] rounded-xl text-white placeholder-white/20 focus:border-blue-500/50 focus:outline-none transition text-sm" />
+                    </div>
+                    <div className="relative">
+                      <svg className="absolute left-4 top-3.5 w-4 h-4 text-white/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8"/></svg>
+                      <textarea placeholder="How can we help you?" value={message} onChange={(e) => setMessage(e.target.value)} rows={3} className="w-full pl-11 pr-4 py-3 bg-white/[0.05] border border-white/[0.08] rounded-xl text-white placeholder-white/20 focus:border-blue-500/50 focus:outline-none transition text-sm resize-none" />
+                    </div>
+                    <button type="submit" className="w-full py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-xl text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-green-500/20 hover:shadow-green-500/40 active:scale-[0.98]">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                      Send via WhatsApp
+                    </button>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <div className="relative z-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      </div>
+    </>
   )
 }
