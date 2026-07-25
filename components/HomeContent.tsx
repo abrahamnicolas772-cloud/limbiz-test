@@ -1,18 +1,18 @@
 'use client'
 
+import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import TrustedStats from '@/components/TrustedStats'
 import Services from '@/components/Services'
+import Pricing from '@/components/Pricing'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import Roadmap from '@/components/Roadmap'
 import Testimonials from '@/components/Testimonials'
 import ComparisonTable from '@/components/ComparisonTable'
-import Pricing from '@/components/Pricing'
 import FAQ from '@/components/FAQ'
 import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
 import CookieBanner from '@/components/CookieBanner'
-import Navbar from '@/components/Navbar'
 import ChatbotWidget from '@/components/ChatbotWidget'
 
 export default function HomeContent() {
@@ -22,11 +22,11 @@ export default function HomeContent() {
       <Hero />
       <TrustedStats />
       <Services />
+      <Pricing />
       <WhyChooseUs />
       <Roadmap />
       <Testimonials />
       <ComparisonTable />
-      <Pricing />
       <FAQ />
       <FinalCTA />
       <Footer />

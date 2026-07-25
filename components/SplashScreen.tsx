@@ -5,8 +5,17 @@ import { useEffect, useState } from 'react'
 
 export default function SplashScreen() {
   const [isVisible, setIsVisible] = useState(true)
+  const [particles, setParticles] = useState<{ x: number; y: number }[]>([])
 
   useEffect(() => {
+    // Générer les particules côté client uniquement
+    setParticles(
+      [...Array(20)].map(() => ({
+        x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+        y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+      }))
+    )
+
     const timer = setTimeout(() => setIsVisible(false), 2800)
     return () => clearTimeout(timer)
   }, [])
@@ -24,12 +33,11 @@ export default function SplashScreen() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#0b1a2e] via-[#0f2847] to-[#0b1a2e]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(30,80,180,0.2),transparent_70%)]" />
           
-          {/* Particules */}
           <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
+            {particles.map((p, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, scale: 0 }}
+                initial={{ opacity: 0, x: p.x, y: p.y, scale: 0 }}
                 animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0] }}
                 transition={{ duration: 2 + Math.random() * 2, delay: Math.random() * 1, repeat: Infinity, ease: 'easeInOut' }}
                 className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
@@ -38,7 +46,6 @@ export default function SplashScreen() {
           </div>
 
           <div className="relative z-10 flex flex-col items-center">
-            {/* Cercle lumineux */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 0.15 }}
@@ -46,7 +53,6 @@ export default function SplashScreen() {
               className="absolute w-[500px] h-[500px] bg-blue-500 rounded-full blur-[120px]"
             />
 
-            {/* Logo XL */}
             <motion.div
               initial={{ scale: 0.5, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -55,12 +61,11 @@ export default function SplashScreen() {
               <img 
                 src="/LOGO1.png" 
                 alt="LIMBIZ" 
-                className="h-[500px] w-auto mx-auto max-w-none drop-shadow-2xl"
+                className="h-[500px] w-auto mx-auto drop-shadow-2xl max-w-none"
                 style={{ clipPath: 'inset(0 0 10% 0)' }}
               />
             </motion.div>
 
-            {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -71,7 +76,6 @@ export default function SplashScreen() {
               Start • Structure • Fund • Grow • Protect
             </motion.p>
 
-            {/* Loader */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
