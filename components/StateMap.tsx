@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
+import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'
 import { stateByAbbr } from '@/lib/states'
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json'
@@ -12,7 +11,8 @@ interface StateMapProps {
   selectedState?: string
 }
 
-const stateLabels: Record<string, [number, number]> = {
+// Centroïdes approximatifs pour les labels
+const centroids: Record<string, [number, number]> = {
   'AL': [-86.8, 32.7], 'AK': [-153, 63], 'AZ': [-112, 34.5], 'AR': [-92.4, 34.8],
   'CA': [-119.5, 36.8], 'CO': [-105.5, 39], 'CT': [-72.7, 41.6], 'DE': [-75.5, 39],
   'FL': [-81.5, 28], 'GA': [-83.4, 32.6], 'HI': [-155.5, 20], 'ID': [-114.7, 44],
@@ -30,50 +30,30 @@ const stateLabels: Record<string, [number, number]> = {
 
 export default function StateMap({ onStateSelect, selectedState }: StateMapProps) {
   const [hoveredAbbr, setHoveredAbbr] = useState<string | null>(null)
-
   const getAbbr = (geo: any) => geo.properties.iso_3166_2 || geo.properties.abbr || geo.properties.postal
-
-  const handleStateClick = (geo: any) => {
-    const abbr = getAbbr(geo)
-    if (!abbr) return
-    const state = stateByAbbr[abbr]
-    if (state) {
-      onStateSelect(state.slug)
-      setTimeout(() => {
-        document.getElementById('pricing-packages')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 200)
-    }
-  }
-
   const hoveredState = hoveredAbbr ? stateByAbbr[hoveredAbbr] : null
 
   return (
     <div className="relative w-full max-w-5xl mx-auto">
-      {/* Tooltip fixe en haut */}
-      <div className="h-8 mb-2 flex items-center justify-center">
+      <div className="h-10 mb-3 flex items-center justify-center">
         {hoveredState ? (
-          <motion.div
-            initial={{ opacity: 0, y: -5 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full"
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full">
             <span className="text-blue-300 font-semibold text-sm">{hoveredState.name}</span>
             <span className="text-blue-400/60 text-xs">({hoveredState.abbreviation})</span>
             <span className="text-white/30 text-[10px]">— Click for pricing</span>
-          </motion.div>
+          </div>
         ) : (
           <span className="text-white/15 text-xs font-light tracking-wide">
-            Hover over a state to see details
+            Click on a state below or use the dropdown to see specific pricing.
           </span>
         )}
       </div>
 
-      <div className="relative w-full aspect-[1.5/1]">
+      <div className="relative w-full aspect-[1.5/1] rounded-2xl overflow-hidden border border-white/[0.06]">
         <ComposableMap
           projection="geoAlbersUsa"
           projectionConfig={{ scale: 1100 }}
-          className="w-full h-full"
-          style={{ background: 'transparent' }}
+          style={{ width: '100%', height: '100%', background: '#060d14' }}
         >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
@@ -82,38 +62,41 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                 const state = abbr ? stateByAbbr[abbr] : null
                 const isActive = !!state
                 const isSelected = state?.slug === selectedState
-                const isHovered = hoveredAbbr === abbr
+                const isHovered = hoveredAbbr === abbr && isActive
 
                 return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    onClick={() => handleStateClick(geo)}
-                    onMouseEnter={() => {
-                      if (isActive) setHoveredAbbr(abbr)
+                    onClick={() => {
+                      if (isActive && state) {
+                        onStateSelect(state.slug)
+                        setTimeout(() => {
+                          document.getElementById('pricing-packages')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        }, 200)
+                      }
                     }}
+                    onMouseEnter={() => { if (isActive) setHoveredAbbr(abbr) }}
                     onMouseLeave={() => setHoveredAbbr(null)}
                     style={{
                       default: {
-                        fill: isSelected ? '#2563eb' : isHovered ? '#2a5a9a' : isActive ? '#1e3a5f' : '#0f1a2e',
-                        stroke: isSelected ? '#60a5fa' : isHovered ? '#60a5fa' : isActive ? '#2a4a7a' : '#1a2a3e',
-                        strokeWidth: isSelected ? 1.5 : isHovered ? 1.2 : 0.6,
+                        fill: isSelected ? '#2563eb' : isActive ? '#0f1f3a' : '#081020',
+                        stroke: isSelected ? '#60a5fa' : isActive ? '#1a3050' : '#0d1525',
+                        strokeWidth: isSelected ? 1.2 : 0.5,
                         outline: 'none',
                         cursor: isActive ? 'pointer' : 'default',
-                        transition: 'all 0.15s ease',
                       },
                       hover: {
-                        fill: isActive ? '#2a5a9a' : '#1a2a3e',
-                        stroke: isActive ? '#60a5fa' : '#2a3a4e',
-                        strokeWidth: 1.2,
+                        fill: isActive ? '#1e4d8c' : '#081020',
+                        stroke: isActive ? '#3b7abf' : '#0d1525',
+                        strokeWidth: 1,
                         outline: 'none',
                         cursor: isActive ? 'pointer' : 'default',
-                        transition: 'all 0.15s ease',
                       },
                       pressed: {
                         fill: '#2563eb',
-                        stroke: '#93c5fd',
-                        strokeWidth: 1.8,
+                        stroke: '#60a5fa',
+                        strokeWidth: 1.5,
                         outline: 'none',
                       },
                     }}
@@ -123,38 +106,40 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
             }
           </Geographies>
 
-          {/* Labels */}
-          {Object.entries(stateLabels).map(([abbr, coords]) => {
+          {/* Labels via Marker */}
+          {Object.entries(centroids).map(([abbr, coords]) => {
             const state = stateByAbbr[abbr]
             if (!state) return null
             const isSelected = state.slug === selectedState
             const isHovered = hoveredAbbr === abbr
+            // Afficher tous les labels // Afficher seulement au survol/sélection
+            
             return (
-              <text
-                key={abbr}
-                textAnchor="middle"
-                x={coords[0]}
-                y={coords[1]}
-                style={{
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: isSelected ? '3px' : isHovered ? '2.6px' : '2.2px',
-                  fontWeight: isSelected || isHovered ? 700 : 500,
-                  fill: isSelected ? '#93c5fd' : isHovered ? '#ffffff' : '#ffffff50',
-                  pointerEvents: 'none',
-                  userSelect: 'none',
-                  letterSpacing: '0.5px',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                {abbr}
-              </text>
+              <Marker key={abbr} coordinates={coords}>
+                <text
+                  textAnchor="middle"
+                  style={{
+                    fontFamily: 'system-ui, sans-serif',
+                    fontSize: isSelected ? "10px" : "7px",
+                    fontWeight: isSelected ? 700 : 500,
+                    fill: isSelected ? "#93c5fd" : "#ffffff80",
+                    paintOrder: 'stroke',
+                    stroke: '#000000',
+                    strokeWidth: "2px",
+                    strokeLinecap: 'round',
+                    strokeLinejoin: 'round',
+                  }}
+                >
+                  {abbr}
+                </text>
+              </Marker>
             )
           })}
         </ComposableMap>
       </div>
 
       <p className="text-center text-white/15 text-[10px] font-light tracking-wide mt-3">
-        Click on a state to see specific pricing
+        Hover over a state to see its abbreviation — Click for pricing
       </p>
     </div>
   )
