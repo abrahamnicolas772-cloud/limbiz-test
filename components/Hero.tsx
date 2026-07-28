@@ -80,7 +80,7 @@ export default function Hero() {
               Don't Just<br/>
               Create It.<br/>
               <span className="font-bold text-blue-500 relative">
-                Structure It<span className="absolute top-6 -right-8 text-blue-400/70 text-[0.35em] font-light">™</span>
+                Structure It<span className="text-blue-400/70 text-[0.3em] font-light align-super ml-0.5">™</span>
               </span>
             </motion.h1>
 
