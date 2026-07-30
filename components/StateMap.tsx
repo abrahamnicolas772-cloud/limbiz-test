@@ -40,11 +40,10 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full">
             <span className="text-blue-300 font-semibold text-sm">{hoveredState.name}</span>
             <span className="text-blue-400/60 text-xs">({hoveredState.abbreviation})</span>
-            <span className="text-white/30 text-[10px]">— Click for pricing</span>
           </div>
         ) : (
           <span className="text-white/15 text-xs font-light tracking-wide">
-            Click on a state below or use the dropdown to see specific pricing.
+            Hover over a state or use the dropdown to see specific pricing.
           </span>
         )}
       </div>
@@ -68,14 +67,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    onClick={() => {
-                      if (isActive && state) {
-                        onStateSelect(state.slug)
-                        setTimeout(() => {
-                          document.getElementById('pricing-packages')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                        }, 500)
-                      }
-                    }}
+                    // Pas de onClick – sélection par dropdown
                     onMouseEnter={() => { if (isActive) setHoveredAbbr(abbr) }}
                     onMouseLeave={() => setHoveredAbbr(null)}
                     style={{
@@ -84,14 +76,12 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                         stroke: isSelected ? '#60a5fa' : isActive ? '#1a3050' : '#0d1525',
                         strokeWidth: isSelected ? 1.2 : 0.5,
                         outline: 'none',
-                        cursor: isActive ? 'pointer' : 'default',
                       },
                       hover: {
                         fill: isActive ? '#1e4d8c' : '#081020',
                         stroke: isActive ? '#3b7abf' : '#0d1525',
                         strokeWidth: 1,
                         outline: 'none',
-                        cursor: isActive ? 'pointer' : 'default',
                       },
                       pressed: {
                         fill: '#2563eb',
@@ -112,10 +102,9 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
             if (!state) return null
             const isSelected = state.slug === selectedState
             const isHovered = hoveredAbbr === abbr
-            // Afficher tous les labels // Afficher seulement au survol/sélection
             
             return (
-              <Marker key={abbr} coordinates={coords} style={{ pointerEvents: "none" }}>
+              <Marker key={abbr} coordinates={coords}>
                 <text
                   textAnchor="middle"
                   style={{
@@ -128,7 +117,6 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                     strokeWidth: "2px",
                     strokeLinecap: 'round',
                     strokeLinejoin: 'round',
-                    pointerEvents: 'none',
                   }}
                 >
                   {abbr}
@@ -140,7 +128,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
       </div>
 
       <p className="text-center text-white/15 text-[10px] font-light tracking-wide mt-3">
-        Hover over a state to see its abbreviation — Click for pricing
+        Hover over a state to see its abbreviation — Use dropdown to select
       </p>
     </div>
   )
