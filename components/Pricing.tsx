@@ -71,6 +71,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
   const currentStateData = stateMap[selectedState]
 
   const handleStateSelect = (stateId: string) => {
+    console.log("État sélectionné:", stateId)
     setSelectedState(stateId)
     if (onStateSelect) onStateSelect(stateId)
     setTimeout(() => document.getElementById('pricing-packages')?.scrollIntoView({ behavior: 'smooth' }), 300)

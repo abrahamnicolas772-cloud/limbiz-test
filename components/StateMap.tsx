@@ -73,7 +73,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                         onStateSelect(state.slug)
                         setTimeout(() => {
                           document.getElementById('pricing-packages')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                        }, 200)
+                        }, 500)
                       }
                     }}
                     onMouseEnter={() => { if (isActive) setHoveredAbbr(abbr) }}
@@ -115,7 +115,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
             // Afficher tous les labels // Afficher seulement au survol/sélection
             
             return (
-              <Marker key={abbr} coordinates={coords}>
+              <Marker key={abbr} coordinates={coords} style={{ pointerEvents: "none" }}>
                 <text
                   textAnchor="middle"
                   style={{
@@ -128,6 +128,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                     strokeWidth: "2px",
                     strokeLinecap: 'round',
                     strokeLinejoin: 'round',
+                    pointerEvents: 'none',
                   }}
                 >
                   {abbr}
