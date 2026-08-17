@@ -93,6 +93,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-white/50 text-sm">
               <li><Link href="/resources/guides" className="hover:text-blue-400 transition">Startup Guides</Link></li>
               <li><Link href="/resources/templates" className="hover:text-blue-400 transition">Templates</Link></li>
+              <li><Link href="/books" className="hover:text-blue-400 transition">Books & Guides</Link></li>
               <li><Link href="/tools" className="hover:text-blue-400 transition">Business Tools</Link></li>
               <li><Link href="/faq" className="hover:text-blue-400 transition">FAQ</Link></li>
               <li><Link href="/pricing" className="hover:text-blue-400 transition">State Pricing</Link></li>
