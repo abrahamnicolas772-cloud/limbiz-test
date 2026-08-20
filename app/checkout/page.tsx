@@ -35,7 +35,33 @@ function CheckoutContent() {
   const selectedPlan = plans[plan] || plans.basic
   const total = selectedPlan.price
 
-  const handlePay = () => { setStep('processing'); setTimeout(() => setStep('success'), 2500) }
+  const handlePay = async () => {
+    setStep('processing')
+
+    if (paymentMethod === 'paypal') {
+      try {
+        const response = await fetch('/api/payments/paypal', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: total, currency: 'USD' }),
+        })
+
+        const data = await response.json()
+
+        if (data.approvalUrl) {
+          window.location.href = data.approvalUrl
+        } else {
+          setStep('payment')
+          alert('PayPal error: ' + (data.error || 'Unknown error'))
+        }
+      } catch (error) {
+        setStep('payment')
+        alert('PayPal connection failed')
+      }
+    } else {
+      setTimeout(() => setStep('success'), 2500)
+    }
+  }
 
   const acceptedCards = [
     { name: 'Visa', icon: (<svg className="w-8 h-5" viewBox="0 0 24 16"><rect width="24" height="16" rx="2" fill="#1a1f71"/></svg>) },
