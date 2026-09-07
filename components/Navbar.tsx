@@ -98,7 +98,7 @@ export default function Navbar() {
                     <li><Link href="/funding-center" onClick={() => setEcosystemOpen(false)} className="block px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-lg text-sm transition">Funding Center</Link></li>
                     <li><Link href="/tax-filings" onClick={() => setEcosystemOpen(false)} className="block px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-lg text-sm transition">Tax Filings</Link></li>
                     <li className="border-t border-white/5 my-1"></li>
-                    <li><Link href="/books" onClick={() => setEcosystemOpen(false)} className="block px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-lg text-sm transition">eBooks & Guides</Link></li>
+                    <li><Link href="/books" onClick={() => setEcosystemOpen(false)} className="block px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-lg text-sm transition">Books</Link></li>
                     <li><Link href="/tools" onClick={() => setEcosystemOpen(false)} className="block px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-lg text-sm transition">Business Tools</Link></li>
                     <li><Link href="/resources" onClick={() => setEcosystemOpen(false)} className="block px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-lg text-sm transition">Resources</Link></li>
                   </ul>
@@ -158,7 +158,7 @@ export default function Navbar() {
             <Link href="/services" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Services</Link>
             <Link href="/pricing" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Pricing</Link>
             <Link href="/ecosystem" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Ecosystem</Link>
-            <Link href="/books" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">eBooks & Guides</Link>
+            <Link href="/books" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Books</Link>
             <Link href="/international" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">International</Link>
             <Link href="/about" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">About</Link>
             <Link href="/contact" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Contact</Link>

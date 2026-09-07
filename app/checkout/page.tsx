@@ -11,6 +11,7 @@ function CheckoutContent() {
   const searchParams = useSearchParams()
   const plan = searchParams.get('plan') || 'basic'
   const state = searchParams.get('state') || 'florida'
+  const service = searchParams.get('service') || ''
   
   const [step, setStep] = useState<Step>('review')
   const [paymentMethod, setPaymentMethod] = useState('card')
@@ -94,10 +95,16 @@ function CheckoutContent() {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               
               <AnimatePresence mode="wait">
-                {step === 'review' && (
+                                {step === 'review' && (
                   <motion.div key="review" initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-10}}>
+                    {service && (
+                      <div className="mb-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                        <p className="text-blue-300 text-xs font-semibold">Selected Service</p>
+                        <p className="text-white text-sm">{service}</p>
+                      </div>
+                    )}
                     <h2 className="text-base font-bold text-white mb-0.5">Your Information</h2>
-                    <p className="text-white/30 text-xs mb-3">Fill in your details</p>
+<p className="text-white/30 text-xs mb-3">Fill in your details</p>
                     <div className="space-y-2.5">
                       <div className="grid grid-cols-2 gap-3">
                         <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white placeholder-white/15 text-sm focus:border-blue-400/50 focus:outline-none transition" />
@@ -153,7 +160,7 @@ function CheckoutContent() {
                   <motion.div key="success" initial={{opacity:0,scale:0.9}} animate={{opacity:1,scale:1}} className="flex flex-col items-center justify-center py-12 text-center">
                     <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">✅</div>
                     <h3 className="text-xl font-bold text-white mb-2">Payment Successful!</h3>
-                    <p className="text-white/40 text-sm mb-6">{selectedPlan.name} Plan is now active.</p>
+                    <p className="text-white/40 text-sm mb-6">{service || (selectedPlan.name + " Plan")} is now active.</p>
                     <div className="flex gap-3">
                       <Link href="/dashboard" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 rounded-xl text-white text-xs transition">Dashboard</Link>
                       <Link href="/" className="px-5 py-2.5 border border-white/10 hover:border-white/20 rounded-xl text-white/50 text-xs transition">Home</Link>
@@ -167,7 +174,7 @@ function CheckoutContent() {
           <div className="lg:col-span-2">
             <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06] rounded-3xl p-5">
               <h3 className="text-white font-semibold text-sm mb-3">Order Summary</h3>
-              <div className="flex items-center justify-between mb-1"><span className="text-white text-sm">{selectedPlan.name} Plan</span><span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">SAVE ${selectedPlan.originalPrice - selectedPlan.price}</span></div>
+              <div className="flex items-center justify-between mb-1"><span className="text-white text-sm">{service || (selectedPlan.name + " Plan")}</span><span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">SAVE ${selectedPlan.originalPrice - selectedPlan.price}</span></div>
               <p className="text-white/25 text-xs mb-3">{state.toUpperCase()}</p>
               <div className="space-y-1.5 mb-3 text-sm">
                 <div className="flex justify-between"><span className="text-white/30">Subtotal</span><span className="text-white/50">${selectedPlan.price}</span></div>

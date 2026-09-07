@@ -84,8 +84,8 @@ export default function BooksPage() {
     const edition = editions.find(e => e.id === editionId)
     const format = selectedFormats[editionId]
     if (edition && format) {
-      const link = edition.links[format as keyof typeof edition.links]
-      window.open(link, '_blank')
+      const checkoutUrl = '/checkout?plan=basic&state=florida&service=' + encodeURIComponent(edition.language + ' Edition - ' + format)
+      window.location.href = checkoutUrl
     }
   }
 
