@@ -33,8 +33,11 @@ function CheckoutContent() {
     premium: { name: 'Premium', price: 1999, originalPrice: 2499, stateFee: 125, features: ['Everything in Standard', 'Funding Center', 'Tax Consultation', 'Credit Score', 'Trademark Search', 'Website Consultation', 'Google Profile', 'Priority Support'] },
   }
 
-  const selectedPlan = plans[plan] || plans.basic
-  const total = selectedPlan.price
+  const isBook = service.includes('Edition')
+  const selectedPlan = isBook
+    ? { name: service, price: 9.99, originalPrice: 9.99, stateFee: 0, features: ['Book Purchase', 'Instant Access', 'Digital Download'] }
+    : (plans[plan] || plans.basic)
+  const total = isBook ? 9.99 : selectedPlan.price
 
   const handlePay = async () => {
     setStep('processing')

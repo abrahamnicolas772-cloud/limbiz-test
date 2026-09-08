@@ -12,11 +12,11 @@ export default function BooksSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} className="mb-6">
           <span className="inline-block px-3 py-1 bg-[#1b63f5]/10 border border-[#1b63f5]/20 rounded-full text-[#1b63f5] text-[10px] font-bold uppercase tracking-wider">
-            Books & Guides
+            Books
           </span>
         </motion.div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-          Build Smarter with LIMBIZ® Books & Guides
+          Build Smarter with LIMBIZ® Books
         </h2>
         <p className="text-white/40 text-sm max-w-xl mx-auto mb-8">
           Practical business education in 4 languages to help you start, structure, fund, grow, and protect your business.
