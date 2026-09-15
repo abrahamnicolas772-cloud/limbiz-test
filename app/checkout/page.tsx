@@ -12,6 +12,8 @@ function CheckoutContent() {
   const plan = searchParams.get('plan') || 'basic'
   const state = searchParams.get('state') || 'florida'
   const service = searchParams.get('service') || ''
+  const bookPrice = parseFloat(searchParams.get('price') || '9.99')
+  const bookFormat = searchParams.get('format') || 'eBook'
   
   const [step, setStep] = useState<Step>('review')
   const [paymentMethod, setPaymentMethod] = useState('card')
@@ -26,6 +28,9 @@ function CheckoutContent() {
   const [businessName, setBusinessName] = useState('')
   const [businessType, setBusinessType] = useState('llc')
   const [agreeTerms, setAgreeTerms] = useState(false)
+  const [promoCode, setPromoCode] = useState('')
+  const [promoApplied, setPromoApplied] = useState(false)
+  const [promoError, setPromoError] = useState('')
 
   const plans: Record<string, { name: string; price: number; originalPrice: number; stateFee: number; features: string[] }> = {
     basic: { name: 'Basic', price: 499, originalPrice: 599, stateFee: 125, features: ['LLC Filing', 'EIN Registration', 'Operating Agreement', 'Business Consultation', 'Document Vault', 'Name Check'] },
@@ -34,10 +39,32 @@ function CheckoutContent() {
   }
 
   const isBook = service.includes('Edition')
+  const bookFeatures = bookFormat === 'eBook'
+    ? ['Instant Access', 'Digital Download', 'Read on Any Device', 'Lifetime Access']
+    : bookFormat === 'Paperback'
+    ? ['Free Shipping', 'Physical Book', 'Ships in 3-5 Days', 'Printed Edition']
+    : ['Free Shipping', 'Premium Hardcover', 'Ships in 3-5 Days', 'Collector Edition']
   const selectedPlan = isBook
-    ? { name: service, price: 9.99, originalPrice: 9.99, stateFee: 0, features: ['Book Purchase', 'Instant Access', 'Digital Download'] }
+    ? { name: service, price: bookPrice, originalPrice: bookPrice, stateFee: 0, features: bookFeatures }
     : (plans[plan] || plans.basic)
-  const total = isBook ? 9.99 : selectedPlan.price
+  const total = isBook ? bookPrice : selectedPlan.price
+
+  
+  const applyPromo = () => {
+    const validCodes: Record<string, number> = {
+      'LIMBIZ10': 10,
+      'LIMBIZ20': 20,
+      'WELCOME15': 15,
+      'BOOK5': 5,
+    }
+    if (validCodes[promoCode.toUpperCase()]) {
+      setPromoApplied(true)
+      setPromoError('')
+    } else {
+      setPromoError('Invalid promo code')
+      setPromoApplied(false)
+    }
+  }
 
   const handlePay = async () => {
     setStep('processing')
@@ -117,7 +144,7 @@ function CheckoutContent() {
                       <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white placeholder-white/15 text-sm focus:border-blue-400/50 focus:outline-none transition" />
                       <div className="grid grid-cols-2 gap-3">
                         <input type="text" value={businessName} onChange={(e) => setBusinessName(e.target.value)} placeholder="Business Name" className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white placeholder-white/15 text-sm focus:border-blue-400/50 focus:outline-none transition" />
-                        <input type="text" value={state.toUpperCase()} disabled className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white/60 text-sm" />
+                        <input type="text" value={isBook ? "Book Purchase" : state.toUpperCase()} disabled className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white/60 text-sm" />
                       </div>
                       <div className="flex items-center gap-2 text-white/15 text-[10px] pt-1"><span>We accept:</span> PayPal • Stripe • Visa • Mastercard • Bank</div>
                       <label className="flex items-start gap-2 cursor-pointer"><input type="checkbox" checked={agreeTerms} onChange={(e) => setAgreeTerms(e.target.checked)} className="mt-0.5 accent-blue-500" /><span className="text-white/30 text-xs">I agree to the <Link href="/terms" className="text-blue-400 underline">Terms</Link></span></label>
@@ -178,8 +205,29 @@ function CheckoutContent() {
             <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06] rounded-3xl p-5">
               <h3 className="text-white font-semibold text-sm mb-3">Order Summary</h3>
               <div className="flex items-center justify-between mb-1"><span className="text-white text-sm">{service || (selectedPlan.name + " Plan")}</span><span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">SAVE ${selectedPlan.originalPrice - selectedPlan.price}</span></div>
-              <p className="text-white/25 text-xs mb-3">{state.toUpperCase()}</p>
+              <p className="text-white/25 text-xs mb-3">{isBook ? "Book Purchase" : state.toUpperCase()}</p>
               <div className="space-y-1.5 mb-3 text-sm">
+                {isBook && (
+                  <div className="mb-3 pb-3 border-b border-white/[0.05]">
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={promoCode}
+                        onChange={(e) => setPromoCode(e.target.value)}
+                        placeholder="Promo Code"
+                        className="flex-1 px-3 py-2 bg-white/[0.03] border border-white/[0.08] rounded-lg text-white text-xs placeholder-white/30 focus:border-blue-400/50 focus:outline-none"
+                      />
+                      <button
+                        onClick={applyPromo}
+                        className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white text-xs font-semibold transition"
+                      >
+                        Apply
+                      </button>
+                    </div>
+                    {promoError && <p className="text-red-400 text-[10px] mt-1">{promoError}</p>}
+                    {promoApplied && <p className="text-emerald-400 text-[10px] mt-1">✓ Promo code applied!</p>}
+                  </div>
+                )}
                 <div className="flex justify-between"><span className="text-white/30">Subtotal</span><span className="text-white/50">${selectedPlan.price}</span></div>
                 <div className="flex justify-between"><span className="text-white/30">State Fee</span><span className="text-white/50">${selectedPlan.stateFee}</span></div>
                 <div className="flex justify-between text-emerald-400"><span>Discount</span><span>-${selectedPlan.originalPrice - selectedPlan.price}</span></div>

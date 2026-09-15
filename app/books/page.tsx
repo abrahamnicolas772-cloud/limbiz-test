@@ -16,11 +16,6 @@ const editions = [
       { type: 'Hardcover', price: '$34.99', freeShipping: true },
     ],
     buyText: 'Buy Now',
-    links: {
-      'eBook': 'https://www.amazon.com/dp/YOUR_ASIN_EN_EBOOK',
-      'Paperback': 'https://www.amazon.com/dp/YOUR_ASIN_EN_PAPERBACK',
-      'Hardcover': 'https://www.amazon.com/dp/YOUR_ASIN_EN_HARDCOVER',
-    }
   },
   {
     id: 'haitian-creole',
@@ -32,11 +27,6 @@ const editions = [
       { type: 'Hardcover', price: '$34.99', freeShipping: true },
     ],
     buyText: 'Achte Kounye a',
-    links: {
-      'eBook': 'https://www.amazon.com/dp/YOUR_ASIN_HT_EBOOK',
-      'Paperback': 'https://www.amazon.com/dp/YOUR_ASIN_HT_PAPERBACK',
-      'Hardcover': 'https://www.amazon.com/dp/YOUR_ASIN_HT_HARDCOVER',
-    }
   },
   {
     id: 'french',
@@ -48,11 +38,6 @@ const editions = [
       { type: 'Hardcover', price: '$34.99', freeShipping: true },
     ],
     buyText: 'Acheter maintenant',
-    links: {
-      'eBook': 'https://www.amazon.com/dp/YOUR_ASIN_FR_EBOOK',
-      'Paperback': 'https://www.amazon.com/dp/YOUR_ASIN_FR_PAPERBACK',
-      'Hardcover': 'https://www.amazon.com/dp/YOUR_ASIN_FR_HARDCOVER',
-    }
   },
   {
     id: 'spanish',
@@ -64,27 +49,23 @@ const editions = [
       { type: 'Hardcover', price: '$34.99', freeShipping: true },
     ],
     buyText: 'Comprar ahora',
-    links: {
-      'eBook': 'https://www.amazon.com/dp/YOUR_ASIN_ES_EBOOK',
-      'Paperback': 'https://www.amazon.com/dp/YOUR_ASIN_ES_PAPERBACK',
-      'Hardcover': 'https://www.amazon.com/dp/YOUR_ASIN_ES_HARDCOVER',
-    }
   },
 ]
 
 export default function BooksPage() {
-  const [selectedFormats, setSelectedFormats] = useState<Record<string, string>>({
-    english: 'Paperback',
-    'haitian-creole': 'Paperback',
-    french: 'Paperback',
-    spanish: 'Paperback',
-  })
+  const [selectedFormats, setSelectedFormats] = useState<Record<string, string>>({})
 
   const handleBuy = (editionId: string) => {
     const edition = editions.find(e => e.id === editionId)
     const format = selectedFormats[editionId]
+    if (!format) {
+      alert('Please select a format first')
+      return
+    }
     if (edition && format) {
-      const checkoutUrl = '/checkout?plan=basic&state=florida&service=' + encodeURIComponent(edition.language + ' Edition - ' + format)
+      const formatData = edition.formats.find(f => f.type === format)
+      const price = formatData?.price.replace('$', '') || '9.99'
+      const checkoutUrl = '/checkout?service=' + encodeURIComponent(edition.language + ' Edition - ' + format) + '&price=' + price + '&format=' + format
       window.location.href = checkoutUrl
     }
   }
@@ -96,6 +77,16 @@ export default function BooksPage() {
       case 'french': return 'FRENCH EDITION'
       case 'spanish': return 'SPANISH EDITION'
       default: return ''
+    }
+  }
+
+  const getCoverImage = (id: string) => {
+    switch(id) {
+      case 'english': return '/books/28-steps-english.jpg'
+      case 'haitian-creole': return '/books/28-steps-creole.jpg'
+      case 'french': return '/books/28-steps-french.jpg'
+      case 'spanish': return '/books/28-steps-spanish.jpg'
+      default: return '/books/28-steps-english.jpg'
     }
   }
 
@@ -115,8 +106,8 @@ export default function BooksPage() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#1b63f5]/10 border border-[#1b63f5]/20 rounded-full text-[#1b63f5] text-xs font-semibold uppercase tracking-wider mb-6">
               LIMBIZ® Books & Guides
             </span>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
-              Build Smarter with<br/>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+              Build Smarter with<br />
               <span className="text-[#1b63f5]">LIMBIZ® Books & Guides</span>
             </h1>
             <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto mb-8">
@@ -137,7 +128,8 @@ export default function BooksPage() {
               <div>
                 <span className="text-[#1b63f5] text-xs font-bold uppercase tracking-wider">Featured Book</span>
                 <h2 className="text-xl md:text-2xl font-bold text-white mt-2 mb-4">
-                  28 Essential Steps to Build a Strong and<br/>Successful Business in the United States
+                  28 Essential Steps to Build a Strong and<br />
+                  Successful Business in the United States
                 </h2>
                 <p className="text-white/50 text-sm leading-relaxed mb-6">
                   A practical 28 step guide created to help entrepreneurs transform a business idea into a properly structured and successful business, with or without grants and funding.
@@ -152,16 +144,15 @@ export default function BooksPage() {
 
           {/* EDITIONS */}
           <div id="editions" className="mb-16">
-            <h2 className="text-2xl font-bold text-white text-center mb-8">Available Languages & Formats</h2>
-            
-            {/* Desktop grid */}
-            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">Available Languages & Formats</h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {editions.map((edition) => (
-                <motion.div key={edition.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-6 flex flex-col hover:border-[#1b63f5]/40 transition">
-                  <div className="aspect-[3/4] bg-gradient-to-br from-[#1b63f5]/15 to-[#454545]/25 rounded-xl mb-4 flex items-center justify-center">
-                    <img src={`/books/${edition.id === "english" ? "28-steps-english.jpg" : edition.id === "haitian-creole" ? "28-steps-creole.jpg" : edition.id === "french" ? "28-steps-french.jpg" : "28-steps-spanish.jpg"}`} alt={edition.language} className="w-full h-full object-cover rounded-xl" />
+                <motion.div key={edition.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-5 flex flex-col hover:border-[#1b63f5]/40 transition">
+                  <div className="aspect-[3/4] bg-gradient-to-br from-[#1b63f5]/15 to-[#454545]/25 rounded-xl mb-4 overflow-hidden">
+                    <img src={getCoverImage(edition.id)} alt={edition.language} className="w-full h-full object-cover" />
                   </div>
-                  
+
                   <h3 className="text-white font-bold text-sm mb-1">{getEditionTitle(edition.id)}</h3>
                   <p className="text-white/40 text-xs mb-4">Language: {edition.language}</p>
 
@@ -170,7 +161,7 @@ export default function BooksPage() {
                       <button
                         key={format.type}
                         onClick={() => setSelectedFormats(prev => ({ ...prev, [edition.id]: format.type }))}
-                        className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition relative ${
+                        className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition ${
                           selectedFormats[edition.id] === format.type
                             ? 'bg-[#1b63f5]/20 border border-[#1b63f5]/50 text-white'
                             : 'bg-white/[0.02] border border-white/[0.05] text-white/40 hover:text-white'
@@ -193,45 +184,6 @@ export default function BooksPage() {
                     {edition.buyText}
                   </button>
                 </motion.div>
-              ))}
-            </div>
-
-            {/* Mobile carousel */}
-            <div className="md:hidden flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
-              {editions.map((edition) => (
-                <div key={edition.id} className="min-w-[280px] max-w-[280px] snap-center bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-5 flex flex-col">
-                  <div className="aspect-[3/4] bg-gradient-to-br from-[#1b63f5]/15 to-[#454545]/25 rounded-xl mb-4 flex items-center justify-center">
-                    <img src={`/books/${edition.id === "english" ? "28-steps-english.jpg" : edition.id === "haitian-creole" ? "28-steps-creole.jpg" : edition.id === "french" ? "28-steps-french.jpg" : "28-steps-spanish.jpg"}`} alt={edition.language} className="w-full h-full object-cover rounded-xl" />
-                  </div>
-                  <h3 className="text-white font-bold text-sm mb-1">{getEditionTitle(edition.id)}</h3>
-                  <p className="text-white/40 text-xs mb-4">Language: {edition.language}</p>
-                  <div className="space-y-2 mb-4">
-                    {edition.formats.map((format) => (
-                      <button
-                        key={format.type}
-                        onClick={() => setSelectedFormats(prev => ({ ...prev, [edition.id]: format.type }))}
-                        className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition ${
-                          selectedFormats[edition.id] === format.type
-                            ? 'bg-[#1b63f5]/20 border border-[#1b63f5]/50 text-white'
-                            : 'bg-white/[0.02] border border-white/[0.05] text-white/40'
-                        }`}
-                      >
-                        <span className="flex items-center gap-1.5">
-                          {format.type}
-                          {format.freeShipping && (
-                            <span className="text-[8px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded-full font-bold uppercase">
-                              FREE SHIPPING
-                            </span>
-                          )}
-                        </span>
-                        <span className="font-bold">{format.price}</span>
-                      </button>
-                    ))}
-                  </div>
-                  <button onClick={() => handleBuy(edition.id)} className="w-full py-2.5 bg-[#1b63f5] hover:bg-[#1557d6] rounded-xl text-white text-sm font-semibold transition">
-                    {edition.buyText}
-                  </button>
-                </div>
               ))}
             </div>
           </div>
