@@ -160,7 +160,7 @@ export default function BooksPage() {
                     {edition.formats.map((format) => (
                       <button
                         key={format.type}
-                        onClick={() => setSelectedFormats(prev => ({ ...prev, [edition.id]: format.type }))}
+                        onClick={() => setSelectedFormats({ [edition.id]: format.type })}
                         className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition ${
                           selectedFormats[edition.id] === format.type
                             ? 'bg-[#1b63f5]/20 border border-[#1b63f5]/50 text-white'
