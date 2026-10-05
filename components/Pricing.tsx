@@ -25,8 +25,8 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
   const [showStateDropdown, setShowStateDropdown] = useState(false)
   const [filingMethod, setFilingMethod] = useState<string>('')
   const [memberCount, setMemberCount] = useState<number>(1)
+  const [expandedPackage, setExpandedPackage] = useState<string | null>('basic')
   const [expandedService, setExpandedService] = useState<string | null>(null)
-  const [expandedPackage, setExpandedPackage] = useState<string | null>(null)
 
   useEffect(() => { setSelectedState(initialState) }, [initialState])
 
@@ -45,14 +45,6 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
     setTimeout(() => document.getElementById('pricing-packages')?.scrollIntoView({ behavior: 'smooth' }), 300)
   }
 
-  const packageList = [
-    { id: 'basic', name: 'Basic', desc: 'Essential formation for startups and solo entrepreneurs.' },
-    { id: 'standard', name: 'Standard', desc: 'Complete setup with compliance support.', popular: true },
-    { id: 'premium', name: 'Premium', desc: 'Full business launch with growth strategy.' },
-  ]
-
-  const getTermLabel = (term: string) => statusLabels[term] || term
-
   // Sèvis ki gen dropdown
   const serviceWithDropdown: Record<string, string> = {
     'essential_documents': 'essential_documents',
@@ -62,40 +54,98 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
     'ecommerce': 'ecommerce',
   }
 
-  const renderServiceItem = (service: any, packageId: string) => {
-    const hasDropdown = serviceWithDropdown[service.id]
+  // Konstwi lis konplè sèvis pou chak package ak nimewo
+  const getFullServiceList = (packageId: string) => {
+    const result: { number: number; service: any; isInheritedHeader?: boolean; inheritedFrom?: string }[] = []
+    let counter = 1
+
+    if (packageId === 'basic') {
+      packages.basic.additional_services.forEach((s) => {
+        result.push({ number: counter++, service: s })
+      })
+    } 
+    else if (packageId === 'standard') {
+      // Header "Basic Package+"
+      result.push({ number: 10, service: { id: 'basic_package_header', label_en: 'Basic Package+', term: 'inherited' }, isInheritedHeader: true, inheritedFrom: 'Basic' })
+      // Sèvis Basic yo (1-10)
+      packages.basic.additional_services.forEach((s) => {
+        result.push({ number: counter++, service: s })
+      })
+      // Sèvis Standard yo (11-20)
+      counter = 11
+      packages.standard.additional_services.forEach((s) => {
+        result.push({ number: counter++, service: s })
+      })
+    }
+    else if (packageId === 'premium') {
+      // Header "Standard Package+"
+      result.push({ number: 20, service: { id: 'standard_package_header', label_en: 'Standard Package+', term: 'inherited' }, isInheritedHeader: true, inheritedFrom: 'Standard' })
+      // Sèvis Basic yo (1-10)
+      packages.basic.additional_services.forEach((s) => {
+        result.push({ number: counter++, service: s })
+      })
+      // Sèvis Standard yo (11-20)
+      counter = 11
+      packages.standard.additional_services.forEach((s) => {
+        result.push({ number: counter++, service: s })
+      })
+      // Sèvis Premium yo (21-30)
+      counter = 21
+      packages.premium.additional_services.forEach((s) => {
+        result.push({ number: counter++, service: s })
+      })
+    }
+
+    return result
+  }
+
+  const getTermLabel = (term: string) => statusLabels[term] || term
+
+  const renderServiceRow = (item: { number: number; service: any; isInheritedHeader?: boolean }, packageId: string) => {
+    // Header "Basic Package+" oswa "Standard Package+"
+    if (item.isInheritedHeader) {
+      return (
+        <li key={`${packageId}-header-${item.number}`} className="py-3 border-b border-blue-500/20 bg-blue-500/5 -mx-3 px-3 my-1 rounded-lg">
+          <div className="flex items-center gap-2">
+            <span className="text-blue-400 font-bold text-sm">{item.number}.</span>
+            <span className="text-blue-300 font-bold text-sm">{item.service.label_en}</span>
+          </div>
+        </li>
+      )
+    }
+
+    const hasDropdown = serviceWithDropdown[item.service.id]
     const dropdown = hasDropdown ? serviceDropdowns[hasDropdown as keyof typeof serviceDropdowns] : null
-    const isExpanded = expandedService === `${packageId}-${service.id}`
+    const isExpanded = expandedService === `${packageId}-${item.service.id}`
 
     return (
-      <li key={service.id} className="border-b border-white/[0.03] last:border-0">
+      <li key={`${packageId}-${item.number}-${item.service.id}`} className="border-b border-white/[0.03] last:border-0">
         <div className="py-2.5">
-          <div className="flex items-start gap-2">
-            <svg className="w-3.5 h-3.5 text-blue-300 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <div className="flex items-start gap-3">
+            <span className="text-white/40 font-mono text-xs mt-0.5 w-6 flex-shrink-0">{item.number}.</span>
             <div className="flex-1">
               <div className="flex items-start justify-between gap-2">
-                <span className="text-white/70 text-xs leading-relaxed">{service.label_en}</span>
+                <span className="text-white/70 text-xs leading-relaxed">{item.service.label_en}</span>
                 {dropdown && (
                   <button 
-                    onClick={() => setExpandedService(isExpanded ? null : `${packageId}-${service.id}`)}
+                    onClick={() => setExpandedService(isExpanded ? null : `${packageId}-${item.service.id}`)}
                     className="text-blue-400/60 hover:text-blue-400 transition flex-shrink-0"
                   >
                     <svg className={`w-3.5 h-3.5 transition-transform ${isExpanded ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
                   </button>
                 )}
               </div>
-              <p className="text-white/25 text-[10px] mt-0.5">{getTermLabel(service.term)}</p>
+              <p className="text-white/25 text-[10px] mt-0.5">{getTermLabel(item.service.term)}</p>
             </div>
           </div>
 
-          {/* Dropdown content */}
           <AnimatePresence>
             {dropdown && isExpanded && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden ml-5 mt-2"
+                className="overflow-hidden ml-9 mt-2"
               >
                 <div className="bg-white/[0.02] border border-white/[0.05] rounded-lg p-3">
                   <p className="text-white/40 text-[10px] uppercase tracking-wider mb-2">{dropdown.heading}</p>
@@ -118,6 +168,12 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
       </li>
     )
   }
+
+  const packageList = [
+    { id: 'basic', name: 'Basic', desc: 'Essential formation for startups and solo entrepreneurs.' },
+    { id: 'standard', name: 'Standard', desc: 'Complete setup with compliance support.', popular: true },
+    { id: 'premium', name: 'Premium', desc: 'Full business launch with growth strategy.' },
+  ]
 
   return (
     <>
@@ -163,7 +219,6 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
             </div>
           </div>
 
-          {/* State Notice */}
           {currentState?.show_notice_on_state_selection && currentState.notice_en && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto mb-6">
               <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-4">
@@ -178,7 +233,6 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
             </motion.div>
           )}
 
-          {/* Required Inputs */}
           {currentState?.required_inputs_before_final_quote && currentState.required_inputs_before_final_quote.length > 0 && (
             <div className="max-w-3xl mx-auto mb-6 bg-white/[0.03] border border-white/[0.08] rounded-xl p-4">
               <p className="text-white/40 text-xs uppercase tracking-wider mb-3">Required for accurate quote</p>
@@ -212,9 +266,8 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
               const total = calculatePrice(pkg.id, stateFee)
               const component = packages[pkg.id].package_component_usd
               const isPopular = pkg.popular || false
-              const pkgConfig = packages[pkg.id]
-              const inherited = pkgConfig.inherits ? packages[pkgConfig.inherits] : null
               const isExpanded = expandedPackage === pkg.id
+              const fullList = getFullServiceList(pkg.id)
 
               return (
                 <motion.div key={pkg.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.08 }} className={`relative rounded-2xl p-6 flex flex-col transition-all duration-500 ${isPopular ? 'bg-gradient-to-b from-blue-500/10 to-purple-500/10 border-2 border-blue-400/30' : 'bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-400/20'}`}>
@@ -231,28 +284,30 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
                     <div className="flex justify-between items-center p-3 bg-blue-500/10 rounded-lg border border-blue-400/20"><span className="text-blue-300/60 text-xs">Total</span><span className="text-blue-300 font-bold text-xl">${total}</span></div>
                   </div>
 
-                  {/* Services List - Full with accordion */}
+                  {/* Dropdown package ak tout sèvis yo */}
                   <div className="flex-1 mb-6">
-                    <p className="text-white/40 text-[10px] uppercase tracking-wider mb-2">What's Included</p>
-                    <ul className="space-y-0 max-h-80 overflow-y-auto pr-1">
-                      {/* Sèvis erite yo (Basic pou Standard, Standard pou Premium) */}
-                      {inherited && (
-                        <>
-                          <li className="py-2 border-b border-white/[0.03]">
-                            <div className="flex items-start gap-2">
-                              <svg className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                              <div>
-                                <span className="text-white/80 text-xs font-medium">{inherited.name} Package</span>
-                                <p className="text-emerald-400/60 text-[10px] mt-0.5">Inherited</p>
-                              </div>
-                            </div>
-                          </li>
-                          {inherited.additional_services.map((s) => renderServiceItem(s, pkg.id))}
-                        </>
+                    <button 
+                      onClick={() => setExpandedPackage(isExpanded ? null : pkg.id)}
+                      className="w-full flex items-center justify-between px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl hover:border-blue-400/30 transition text-left group"
+                    >
+                      <span className="text-white/70 text-xs font-medium">View all {fullList.length} services included</span>
+                      <svg className={`w-4 h-4 text-blue-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="overflow-hidden mt-3"
+                        >
+                          <ul className="space-y-0 max-h-[500px] overflow-y-auto pr-2">
+                            {fullList.map((item) => renderServiceRow(item, pkg.id))}
+                          </ul>
+                        </motion.div>
                       )}
-                      {/* Sèvis package aktyèl la */}
-                      {pkgConfig.additional_services.map((s) => renderServiceItem(s, pkg.id))}
-                    </ul>
+                    </AnimatePresence>
                   </div>
 
                   <div className="space-y-2.5">
