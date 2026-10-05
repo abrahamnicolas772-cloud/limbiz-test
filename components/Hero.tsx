@@ -116,13 +116,16 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-wrap gap-2.5 sm:gap-3 md:gap-4 mt-5 md:mt-6 justify-center lg:justify-start"
             >
-              <Link href="/register" className="px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-3.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 rounded-full font-medium text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 text-xs sm:text-sm md:text-base">
+              <Link href="/register" className="relative px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-3.5 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 rounded-full font-medium text-white shadow-[0_4px_14px_rgba(59,130,246,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all duration-300 text-xs sm:text-sm md:text-base overflow-hidden">
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                 Get Started →
               </Link>
-              <Link href="/services" className="px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-3.5 border border-white/20 hover:border-white/40 rounded-full font-medium text-white/70 hover:text-white backdrop-blur-sm hover:bg-white/5 transition-all duration-300 text-xs sm:text-sm md:text-base">
+              <Link href="/services" className="relative px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-3.5 bg-white/[0.06] backdrop-blur-xl border border-white/[0.12] hover:border-white/30 hover:bg-white/[0.1] rounded-full font-medium text-white/80 hover:text-white transition-all duration-300 text-xs sm:text-sm md:text-base shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] overflow-hidden">
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                 View Services
               </Link>
-              <Link href="/contact" className="px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-3.5 border border-blue-500/30 hover:border-blue-400/60 text-blue-400 hover:text-blue-300 rounded-full font-medium backdrop-blur-sm hover:bg-blue-500/10 transition-all duration-300 text-xs sm:text-sm md:text-base">
+              <Link href="/contact" className="relative px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-3.5 bg-blue-500/[0.08] backdrop-blur-xl border border-blue-400/30 hover:border-blue-400/60 hover:bg-blue-500/[0.15] text-blue-400 hover:text-blue-300 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm md:text-base shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] overflow-hidden">
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
                 Book a Consultation
               </Link>
             </motion.div>
