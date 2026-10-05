@@ -3,6 +3,7 @@
 import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { getStateBySlug, calculatePrice, getStateFeeForMethod, calculateTennesseeFee, packages } from '@/lib/pricing-config'
 import { motion, AnimatePresence } from 'framer-motion'
 
 type Step = 'review' | 'payment' | 'processing' | 'success'
@@ -31,12 +32,19 @@ function CheckoutContent() {
   const [promoCode, setPromoCode] = useState('')
   const [promoApplied, setPromoApplied] = useState(false)
   const [promoError, setPromoError] = useState('')
+  const [filingMethod, setFilingMethod] = useState<string>('')
+  const [memberCount, setMemberCount] = useState<number>(1)
 
-  const plans: Record<string, { name: string; price: number; originalPrice: number; stateFee: number; features: string[] }> = {
-    basic: { name: 'Basic', price: 499, originalPrice: 599, stateFee: 125, features: ['LLC Filing', 'EIN Registration', 'Operating Agreement', 'Business Consultation', 'Document Vault', 'Name Check'] },
-    standard: { name: 'Standard', price: 999, originalPrice: 1199, stateFee: 125, features: ['Everything in Basic', 'Registered Agent (1Y)', 'Business Address', 'DBA Filing', 'BOIR Guidance', 'Credit Starter', 'Compliance'] },
-    premium: { name: 'Premium', price: 1999, originalPrice: 2499, stateFee: 125, features: ['Everything in Standard', 'Funding Center', 'Tax Consultation', 'Credit Score', 'Trademark Search', 'Website Consultation', 'Google Profile', 'Priority Support'] },
-  }
+  const stateSlug = searchParams.get('state') || 'florida'
+  const stateConfig = getStateBySlug(stateSlug)
+  const stateFee = (() => {
+    if (!stateConfig) return 125
+    if (stateConfig.code === 'TN') return calculateTennesseeFee(memberCount)
+    if (filingMethod && stateConfig.method_state_fee_usd && stateConfig.method_state_fee_usd[filingMethod]) {
+      return stateConfig.method_state_fee_usd[filingMethod]
+    }
+    return stateConfig.baseline_initial_state_fee_usd
+  })()
 
   const isBook = service.includes('Edition')
   const bookFeatures = bookFormat === 'eBook'
@@ -44,10 +52,42 @@ function CheckoutContent() {
     : bookFormat === 'Paperback'
     ? ['Free Shipping', 'Physical Book', 'Ships in 3-5 Days', 'Printed Edition']
     : ['Free Shipping', 'Premium Hardcover', 'Ships in 3-5 Days', 'Collector Edition']
-  const selectedPlan = isBook
-    ? { name: service, price: bookPrice, originalPrice: bookPrice, stateFee: 0, features: bookFeatures }
-    : (plans[plan] || plans.basic)
-  const total = isBook ? bookPrice : selectedPlan.price
+  
+  // Pou liv
+  const bookPlan = { 
+    name: service, 
+    price: bookPrice, 
+    component: bookPrice, 
+    stateFee: 0, 
+    features: bookFeatures 
+  }
+  
+  // Pou plan biznis - itilize pricing config
+  const packageConfig = packages[plan] || packages.basic
+  const componentPrice = packageConfig.package_component_usd
+  const businessPlan = {
+    name: packageConfig.name,
+    component: componentPrice,
+    stateFee: stateFee,
+    price: componentPrice + stateFee,
+    features: packageConfig.additional_services.map((s: any) => s.label_en)
+  }
+  
+  const selectedPlan = isBook ? bookPlan : businessPlan
+  const total = isBook ? bookPrice : businessPlan.price
+  
+  // Detèmine si gen unresolved required inputs
+  const hasUnresolvedInputs = !isBook && stateConfig && (
+    stateConfig.required_inputs_before_final_quote.some(input => {
+      if (input === 'filing_method') return !filingMethod
+      if (input === 'member_count') return !memberCount || memberCount < 1
+      return true // Lòt inputs pa rezoud
+    }) ||
+    (!stateConfig.baseline_is_final_checkout_amount && stateConfig.unresolved_outside_fee_may_apply)
+  )
+  const component = isBook ? bookPrice : businessPlan.component
+  const displayStateFee = isBook ? 0 : businessPlan.stateFee
+
 
   
   const applyPromo = () => {
@@ -133,6 +173,40 @@ function CheckoutContent() {
                         <p className="text-white text-sm">{service}</p>
                       </div>
                     )}
+                    {!isBook && stateConfig && stateConfig.required_inputs_before_final_quote && stateConfig.required_inputs_before_final_quote.length > 0 && (
+                      <div className="mb-4 p-3 bg-amber-500/5 border border-amber-500/20 rounded-xl">
+                        <p className="text-amber-300 text-[10px] uppercase tracking-wider font-semibold mb-2">Required for accurate quote</p>
+                        {stateConfig.required_inputs_before_final_quote.includes('filing_method') && stateConfig.method_state_fee_usd && (
+                          <div className="mb-2">
+                            <p className="text-white/50 text-xs mb-2">Filing method:</p>
+                            <div className="flex flex-wrap gap-2">
+                              {Object.keys(stateConfig.method_state_fee_usd).map((m) => (
+                                <button
+                                  key={m}
+                                  type="button"
+                                  onClick={() => setFilingMethod(m)}
+                                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${filingMethod === m ? 'bg-blue-500/20 border border-blue-400/50 text-blue-300' : 'bg-white/[0.02] border border-white/[0.06] text-white/50'}`}
+                                >
+                                  {m.replace(/_/g, ' ').toUpperCase()} — ${stateConfig.method_state_fee_usd?.[m]}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {stateConfig.required_inputs_before_final_quote.includes('member_count') && (
+                          <div>
+                            <p className="text-white/50 text-xs mb-2">Number of LLC members:</p>
+                            <input
+                              type="number"
+                              min="1"
+                              value={memberCount}
+                              onChange={(e) => setMemberCount(parseInt(e.target.value) || 1)}
+                              className="w-24 px-3 py-1.5 bg-white/[0.03] border border-white/[0.08] rounded-lg text-white text-sm focus:border-blue-400/50 focus:outline-none"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    )}
                     <h2 className="text-base font-bold text-white mb-0.5">Your Information</h2>
 <p className="text-white/30 text-xs mb-3">Fill in your details</p>
                     <div className="space-y-2.5">
@@ -175,7 +249,9 @@ function CheckoutContent() {
                         </div>
                       </div>
                     )}
-                    <button onClick={handlePay} className="w-full mt-4 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl text-white font-semibold text-sm transition">Pay ${total}</button>
+                    <button onClick={hasUnresolvedInputs ? () => window.location.href = '/contact?type=quote' : handlePay} className={`w-full mt-4 py-3 rounded-xl font-semibold text-sm transition ${hasUnresolvedInputs ? 'bg-amber-600 hover:bg-amber-500 text-white' : 'bg-blue-600 hover:bg-blue-500 text-white'}`}>
+                      {hasUnresolvedInputs ? 'Request a Quote' : `Pay ${total}`}
+                    </button>
                   </motion.div>
                 )}
 
@@ -204,7 +280,7 @@ function CheckoutContent() {
           <div className="lg:col-span-2">
             <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06] rounded-3xl p-5">
               <h3 className="text-white font-semibold text-sm mb-3">Order Summary</h3>
-              <div className="flex items-center justify-between mb-1"><span className="text-white text-sm">{service || (selectedPlan.name + " Plan")}</span><span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">SAVE ${selectedPlan.originalPrice - selectedPlan.price}</span></div>
+              <div className="flex items-center justify-between mb-1"><span className="text-white text-sm">{service || (selectedPlan.name + " Plan")}</span>{!isBook && <span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">Package + State Fee</span>}</div>
               <p className="text-white/25 text-xs mb-3">{isBook ? "Book Purchase" : state.toUpperCase()}</p>
               <div className="space-y-1.5 mb-3 text-sm">
                 {isBook && (
@@ -228,9 +304,9 @@ function CheckoutContent() {
                     {promoApplied && <p className="text-emerald-400 text-[10px] mt-1">✓ Promo code applied!</p>}
                   </div>
                 )}
-                <div className="flex justify-between"><span className="text-white/30">Subtotal</span><span className="text-white/50">${selectedPlan.price}</span></div>
-                <div className="flex justify-between"><span className="text-white/30">State Fee</span><span className="text-white/50">${selectedPlan.stateFee}</span></div>
-                <div className="flex justify-between text-emerald-400"><span>Discount</span><span>-${selectedPlan.originalPrice - selectedPlan.price}</span></div>
+                <div className="flex justify-between"><span className="text-white/30">{isBook ? "Book Price" : "Package Component"}</span><span className="text-white/50">${component}</span></div>
+                {!isBook && <div className="flex justify-between"><span className="text-white/30">State Fee ({stateConfig?.code})</span><span className="text-white/50">${displayStateFee}</span></div>}
+                {promoApplied && <div className="flex justify-between text-emerald-400"><span>Promo Discount</span><span>-10%</span></div>}
               </div>
               <div className="border-t border-white/[0.05] pt-2 mb-3"><div className="flex justify-between"><span className="text-white font-semibold">Total</span><span className="text-blue-400 font-bold text-lg">${total}</span></div></div>
               <ul className="space-y-1 mb-3">

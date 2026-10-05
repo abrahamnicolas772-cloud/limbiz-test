@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { 
   states, 
@@ -25,7 +25,8 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
   const [showStateDropdown, setShowStateDropdown] = useState(false)
   const [filingMethod, setFilingMethod] = useState<string>('')
   const [memberCount, setMemberCount] = useState<number>(1)
-  const [showNotice, setShowNotice] = useState(true)
+  const [expandedService, setExpandedService] = useState<string | null>(null)
+  const [expandedPackage, setExpandedPackage] = useState<string | null>(null)
 
   useEffect(() => { setSelectedState(initialState) }, [initialState])
 
@@ -49,6 +50,74 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
     { id: 'standard', name: 'Standard', desc: 'Complete setup with compliance support.', popular: true },
     { id: 'premium', name: 'Premium', desc: 'Full business launch with growth strategy.' },
   ]
+
+  const getTermLabel = (term: string) => statusLabels[term] || term
+
+  // Sèvis ki gen dropdown
+  const serviceWithDropdown: Record<string, string> = {
+    'essential_documents': 'essential_documents',
+    'licenses': 'licenses',
+    'social': 'social',
+    'compliance': 'compliance',
+    'ecommerce': 'ecommerce',
+  }
+
+  const renderServiceItem = (service: any, packageId: string) => {
+    const hasDropdown = serviceWithDropdown[service.id]
+    const dropdown = hasDropdown ? serviceDropdowns[hasDropdown as keyof typeof serviceDropdowns] : null
+    const isExpanded = expandedService === `${packageId}-${service.id}`
+
+    return (
+      <li key={service.id} className="border-b border-white/[0.03] last:border-0">
+        <div className="py-2.5">
+          <div className="flex items-start gap-2">
+            <svg className="w-3.5 h-3.5 text-blue-300 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <div className="flex-1">
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-white/70 text-xs leading-relaxed">{service.label_en}</span>
+                {dropdown && (
+                  <button 
+                    onClick={() => setExpandedService(isExpanded ? null : `${packageId}-${service.id}`)}
+                    className="text-blue-400/60 hover:text-blue-400 transition flex-shrink-0"
+                  >
+                    <svg className={`w-3.5 h-3.5 transition-transform ${isExpanded ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+                  </button>
+                )}
+              </div>
+              <p className="text-white/25 text-[10px] mt-0.5">{getTermLabel(service.term)}</p>
+            </div>
+          </div>
+
+          {/* Dropdown content */}
+          <AnimatePresence>
+            {dropdown && isExpanded && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden ml-5 mt-2"
+              >
+                <div className="bg-white/[0.02] border border-white/[0.05] rounded-lg p-3">
+                  <p className="text-white/40 text-[10px] uppercase tracking-wider mb-2">{dropdown.heading}</p>
+                  <ul className="space-y-1 mb-2">
+                    {dropdown.examples.map((ex: string, i: number) => (
+                      <li key={i} className="text-white/50 text-[10px] flex items-start gap-1.5">
+                        <span className="text-blue-400/50">•</span>
+                        {ex}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-white/30 text-[9px] italic leading-relaxed border-t border-white/[0.05] pt-2 mt-2">
+                    {dropdown.helper}
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </li>
+    )
+  }
 
   return (
     <>
@@ -95,7 +164,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
           </div>
 
           {/* State Notice */}
-          {currentState?.show_notice_on_state_selection && (
+          {currentState?.show_notice_on_state_selection && currentState.notice_en && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto mb-6">
               <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-4">
                 <div className="flex items-start gap-3">
@@ -143,6 +212,10 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
               const total = calculatePrice(pkg.id, stateFee)
               const component = packages[pkg.id].package_component_usd
               const isPopular = pkg.popular || false
+              const pkgConfig = packages[pkg.id]
+              const inherited = pkgConfig.inherits ? packages[pkgConfig.inherits] : null
+              const isExpanded = expandedPackage === pkg.id
+
               return (
                 <motion.div key={pkg.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.08 }} className={`relative rounded-2xl p-6 flex flex-col transition-all duration-500 ${isPopular ? 'bg-gradient-to-b from-blue-500/10 to-purple-500/10 border-2 border-blue-400/30' : 'bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-400/20'}`}>
                   {isPopular && <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-400 to-blue-300 text-white text-[10px] font-bold uppercase tracking-wider px-4 py-1 rounded-full">Most Popular</div>}
@@ -158,18 +231,27 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
                     <div className="flex justify-between items-center p-3 bg-blue-500/10 rounded-lg border border-blue-400/20"><span className="text-blue-300/60 text-xs">Total</span><span className="text-blue-300 font-bold text-xl">${total}</span></div>
                   </div>
 
-                  {/* Services List */}
+                  {/* Services List - Full with accordion */}
                   <div className="flex-1 mb-6">
-                    <ul className="space-y-1.5">
-                      {packages[pkg.id].additional_services.slice(0, 6).map((s) => (
-                        <li key={s.id} className="flex items-start gap-2 text-white/50 text-xs">
-                          <svg className="w-3.5 h-3.5 text-blue-300 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
-                          <span>{s.label_en}</span>
-                        </li>
-                      ))}
-                      {packages[pkg.id].additional_services.length > 6 && (
-                        <li className="text-white/20 text-xs pl-5">+{packages[pkg.id].additional_services.length - 6} more services</li>
+                    <p className="text-white/40 text-[10px] uppercase tracking-wider mb-2">What's Included</p>
+                    <ul className="space-y-0 max-h-80 overflow-y-auto pr-1">
+                      {/* Sèvis erite yo (Basic pou Standard, Standard pou Premium) */}
+                      {inherited && (
+                        <>
+                          <li className="py-2 border-b border-white/[0.03]">
+                            <div className="flex items-start gap-2">
+                              <svg className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                              <div>
+                                <span className="text-white/80 text-xs font-medium">{inherited.name} Package</span>
+                                <p className="text-emerald-400/60 text-[10px] mt-0.5">Inherited</p>
+                              </div>
+                            </div>
+                          </li>
+                          {inherited.additional_services.map((s) => renderServiceItem(s, pkg.id))}
+                        </>
                       )}
+                      {/* Sèvis package aktyèl la */}
+                      {pkgConfig.additional_services.map((s) => renderServiceItem(s, pkg.id))}
                     </ul>
                   </div>
 
@@ -187,11 +269,25 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
             })}
           </div>
 
+          {/* Package service notices */}
+          <div className="max-w-4xl mx-auto mt-10 space-y-2">
+            <div className="bg-white/[0.02] border border-white/[0.05] rounded-xl p-4">
+              <p className="text-white/40 text-[10px] uppercase tracking-wider mb-2">Important Notices</p>
+              <ul className="space-y-1.5 text-white/35 text-[10px]">
+                <li>• <span className="text-white/50">External service costs:</span> LIMBIZ support is included. Any applicable third-party or government fees are confirmed separately before purchase.</li>
+                <li>• <span className="text-white/50">Trademark / copyright:</span> Trademark research and guidance, plus copyright registration assistance, are included. Official filing fees are separate. Registration or approval is not guaranteed.</li>
+                <li>• <span className="text-white/50">Google Business Profile:</span> Setup is available only if the business meets Google eligibility requirements.</li>
+                <li>• <span className="text-white/50">Potential state extras:</span> Additional state-specific charges may apply. Review the state notice and final quote before checkout.</li>
+              </ul>
+            </div>
+          </div>
+
           {currentState && !currentState.baseline_is_final_checkout_amount && (
-            <div className="max-w-3xl mx-auto mt-8 text-center">
-              <p className="text-amber-400/60 text-xs">
-                ⚠️ Baseline estimate. Final price may vary based on required inputs. Confirm before payment.
-              </p>
+            <div className="max-w-3xl mx-auto mt-6 text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full">
+                <svg className="w-3.5 h-3.5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span className="text-amber-400/80 text-xs">Baseline estimate. Final price may vary based on required inputs. Confirm before payment.</span>
+              </div>
             </div>
           )}
         </div>
