@@ -25,7 +25,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
   const [showStateDropdown, setShowStateDropdown] = useState(false)
   const [filingMethod, setFilingMethod] = useState<string>('')
   const [memberCount, setMemberCount] = useState<number>(1)
-  const [expandedPackage, setExpandedPackage] = useState<string | null>('basic')
+  const [expandedPackage, setExpandedPackage] = useState<string | null>(null)
   const [expandedService, setExpandedService] = useState<string | null>(null)
 
   useEffect(() => { setSelectedState(initialState) }, [initialState])
@@ -261,7 +261,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
             </div>
           </div>
 
-          <div id="pricing-packages" className="grid md:grid-cols-3 gap-6">
+          <div id="pricing-packages" className="grid md:grid-cols-3 gap-6 items-start">
             {packageList.map((pkg, idx) => {
               const total = calculatePrice(pkg.id, stateFee)
               const component = packages[pkg.id].package_component_usd
