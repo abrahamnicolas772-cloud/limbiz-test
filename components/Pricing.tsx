@@ -55,24 +55,23 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
 
   const getFullServiceList = (packageId: string) => {
     const result: { number: number; service: any; isInheritedHeader?: boolean }[] = []
-    let counter = 1
 
     if (packageId === 'basic') {
-      packages.basic.additional_services.forEach((s) => result.push({ number: counter++, service: s }))
+      // Basic: 1-10
+      packages.basic.additional_services.forEach((s, i) => result.push({ number: i + 1, service: s }))
     } 
     else if (packageId === 'standard') {
+      // Standard: 10-20 ak "Basic Package+" nan mitan
       result.push({ number: 10, service: { id: 'basic_header', label_en: 'Basic Package+', term: 'inherited' }, isInheritedHeader: true })
-      packages.basic.additional_services.forEach((s) => result.push({ number: counter++, service: s }))
-      counter = 11
-      packages.standard.additional_services.forEach((s) => result.push({ number: counter++, service: s }))
+      packages.basic.additional_services.forEach((s, i) => result.push({ number: i + 1, service: s }))
+      packages.standard.additional_services.forEach((s, i) => result.push({ number: 11 + i, service: s }))
     }
     else if (packageId === 'premium') {
+      // Premium: 20-30 ak "Standard Package+" nan mitan
       result.push({ number: 20, service: { id: 'standard_header', label_en: 'Standard Package+', term: 'inherited' }, isInheritedHeader: true })
-      packages.basic.additional_services.forEach((s) => result.push({ number: counter++, service: s }))
-      counter = 11
-      packages.standard.additional_services.forEach((s) => result.push({ number: counter++, service: s }))
-      counter = 21
-      packages.premium.additional_services.forEach((s) => result.push({ number: counter++, service: s }))
+      packages.basic.additional_services.forEach((s, i) => result.push({ number: i + 1, service: s }))
+      packages.standard.additional_services.forEach((s, i) => result.push({ number: 11 + i, service: s }))
+      packages.premium.additional_services.forEach((s, i) => result.push({ number: 21 + i, service: s }))
     }
 
     return result
@@ -110,7 +109,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
                   </button>
                 )}
               </div>
-              <p className="text-white/25 text-[10px] mt-0.5">{getTermLabel(item.service.term)}</p>
+              
             </div>
           </div>
 
@@ -276,7 +275,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
                       onClick={() => setExpandedPackage(isExpanded ? null : pkg.id)}
                       className="w-full flex items-center justify-between px-4 py-3 bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-xl hover:border-blue-400/30 hover:bg-white/[0.06] transition text-left group shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
                     >
-                      <span className="text-white/70 text-xs font-medium">View all {fullList.length} services included</span>
+                      <span className="text-white/70 text-xs font-medium">View all {pkg.id === 'premium' ? 30 : pkg.id === 'standard' ? 20 : 10} services</span>
                       <svg className={`w-4 h-4 text-blue-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
 
