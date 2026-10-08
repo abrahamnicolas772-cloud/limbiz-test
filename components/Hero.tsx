@@ -90,7 +90,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-white/50 text-sm sm:text-base md:text-lg max-w-2xl mt-3 md:mt-4 font-light tracking-wide"
             >
-              Start, structure, fund, grow, and protect your business with LIMBIZ™.
+              Start, structure, fund, grow, and protect your business with LIMBIZ.
             </motion.p>
 
             <motion.div 

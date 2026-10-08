@@ -216,6 +216,22 @@ export const serviceDropdowns = {
   },
 }
 
+// DBA filing fees by state (approximate; varies by county/state)
+export const DBA_FEE_BY_STATE: Record<string, number> = {
+  'AL': 25, 'AK': 50, 'AZ': 10, 'AR': 25, 'CA': 85, 'CO': 25, 'CT': 50,
+  'DE': 25, 'FL': 50, 'GA': 25, 'HI': 50, 'ID': 25, 'IL': 50, 'IN': 25,
+  'IA': 25, 'KS': 25, 'KY': 25, 'LA': 50, 'ME': 25, 'MD': 25, 'MA': 50,
+  'MI': 25, 'MN': 50, 'MS': 25, 'MO': 25, 'MT': 25, 'NE': 25, 'NV': 50,
+  'NH': 25, 'NJ': 50, 'NM': 25, 'NY': 50, 'NC': 25, 'ND': 25, 'OH': 25,
+  'OK': 25, 'OR': 50, 'PA': 50, 'RI': 50, 'SC': 25, 'SD': 25, 'TN': 25,
+  'TX': 25, 'UT': 25, 'VT': 25, 'VA': 25, 'WA': 50, 'WV': 25, 'WI': 25,
+  'WY': 25,
+}
+
+export function getDBAFee(stateCode: string): number {
+  return DBA_FEE_BY_STATE[stateCode] || 25
+}
+
 export const LIMBIZ_FEE_POOLS = {
   basic: 255,
   standard: 755,

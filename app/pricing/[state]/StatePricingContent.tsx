@@ -46,7 +46,7 @@ export default function StatePricingContent({ state }: { state: StateData }) {
               <svg className="w-8 h-8 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               <h1 className="text-4xl md:text-5xl font-bold text-white">Start Your Business in <span className="text-blue-500">{state.name}</span></h1>
             </div>
-            <p className="text-white/50 max-w-2xl mx-auto text-sm md:text-base">{state.description || `Form your LLC in ${state.name} with LIMBIZ™. We handle all state-specific requirements.`}</p>
+            <p className="text-white/50 max-w-2xl mx-auto text-sm md:text-base">{state.description || `Form your LLC in ${state.name} with LIMBIZ. We handle all state-specific requirements.`}</p>
             <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               State Filing Fee: ${state.filingFee}

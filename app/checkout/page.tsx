@@ -3,7 +3,7 @@
 import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { getStateBySlug, calculatePrice, getStateFeeForMethod, calculateTennesseeFee, packages } from '@/lib/pricing-config'
+import { getStateBySlug, calculatePrice, getStateFeeForMethod, calculateTennesseeFee, getDBAFee, packages } from '@/lib/pricing-config'
 import { motion, AnimatePresence } from 'framer-motion'
 
 type Step = 'review' | 'payment' | 'processing' | 'success'
@@ -15,6 +15,7 @@ function CheckoutContent() {
   const service = searchParams.get('service') || ''
   const bookPrice = parseFloat(searchParams.get('price') || '9.99')
   const bookFormat = searchParams.get('format') || 'eBook'
+  const needsDBA = searchParams.get('dba') === 'yes'
   
   const [step, setStep] = useState<Step>('review')
   const [paymentMethod, setPaymentMethod] = useState('card')
@@ -74,7 +75,8 @@ function CheckoutContent() {
   }
   
   const selectedPlan = isBook ? bookPlan : businessPlan
-  const total = isBook ? bookPrice : businessPlan.price
+  const dbaFee = needsDBA && !isBook && stateConfig ? getDBAFee(stateConfig.code) : 0
+  const total = isBook ? bookPrice : (businessPlan.price + dbaFee)
   
   // Detèmine si gen unresolved required inputs
   const hasUnresolvedInputs = !isBook && stateConfig && (

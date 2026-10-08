@@ -48,14 +48,14 @@ export default function NewsletterConsent() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <p className="text-blue-400 text-sm tracking-wider font-semibold uppercase">Join the Community</p>
-          <h2 className="text-4xl md:text-5xl font-bold mt-2">Join the <span className="text-blue-500">LIMBIZ™ Community</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold mt-2">Join the <span className="text-blue-500">LIMBIZ Community</span></h2>
           <p className="mt-3 text-white/50 text-sm max-w-2xl mx-auto">Get business tips, funding updates, credit strategies, tax reminders, and startup resources.</p>
         </div>
         <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
           {subscribed ? (
             <div className="text-center py-10">
               <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4"><FiCheckCircle className="text-green-400" size={32} /></div>
-              <h3 className="text-2xl font-bold text-white">Welcome to the LIMBIZ™ Community! 🎉</h3>
+              <h3 className="text-2xl font-bold text-white">Welcome to the LIMBIZ Community! 🎉</h3>
               <p className="text-white/50 mt-2">Check your inbox for your welcome email with exclusive resources.</p>
             </div>
           ) : (

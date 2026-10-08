@@ -27,6 +27,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
   const [memberCount, setMemberCount] = useState<number>(1)
   const [expandedPackage, setExpandedPackage] = useState<string | null>(null)
   const [expandedService, setExpandedService] = useState<string | null>(null)
+  const [needsDBA, setNeedsDBA] = useState<boolean | null>(null)
 
   useEffect(() => { setSelectedState(initialState) }, [initialState])
 
@@ -218,6 +219,35 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
             </div>
           )}
 
+          {/* DBA Selection */}
+          <div className="max-w-3xl mx-auto mb-8 bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-5">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-white font-medium text-sm">Do you need a DBA / Fictitious Name?</p>
+                <p className="text-white/40 text-xs mt-1">A DBA lets you operate under a different business name. State filing fees apply.</p>
+              </div>
+              <div className="flex gap-2">
+                <button 
+                  onClick={() => setNeedsDBA(true)}
+                  className={`px-4 py-2 rounded-lg text-xs font-medium transition ${needsDBA === true ? 'bg-blue-500/20 border border-blue-400/50 text-blue-300' : 'bg-white/[0.02] border border-white/[0.06] text-white/50 hover:text-white'}`}
+                >
+                  Yes
+                </button>
+                <button 
+                  onClick={() => setNeedsDBA(false)}
+                  className={`px-4 py-2 rounded-lg text-xs font-medium transition ${needsDBA === false ? 'bg-blue-500/20 border border-blue-400/50 text-blue-300' : 'bg-white/[0.02] border border-white/[0.06] text-white/50 hover:text-white'}`}
+                >
+                  No
+                </button>
+              </div>
+            </div>
+            {needsDBA === true && (
+              <div className="mt-3 pt-3 border-t border-white/[0.05]">
+                <p className="text-blue-300/80 text-xs">DBA fee will be added at checkout based on your state.</p>
+              </div>
+            )}
+          </div>
+          
           <div id="pricing-packages" className="grid md:grid-cols-3 gap-6 items-start">
             {packageList.map((pkg, idx) => {
               const total = calculatePrice(pkg.id, stateFee)
@@ -289,7 +319,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
                   </div>
 
                   <div className="space-y-2.5">
-                    <Link href={`/checkout?plan=${pkg.id}&state=${currentState?.name.toLowerCase().replace(/\s+/g, '-')}`} className="w-full py-3 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 rounded-full text-white font-medium transition flex items-center justify-center gap-2 text-sm shadow-[0_4px_14px_rgba(59,130,246,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]">
+                    <Link href={`/checkout?plan=${pkg.id}&state=${currentState?.name.toLowerCase().replace(/\s+/g, '-')}${needsDBA !== null ? `&dba=${needsDBA ? 'yes' : 'no'}` : ''}`} className="w-full py-3 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 rounded-full text-white font-medium transition flex items-center justify-center gap-2 text-sm shadow-[0_4px_14px_rgba(59,130,246,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]">
                       Start My Business Now
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </Link>

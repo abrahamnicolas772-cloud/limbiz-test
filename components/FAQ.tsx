@@ -6,12 +6,12 @@ import { FiChevronDown } from 'react-icons/fi'
 
 const faqs = [
   {
-    q: 'What does LIMBIZ™ do?',
-    a: 'LIMBIZ™ is a complete entrepreneur platform that helps you start, structure, fund, grow, and protect your business. We go beyond LLC filing to provide guidance on business credit, funding, tax setup, digital presence, and ongoing compliance — everything you need to build a strong business foundation.'
+    q: 'What does LIMBIZ do?',
+    a: 'LIMBIZ is a complete entrepreneur platform that helps you start, structure, fund, grow, and protect your business. We go beyond LLC filing to provide guidance on business credit, funding, tax setup, digital presence, and ongoing compliance — everything you need to build a strong business foundation.'
   },
   {
-    q: 'Can LIMBIZ™ help me form a business in any state?',
-    a: 'Yes! LIMBIZ™ serves entrepreneurs in all 50 U.S. states. We provide state-specific pricing and filing guidance so you get exactly what you need for your state\'s requirements.'
+    q: 'Can LIMBIZ help me form a business in any state?',
+    a: 'Yes! LIMBIZ serves entrepreneurs in all 50 U.S. states. We provide state-specific pricing and filing guidance so you get exactly what you need for your state\'s requirements.'
   },
   {
     q: 'What is included in Basic, Standard and Premium packages?',
@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: 'What happens after my LLC is approved?',
-    a: 'Once your LLC is approved, LIMBIZ™ continues to support you! We provide compliance reminders, access to your digital document vault, ongoing consultation options, and guidance on next steps like business credit, funding, tax setup, and growth strategies.'
+    a: 'Once your LLC is approved, LIMBIZ continues to support you! We provide compliance reminders, access to your digital document vault, ongoing consultation options, and guidance on next steps like business credit, funding, tax setup, and growth strategies.'
   }
 ]
 

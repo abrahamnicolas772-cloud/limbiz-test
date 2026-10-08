@@ -16,7 +16,7 @@ const branches = [
   },
   {
     title: 'Rewards',
-    desc: 'Earn points and rewards by referring friends and engaging with LIMBIZ.',
+    desc: 'Earn points and rewards by referring friends and engaging with LIMBIZ™.',
     icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/></svg>),
     link: '/rewards',
     color: 'from-amber-500 to-orange-400',
@@ -86,7 +86,7 @@ export default function EcosystemPage() {
               Complete Platform
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
-              The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">LIMBIZ</span> Ecosystem
+              The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">LIMBIZ™</span> Ecosystem
             </h1>
             <p className="text-white/40 mt-4 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
               More than just business formation — a complete platform to start, structure, fund, grow, and protect your business.

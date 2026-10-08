@@ -71,7 +71,7 @@ export default function ComparisonTable() {
                         <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 mb-1">
                           <svg className="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         </span>
-                        <span className="text-blue-400 font-bold text-sm tracking-wide">LIMBIZ™</span>
+                        <span className="text-blue-400 font-bold text-sm tracking-wide">LIMBIZ</span>
                       </div>
                     </th>
                     <th className="text-center py-5 px-4 w-[20%]">

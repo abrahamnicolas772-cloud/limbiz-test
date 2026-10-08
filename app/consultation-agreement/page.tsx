@@ -9,7 +9,7 @@ export default function ConsultationAgreementPage() {
       <Section title="No Professional Relationship">Participation in a consultation does not create an attorney-client relationship, accountant-client relationship, or any other licensed professional relationship.</Section>
       <Section title="Client Responsibilities">Clients agree to provide accurate information, cooperate during the consultation process, and supply any requested documentation.</Section>
       <Section title="Consultation Fees">Consultation fees must be paid according to the terms presented at the time of booking.</Section>
-      <Section title="No Guarantee of Results">LIMBIZ™ does not guarantee funding approvals, credit approvals, trademark registrations, licensing approvals, or any specific outcome.</Section>
+      <Section title="No Guarantee of Results">LIMBIZ does not guarantee funding approvals, credit approvals, trademark registrations, licensing approvals, or any specific outcome.</Section>
       <ContactInfo />
     </LegalPage>
   )

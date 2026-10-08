@@ -66,7 +66,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Company</h4>
             <ul className="space-y-2.5 text-white/50 text-sm">
-              <li><Link href="/about" className="hover:text-blue-400 transition">About LIMBIZ™</Link></li>
+              <li><Link href="/about" className="hover:text-blue-400 transition">About LIMBIZ</Link></li>
               <li><Link href="/contact" className="hover:text-blue-400 transition">Contact</Link></li>
               <li><Link href="/careers" className="hover:text-blue-400 transition">Careers <span className="text-white/20 text-xs">(Future)</span></Link></li>
               <li><Link href="/blog" className="hover:text-blue-400 transition">Blog</Link></li>
@@ -174,7 +174,7 @@ export default function Footer() {
 
         {/* Disclaimer supplémentaire */}
         <div className="mt-6 text-center text-white/10 text-[10px] leading-relaxed max-w-4xl mx-auto">
-          LIMBIZ™ provides guidance, assistance, and support for business formation, credit readiness, funding preparation, 
+          LIMBIZ provides guidance, assistance, and support for business formation, credit readiness, funding preparation, 
           tax setup, and digital presence. We do not guarantee funding, credit approval, tax outcomes, or government approval. 
           State filing fees and processing times are subject to change. Please review our policies for complete terms.
         </div>

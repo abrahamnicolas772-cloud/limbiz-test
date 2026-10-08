@@ -74,12 +74,12 @@ export default function AboutPage() {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-white">About <span className="text-blue-300">LIMBIZ™</span></h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white">About <span className="text-blue-300">LIMBIZ</span></h1>
             <p className="text-white/40 mt-3 max-w-2xl mx-auto">We help entrepreneurs start, structure, fund, grow, and protect their businesses.</p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-12 text-center">
             <h2 className="text-2xl font-bold text-white mb-4">Our Mission</h2>
-            <p className="text-white/50 max-w-3xl mx-auto leading-relaxed">LIMBIZ™ was founded to make business formation and growth accessible to everyone. We believe that with the right guidance and support, anyone can build a successful business.</p>
+            <p className="text-white/50 max-w-3xl mx-auto leading-relaxed">LIMBIZ was founded to make business formation and growth accessible to everyone. We believe that with the right guidance and support, anyone can build a successful business.</p>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {values.map((value, idx) => (

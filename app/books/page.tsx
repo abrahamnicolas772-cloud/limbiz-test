@@ -104,11 +104,11 @@ export default function BooksPage() {
           {/* HERO */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#1b63f5]/10 border border-[#1b63f5]/20 rounded-full text-[#1b63f5] text-xs font-semibold uppercase tracking-wider mb-6">
-              LIMBIZ® Books & Guides
+              LIMBIZ™ Books & Guides
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
               Build Smarter with<br />
-              <span className="text-[#1b63f5]">LIMBIZ® Books & Guides</span>
+              <span className="text-[#1b63f5]">LIMBIZ™ Books & Guides</span>
             </h1>
             <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto mb-8">
               Practical business education designed to help entrepreneurs start, structure, fund, grow, and protect their businesses in the United States.
