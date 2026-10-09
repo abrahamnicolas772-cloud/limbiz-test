@@ -18,24 +18,24 @@ const resources = [
     desc: 'Latest articles, tips, and business insights.', 
     icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>),
     color: 'from-emerald-500 to-green-400',
-    link: 'https://drive.google.com/drive/folders/1vfDb71bNXxsjfwiV81SkMzzXcF1Nz8bL?usp=drive_link',
-    available: false
+    link: 'https://drive.google.com/drive/folders/1XeJZm5rVXQXL_6r2yxTuMYc875EnQquA?usp=drive_link',
+    available: true
   },
   { 
     title: 'Business Checklists', 
     desc: 'Step-by-step checklists to stay organized.', 
     icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>),
     color: 'from-purple-500 to-pink-400',
-    link: 'https://drive.google.com/drive/folders/11KyNFdM1Tq9H6W59rAYRs-Kyk94yMqxJ?usp=drive_link',
-    available: false
+    link: 'https://drive.google.com/drive/folders/1XeJZm5rVXQXL_6r2yxTuMYc875EnQquA?usp=drive_link',
+    available: true
   },
   { 
     title: 'Business Templates', 
     desc: 'Professional templates for agreements and documents.', 
     icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>),
     color: 'from-amber-500 to-orange-400',
-    link: 'https://drive.google.com/drive/folders/16Ho8Ym4f10eW3NlyG2GF6zdRKjoHOkGR?usp=drive_link',
-    available: false
+    link: 'https://drive.google.com/drive/folders/1XeJZm5rVXQXL_6r2yxTuMYc875EnQquA?usp=drive_link',
+    available: true
   },
   { 
     title: 'Video Tutorials', 
