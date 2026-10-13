@@ -62,16 +62,13 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
       packages.basic.additional_services.forEach((s, i) => result.push({ number: i + 1, service: s }))
     } 
     else if (packageId === 'standard') {
-      // Standard: 10-20 ak "Basic Package+" nan mitan
+      // Standard: mansyone "Basic Package+" + sèvis 11-20
       result.push({ number: 10, service: { id: 'basic_header', label_en: 'Basic Package+', term: 'inherited' }, isInheritedHeader: true })
-      packages.basic.additional_services.forEach((s, i) => result.push({ number: i + 1, service: s }))
       packages.standard.additional_services.forEach((s, i) => result.push({ number: 11 + i, service: s }))
     }
     else if (packageId === 'premium') {
-      // Premium: 20-30 ak "Standard Package+" nan mitan
+      // Premium: mansyone "Standard Package+" + sèvis 21-30
       result.push({ number: 20, service: { id: 'standard_header', label_en: 'Standard Package+', term: 'inherited' }, isInheritedHeader: true })
-      packages.basic.additional_services.forEach((s, i) => result.push({ number: i + 1, service: s }))
-      packages.standard.additional_services.forEach((s, i) => result.push({ number: 11 + i, service: s }))
       packages.premium.additional_services.forEach((s, i) => result.push({ number: 21 + i, service: s }))
     }
 

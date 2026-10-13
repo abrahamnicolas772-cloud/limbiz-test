@@ -12,6 +12,22 @@ import {
 
 const serviceCategories = [
   {
+    id: 'international',
+    title: 'International Services',
+    icon: <FiGlobe className="w-6 h-6" />,
+    description: 'Supporting international entrepreneurs with U.S. business formation.',
+    services: [
+      'International ITIN Application Assistance',
+      'International Entrepreneur Business Formation',
+      'Foreign-Owned LLC Support',
+      'EIN Assistance for Foreign Owners',
+      'U.S. Business Address',
+      'Registered Agent Service',
+    ],
+    link: '/services'
+  },
+
+  {
     id: 'formation',
     title: 'Business Formations',
     icon: <FiBriefcase className="w-6 h-6" />,
@@ -72,7 +88,7 @@ const serviceCategories = [
       'Consultations',
     ],
     link: '/services'
-  }
+  },
 ]
 
 export default function Services() {
@@ -135,15 +151,15 @@ export default function Services() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.08, duration: 0.4 }}
                 whileHover={{ y: -4 }}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/5 rounded-2xl p-6 hover:border-blue-400/30 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] transition-all duration-500"
+                className={`group relative backdrop-blur-sm border rounded-2xl p-6 transition-all duration-500 bg-gradient-to-br from-blue-500/20 via-blue-600/10 to-cyan-500/10 border-blue-400/40 shadow-[0_0_60px_rgba(59,130,246,0.15),inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-blue-300/60 hover:shadow-[0_0_80px_rgba(59,130,246,0.25)] ${idx === 0 ? 'md:col-span-2' : ''}`}
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-purple-500/0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-700 blur-xl -z-10" />
                 
-                <div className="flex items-start gap-4 mb-4">
+                <div className={`mb-4 ${idx === 0 ? 'flex flex-col items-center text-center' : 'flex items-start gap-4'}`}>
                   <div className="p-2.5 bg-blue-500/10 rounded-xl text-blue-400 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition duration-300">
                     {category.icon}
                   </div>
-                  <div>
+                  <div className={idx === 0 ? 'mt-3' : ''}>
                     <h3 className="text-lg font-semibold text-white/90 group-hover:text-blue-400 transition">
                       {category.title}
                     </h3>
@@ -151,18 +167,18 @@ export default function Services() {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 mb-4">
+                <div className={`mb-4 ${idx === 0 ? 'grid grid-cols-2 gap-2 max-w-md mx-auto' : 'flex flex-wrap gap-1.5'}`}>
                   {category.services.map((service, sIdx) => (
                     <span 
                       key={sIdx}
-                      className="inline-flex items-center px-3 py-1 bg-white/5 rounded-full text-white/50 text-xs border border-white/5 hover:border-blue-400/30 hover:text-white hover:bg-blue-500/10 transition-all duration-300"
+                      className={`inline-flex items-center justify-center px-3 py-2 bg-white/5 rounded-full text-white/50 text-xs border border-white/5 hover:border-blue-400/30 hover:text-white hover:bg-blue-500/10 transition-all duration-300 ${idx === 0 ? 'text-center' : ''}`}
                     >
                       {service}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center gap-3 pt-3 border-t border-white/5">
+                <div className={`flex items-center gap-3 pt-3 border-t border-white/5 ${idx === 0 ? 'justify-center' : ''}`}>
                   <Link href={category.link} className="px-4 py-2 bg-blue-600/80 hover:bg-blue-500 rounded-full text-white text-sm font-medium shadow-lg shadow-blue-500/10 hover:shadow-blue-500/25 transition flex items-center gap-1.5">
                     Get Started <FiArrowRight className="w-3.5 h-3.5" />
                   </Link>

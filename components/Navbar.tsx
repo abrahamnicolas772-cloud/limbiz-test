@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
@@ -18,11 +18,52 @@ export default function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [ecosystemOpen, setEcosystemOpen] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
+  const servicesRef = useRef<HTMLDivElement>(null)
+  const ecosystemRef = useRef<HTMLDivElement>(null)
+  const userRef = useRef<HTMLDivElement>(null)
+  const langRef = useRef<HTMLDivElement>(null)
+  const searchRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node
+      
+      if (servicesRef.current && !servicesRef.current.contains(target)) {
+        setServicesOpen(false)
+        setOpenSubmenu(null)
+      }
+      if (ecosystemRef.current && !ecosystemRef.current.contains(target)) {
+        setEcosystemOpen(false)
+      }
+      if (userRef.current && !userRef.current.contains(target)) {
+        setDropdownOpen(false)
+      }
+      if (langRef.current && !langRef.current.contains(target)) {
+        setLangOpen(false)
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside)
+    
+    const handleCloseAll = () => {
+      setServicesOpen(false)
+      setEcosystemOpen(false)
+      setLangOpen(false)
+      setDropdownOpen(false)
+      setOpenSubmenu(null)
+    }
+    window.addEventListener('closeAllDropdowns', handleCloseAll)
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      window.removeEventListener('closeAllDropdowns', handleCloseAll)
+    }
   }, [])
 
   const handleLogout = async () => {
@@ -54,7 +95,7 @@ export default function Navbar() {
             <Link href="/" className="text-white/70 hover:text-white text-sm font-light tracking-wide transition">Home</Link>
             
             <div className="relative">
-              <button onClick={() => { setServicesOpen(!servicesOpen); setEcosystemOpen(false); setOpenSubmenu(null) }} className="text-white/70 hover:text-white text-sm font-light tracking-wide transition flex items-center gap-1">
+              <button onClick={() => { setServicesOpen(!servicesOpen); setEcosystemOpen(false); setLangOpen(false); setDropdownOpen(false); setOpenSubmenu(null); window.dispatchEvent(new Event('closeSearch')) }} className="text-white/70 hover:text-white text-sm font-light tracking-wide transition flex items-center gap-1">
                 Services
                 <svg className={`w-3 h-3 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
@@ -84,7 +125,7 @@ export default function Navbar() {
             <Link href="/pricing" className="text-white/70 hover:text-white text-sm font-light tracking-wide transition">Pricing</Link>
             
             <div className="relative">
-              <button onClick={() => { setEcosystemOpen(!ecosystemOpen); setServicesOpen(false) }} className="text-white/70 hover:text-white text-sm font-light tracking-wide transition flex items-center gap-1">
+              <button onClick={() => { setEcosystemOpen(!ecosystemOpen); setServicesOpen(false); setLangOpen(false); setDropdownOpen(false); window.dispatchEvent(new Event('closeSearch')) }} className="text-white/70 hover:text-white text-sm font-light tracking-wide transition flex items-center gap-1">
                 Ecosystem
                 <svg className={`w-3 h-3 transition-transform ${ecosystemOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
@@ -114,7 +155,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <SearchBar />
             <div className="relative">
-              <button onClick={() => setLangOpen(!langOpen)} className="flex items-center gap-1 px-2 py-2 text-sm text-white/60 hover:text-white transition">
+              <button onClick={() => { setLangOpen(!langOpen); setServicesOpen(false); setEcosystemOpen(false); setDropdownOpen(false); window.dispatchEvent(new Event('closeSearch')) }} className="flex items-center gap-1 px-2 py-2 text-sm text-white/60 hover:text-white transition">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10"/></svg>EN
               </button>
               {langOpen && (
@@ -127,7 +168,7 @@ export default function Navbar() {
             </div>
             {user ? (
               <div className="relative">
-                <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 transition">
+                <button onClick={() => { setDropdownOpen(!dropdownOpen); setServicesOpen(false); setEcosystemOpen(false); setLangOpen(false); window.dispatchEvent(new Event('closeSearch')) }} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 transition">
                   {avatarUrl ? <img src={avatarUrl} alt="" className="w-7 h-7 rounded-full object-cover"/> : <div className="w-7 h-7 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">{displayName.charAt(0).toUpperCase()}</div>}
                   <span className="text-white/80 text-sm hidden sm:inline">{displayName}</span>
                 </button>

@@ -14,6 +14,15 @@ export default function SearchBar() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => { if (isOpen && inputRef.current) inputRef.current.focus() }, [isOpen])
+  useEffect(() => {
+    const handleClose = () => {
+      setIsOpen(false)
+      setQuery('')
+      setResults([])
+    }
+    window.addEventListener('closeSearch', handleClose)
+    return () => window.removeEventListener('closeSearch', handleClose)
+  }, [])
   useEffect(() => { if (query.length >= 2) setResults(search(query)); else setResults([]) }, [query])
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -23,7 +32,7 @@ export default function SearchBar() {
 
   return (
     <>
-      <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-white/60 hover:text-white transition" aria-label="Search">
+      <button onClick={() => { setIsOpen(!isOpen); window.dispatchEvent(new Event('closeAllDropdowns')) }} className="p-2 text-white/60 hover:text-white transition" aria-label="Search">
         <FiSearch size={20} />
       </button>
       <AnimatePresence>
@@ -31,7 +40,7 @@ export default function SearchBar() {
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-4 z-50">
             <div className="flex items-center gap-3">
               <FiSearch className="text-blue-400 flex-shrink-0" size={20} />
-              <input ref={inputRef} type="text" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={handleKeyDown} placeholder="Search for services, tools, guides, pages..." className="flex-1 bg-transparent text-white placeholder-white/30 focus:outline-none" />
+              <input ref={inputRef} type="text" value={query} onChange={(e) => { setQuery(e.target.value); window.dispatchEvent(new Event('closeAllDropdowns')) }} onKeyDown={handleKeyDown} placeholder="Search for services, tools, guides, pages..." className="flex-1 bg-transparent text-white placeholder-white/30 focus:outline-none" />
               {query && <button onClick={() => { setQuery(''); setResults([]) }} className="text-white/30 hover:text-white transition"><FiX size={18} /></button>}
             </div>
             {results.length > 0 && (
