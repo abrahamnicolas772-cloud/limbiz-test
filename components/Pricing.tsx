@@ -187,7 +187,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                   <div>
-                    <p className="text-amber-300 text-xs font-semibold mb-1">State Notice — {currentState.name}</p>
+                    <p className="text-amber-300 text-xs font-semibold mb-1">State Notice - {currentState.name}</p>
                     <p className="text-white/50 text-xs leading-relaxed">{currentState.notice_en}</p>
                   </div>
                 </div>
@@ -302,7 +302,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
                       onClick={() => setExpandedPackage(isExpanded ? null : pkg.id)}
                       className="w-full flex items-center justify-between px-4 py-3 bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-xl hover:border-blue-400/30 hover:bg-white/[0.06] transition text-left group shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
                     >
-                      <span className="text-white/70 text-xs font-medium">View all {pkg.id === 'premium' ? 30 : pkg.id === 'standard' ? 20 : 10} services</span>
+                      <span className="text-white/70 text-xs font-medium">View all {pkg.id === 'premium' ? 31 : pkg.id === 'standard' ? 21 : 10} services</span>
                       <svg className={`w-4 h-4 text-blue-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
 

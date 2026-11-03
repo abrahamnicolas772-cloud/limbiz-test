@@ -7,7 +7,7 @@ import { FiChevronDown } from 'react-icons/fi'
 const faqs = [
   {
     q: 'What does LIMBIZ do?',
-    a: 'LIMBIZ is a complete entrepreneur platform that helps you start, structure, fund, grow, and protect your business. We go beyond LLC filing to provide guidance on business credit, funding, tax setup, digital presence, and ongoing compliance — everything you need to build a strong business foundation.'
+    a: 'LIMBIZ is a complete entrepreneur platform that helps you start, structure, fund, grow, and protect your business. We go beyond LLC filing to provide guidance on business credit, funding, tax setup, digital presence, and ongoing compliance - everything you need to build a strong business foundation.'
   },
   {
     q: 'Can LIMBIZ help me form a business in any state?',

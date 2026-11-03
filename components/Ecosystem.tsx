@@ -20,7 +20,7 @@ export default function Ecosystem() {
           <div className="text-center mb-14">
             <p className="text-blue-400 text-sm font-semibold tracking-wider uppercase">The LIMBIZ Ecosystem</p>
             <h2 className="text-4xl md:text-5xl font-bold mt-2">Your <span className="text-blue-500">Complete Business Platform</span></h2>
-            <p className="mt-3 text-white/50 max-w-2xl mx-auto">More than just filing — we're your partner for growth, funding, and long‑term success.</p>
+            <p className="mt-3 text-white/50 max-w-2xl mx-auto">More than just filing - we're your partner for growth, funding, and long‑term success.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {branches.map((branch, idx) => (

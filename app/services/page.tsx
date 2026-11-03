@@ -9,85 +9,77 @@ const serviceCategories = [
   {
     id: 'formation',
     title: 'Business Formation',
-    icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>),
     description: 'Start your business legally with full compliance and expert guidance.',
-    color: 'from-blue-500 to-cyan-400',
     services: [
-      { name: 'LLC Filing', desc: 'Form your LLC in any state with complete state-specific compliance' },
-      { name: 'EIN Registration', desc: 'Get your Employer Identification Number from the IRS quickly' },
-      { name: 'Operating Agreement', desc: 'Customized operating agreement for your LLC structure' },
-      { name: 'DBA / Fictitious Name', desc: 'Register your business under a different name' },
-      { name: 'S-Corporation Election Assistance', desc: 'Elect S-Corp status for potential tax benefits' },
-      { name: 'LLC Amendments & Business Changes', desc: 'Update your LLC structure or information' },
-      { name: 'Foreign Qualification', desc: 'Register your LLC to operate in additional states' },
-      { name: 'Business Reinstatement', desc: 'Restore a dissolved or suspended business' },
-      { name: 'Business Dissolution', desc: 'Properly close your business with the state' },
+      { name: 'LLC Filing', price: '$149', unit: '', note: 'State filing and required publication charges are separate.' },
+      { name: 'EIN Registration', price: '$79', unit: '', note: 'One standard EIN application. International cases use EIN for Foreign Owners.' },
+      { name: 'Operating Agreement', price: '$149', unit: '', note: 'Standard template completion. Custom drafting and legal review require a quote.' },
+      { name: 'DBA / Fictitious Name', price: '$99', unit: '', note: 'One name in one jurisdiction. Government and required publication fees are separate.' },
+      { name: 'S-Corporation Election Assistance', price: '$199', unit: '', note: 'Administrative application assistance. Specialized advice and additional filings are separate.' },
+      { name: 'LLC Amendment', price: '$149', unit: '', note: 'One simple amendment. State fees separate; complex changes require a quote.' },
+      { name: 'Foreign Qualification', price: '$249', unit: '/state', note: 'Registration in one additional U.S. state. State fees, certificates and agent service separate.' },
+      { name: 'Business Reinstatement', price: 'From $199', unit: '', note: 'Simple case to restore active registration. State charges, penalties and overdue filings are separate.' },
+      { name: 'Business Dissolution', price: '$199', unit: '', note: 'Dissolution assistance in one state. Government fees, final tax returns and other closure work separate.' },
     ]
   },
   {
     id: 'setup',
     title: 'Business Setup',
-    icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>),
     description: 'Get your business ready to operate with essential infrastructure.',
-    color: 'from-emerald-500 to-green-400',
     services: [
-      { name: 'Business Address', desc: 'Professional address in any U.S. state' },
-      { name: 'Registered Agent', desc: 'Legal compliance representative for your business' },
-      { name: 'Business Email', desc: 'Professional email matching your domain' },
-      { name: 'Google Business Profile', desc: 'Get found on Google Search and Maps' },
-      { name: 'Business Licenses & Permits', desc: 'Identify and obtain required licenses' },
-      { name: 'Sales Tax Permit / Resale Certificate', desc: 'Register for state sales tax collection' },
-      { name: 'D-U-N-S Number Assistance', desc: 'Get your D&B business credit identifier' },
-      { name: 'Business Phone System', desc: 'Professional business phone number' },
-      { name: 'Business Banking Setup', desc: 'Open your business bank account' },
+      { name: 'Business Names & Domains', price: '$99', unit: '', note: 'Name research and up to 2 domains for year 1; combined purchase allowance $55. Premium domains, excess and renewals separate.' },
+      { name: 'Business Address', price: '$89.99', unit: 'one-time', note: 'Setup and first month of a basic address plan costing up to $39. From month 2, customer pays the provider directly.' },
+      { name: 'Registered Agent', price: '$99', unit: '/year/state', note: 'One business in one state. Selected base provider service is included; additional services separate.' },
+      { name: 'Business Email Creation', price: '$79', unit: '', note: 'One professional email setup. Domain and email subscriptions separate.' },
+      { name: 'Google Business Profile Setup', price: '$149', unit: '', note: 'One eligible profile. Verification and platform approval are not guaranteed.' },
+      { name: 'Licenses & Permits Assessment', price: '$129', unit: '', note: 'Research for one business activity/location. Application work and official fees separate.' },
+      { name: 'License / Permit Application Assistance', price: 'From $99', unit: '/application', note: 'One application, not a bundle. Official fees separate.' },
+      { name: 'Sales Tax Permit Assistance', price: '$99', unit: '', note: 'Registration assistance in one state. Official fees and ongoing returns separate.' },
+      { name: 'D-U-N-S Application Assistance', price: '$79', unit: '', note: 'Standard application assistance and follow-up. Optional paid expedited products separate.' },
+      { name: 'Essential Business Documents', price: '$199', unit: '', note: 'Standard Operating Agreement, banking resolution and organizational minutes. Custom legal documents require a quote.' },
     ]
   },
   {
     id: 'growth',
     title: 'Growth & Compliance',
-    icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>),
     description: 'Build credit, secure funding, and stay compliant with regulations.',
-    color: 'from-purple-500 to-pink-400',
     services: [
-      { name: 'Business Credit Building', desc: 'Build a strong business credit profile' },
-      { name: 'Business Funding Assistance', desc: 'Access funding options for your business' },
-      { name: 'Business Tax Filing Assistance', desc: 'Professional tax preparation and filing' },
-      { name: 'Annual Report Filing', desc: 'Stay compliant with annual state requirements' },
-      { name: 'Compliance Monitoring & Reminders', desc: 'Never miss a deadline with automated alerts' },
-      { name: 'Business Consulting', desc: 'Expert guidance for your business growth' },
+      { name: 'Business Credit Building', price: '$999', unit: '6-month program', note: 'Business-structure review, credit-profile setup, assistance with vendor applications and progress follow-up. Vendor purchases and account charges separate.' },
+      { name: 'Funding Assistance', price: '$699', unit: '', note: 'Readiness review, suitable-option research, file preparation, assistance with up to 3 applications and follow-up. Lender charges separate.' },
+      { name: 'Business Tax Preparation & Filing', price: 'From $699', unit: '', note: 'Preparation and filing for one tax year. Final quote depends on entity/return type and states involved.' },
+      { name: 'Annual Report Filing', price: '$99', unit: '/report/state', note: 'One report for one business in one state and reporting period. Government fees and penalties separate.' },
+      { name: 'Compliance Monitoring', price: '$149', unit: '/year/state', note: 'One business in one state. Filing services and government charges separate.' },
     ]
   },
   {
     id: 'international',
     title: 'International Services',
-    icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>),
     description: 'Supporting international entrepreneurs with U.S. business formation.',
-    color: 'from-amber-500 to-orange-400',
     services: [
-      { name: 'International ITIN Application Assistance', desc: 'Get your Individual Taxpayer Identification Number' },
-      { name: 'International Entrepreneur Business Formation', desc: 'Start your U.S. business from abroad' },
-      { name: 'Foreign-Owned LLC Support', desc: 'Comprehensive LLC formation for foreign owners' },
-      { name: 'EIN Assistance for Foreign Owners', desc: 'Get your EIN without an SSN' },
-      { name: 'U.S. Business Address', desc: 'Physical address for your U.S. business' },
-      { name: 'Registered Agent Service', desc: 'Legal compliance representative in any state' },
+      { name: 'ITIN Application Assistance', price: '$450', unit: '/applicant', note: 'Application assistance, case coordination and follow-up through LIMBIZ and its ITIN partner.' },
+      { name: 'Foreign-Owned U.S. LLC Formation', price: '$499', unit: '', note: 'One U.S. LLC in one state. State fees, EIN, address, Registered Agent and tax reporting are separate services.' },
+      { name: 'EIN for Foreign Owners', price: '$199', unit: '', note: 'One international EIN application handled by LIMBIZ with client authorization.' },
+      { name: 'International Business Formation', price: 'Custom quote', unit: '', note: 'Other countries or entity structures. Route standard foreign-owned U.S. LLC requests to the $499 service.' },
+      { name: 'U.S. Business Address', price: '$89.99', unit: 'one-time', note: 'Same service as Business Address: setup + first month; direct provider billing from month 2.' },
+      { name: 'Registered Agent', price: '$99', unit: '/year/state', note: 'Same service as Registered Agent in Business Setup.' },
     ]
   },
   {
     id: 'protection',
     title: 'Protection & Digital',
-    icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>),
     description: 'Protect your brand, assets, and build your digital presence.',
-    color: 'from-rose-500 to-red-400',
     services: [
-      { name: 'Trademark Application Assistance', desc: 'Protect your brand name and logo' },
-      { name: 'Copyright Registration Assistance', desc: 'Protect your creative works' },
-      { name: 'Business Branding', desc: 'Develop a cohesive brand identity' },
-      { name: 'Logo & Brand Identity', desc: 'Professional logo design for your business' },
-      { name: 'Website Design & Development', desc: 'Build a professional business website' },
-      { name: 'Domain Registration', desc: 'Secure your domain name' },
-      { name: 'E-commerce Store Setup', desc: 'Launch your online store' },
-      { name: 'Social Media Business Setup', desc: 'Establish your social media presence' },
-      { name: 'Digital Business Card', desc: 'Modern digital business card' },
+      { name: 'Trademark Research & Guidance', price: '$249', unit: '', note: 'Preliminary research and process guidance. Application filing, official fees and attorney services separate.' },
+      { name: 'Copyright Registration Assistance', price: '$149', unit: '/work', note: 'Standard application assistance for one work. Official fees and specialized legal services separate.' },
+      { name: 'Business Branding', price: '$249', unit: '', note: 'Brand positioning, messaging and visual direction. Logo production and full guidelines separate.' },
+      { name: 'Simple Logo', price: '$199', unit: '', note: 'One concept, two revision rounds and final files. Extra concepts/revisions quoted separately.' },
+      { name: 'Full Brand Guidelines', price: '$499', unit: '', note: 'Logo, colors, typography and brand-use guide. Additional assets beyond agreed scope separate.' },
+      { name: 'Starter Website / Landing Page', price: '$499', unit: '', note: 'Simple informational site of 1-4 pages or a landing page. Hosting, domain, paid tools and maintenance separate.' },
+      { name: 'Professional Website', price: '$999', unit: '', note: 'Informational site of 5-8 pages. Special features, hosting, domains, paid tools and maintenance separate.' },
+      { name: 'Domain Registration Assistance', price: '$39', unit: '/domain', note: 'Research and configuration. Domain purchase and renewals separate.' },
+      { name: 'E-Commerce Setup', price: '$399', unit: '/platform', note: 'One platform and up to 5 products using client content. Subscriptions, transaction fees and additional work separate.' },
+      { name: 'Social Media Setup', price: '$149', unit: '', note: 'Up to 2 accounts: profile images, bio, contact information and links. Ongoing content and ads separate.' },
+      { name: 'Digital Business Card', price: '$79', unit: '', note: 'One digital card with contact details, links and QR code. Paid subscriptions, if needed, separate.' },
     ]
   },
 ]
@@ -98,82 +90,50 @@ export default function ServicesPage() {
       <Navbar />
       <main className="min-h-screen pt-24 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#060b14] via-[#0b1a2e] to-[#0f2847]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(30,80,180,0.25),transparent_60%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(99,102,241,0.15),transparent_60%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0b1a2e] via-[#0f2847] to-[#0b1a2e]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(30,80,180,0.3),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(20,60,140,0.3),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-300 text-xs font-semibold uppercase tracking-wider mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              Complete Solutions
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">All <span className="text-blue-300">Services</span></h1>
-            <p className="text-white/40 mt-4 max-w-2xl mx-auto text-sm md:text-base">
-              Everything you need to start, structure, fund, grow, and protect your business.
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-white">All <span className="text-blue-300">Services</span></h1>
+            <p className="text-white/40 mt-3 max-w-2xl mx-auto">
+              Choose individual services or explore our complete packages.
             </p>
           </motion.div>
 
           <div className="space-y-16">
             {serviceCategories.map((category, catIdx) => (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: catIdx * 0.1 }}
-              >
-                <div className="flex items-center gap-4 mb-8 justify-center text-center">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-white">{category.title}</h2>
-                    <p className="text-white/40 text-sm mt-1">{category.description}</p>
-                  </div>
+              <motion.div key={category.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: catIdx * 0.1 }}>
+                <div className="mb-6 text-center md:text-left">
+                  <h2 className="text-2xl font-bold text-white">{category.title}</h2>
+                  <p className="text-white/40 text-sm mt-1">{category.description}</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {category.services.map((service, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: catIdx * 0.1 + idx * 0.05 }}
-                    >
-                      <Link
-                        href={`/checkout?plan=basic&state=florida&service=${encodeURIComponent(service.name)}`}
-                        className="group block h-full bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-5 hover:border-blue-400/30 hover:bg-white/[0.06] transition-all duration-300 relative overflow-hidden shadow-[0_0_15px_rgba(59,130,246,0.05)] hover:shadow-[0_0_25px_rgba(59,130,246,0.15)]"
-                      >
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-purple-500/0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 blur-xl -z-10" />
-                        
-                        <div className="flex items-start gap-3">
-                          <div className={`p-2 rounded-xl bg-gradient-to-br ${category.color} bg-opacity-10 text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                          </div>
-                          <div>
-                            <h3 className="text-white font-semibold text-sm group-hover:text-blue-300 transition-colors">{service.name}</h3>
-                            <p className="text-white/40 text-xs mt-1 leading-relaxed">{service.desc}</p>
-                          </div>
+                    <motion.div key={idx} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: catIdx * 0.1 + idx * 0.03 }} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:border-blue-400/30 transition group flex flex-col h-full">
+                      <div className="flex-1">
+                        <h3 className="text-white font-semibold text-sm group-hover:text-blue-300 transition-colors">{service.name}</h3>
+                        <p className="text-white/30 text-xs mt-2 leading-relaxed">{service.note}</p>
+                      </div>
+                      <div className="mt-4 pt-3 border-t border-white/[0.05] flex items-center justify-between">
+                        <div>
+                          <span className="text-blue-300 font-bold text-lg">{service.price}</span>
+                          {service.unit && <span className="text-white/30 text-xs ml-1">{service.unit}</span>}
                         </div>
-
-                        <div className="mt-3 flex items-center gap-1 text-white/20 text-xs group-hover:text-blue-400 transition-colors">
-                          Get Started
-                          <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                        </div>
-                      </Link>
+                        <button className="px-4 py-2 bg-blue-600/80 hover:bg-blue-500 rounded-full text-white text-xs font-medium transition">
+                          {service.price.includes('From') || service.price.includes('Custom') ? 'Contact Us for a Quote' : 'Get Started'}
+                        </button>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
             ))}
           </div>
-
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="text-center mt-16">
-            <p className="text-white/30 text-sm mb-4">Not sure which service you need?</p>
-            <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-500 rounded-full text-white font-semibold text-sm shadow-xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300">
-              Book a Free Consultation
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </Link>
-          </motion.div>
         </div>
       </main>
       <Footer />

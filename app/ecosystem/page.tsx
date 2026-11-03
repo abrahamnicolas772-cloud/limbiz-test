@@ -89,7 +89,7 @@ export default function EcosystemPage() {
               The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">LIMBIZ™</span> Ecosystem
             </h1>
             <p className="text-white/40 mt-4 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-              More than just business formation — a complete platform to start, structure, fund, grow, and protect your business.
+              More than just business formation - a complete platform to start, structure, fund, grow, and protect your business.
             </p>
           </motion.div>
 

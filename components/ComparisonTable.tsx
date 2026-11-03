@@ -55,7 +55,7 @@ export default function ComparisonTable() {
               See How <span className="font-bold text-blue-400">LIMBIZ</span> Compares
             </motion.h2>
             <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mt-3 text-white/25 text-sm font-light tracking-wide max-w-xl mx-auto">
-              More than just filing — we're your growth partner
+              More than just filing - we're your growth partner
             </motion.p>
             <motion.div initial={{ width: 0 }} whileInView={{ width: 40 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }} className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mt-4" />
           </div>

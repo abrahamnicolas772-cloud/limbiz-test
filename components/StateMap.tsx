@@ -67,7 +67,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    // Pas de onClick – sélection par dropdown
+                    // Pas de onClick - sélection par dropdown
                     onMouseEnter={() => { if (isActive) setHoveredAbbr(abbr) }}
                     onMouseLeave={() => setHoveredAbbr(null)}
                     style={{
@@ -128,7 +128,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
       </div>
 
       <p className="text-center text-white/15 text-[10px] font-light tracking-wide mt-3">
-        Hover over a state to see its abbreviation — Use dropdown to select
+        Hover over a state to see its abbreviation - Use dropdown to select
       </p>
     </div>
   )

@@ -25,7 +25,7 @@ export default function FreeResources() {
           <div className="text-center mb-14">
             <p className="text-blue-400 text-sm tracking-wider font-semibold uppercase">Free Resources</p>
             <h2 className="text-4xl md:text-5xl font-bold mt-2">Download <span className="text-blue-500">Startup Essentials</span></h2>
-            <p className="mt-3 text-white/50 max-w-2xl mx-auto text-sm">Get instant access to professional guides, templates, and checklists — all free.</p>
+            <p className="mt-3 text-white/50 max-w-2xl mx-auto text-sm">Get instant access to professional guides, templates, and checklists - all free.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {resources.map((r, idx) => (
