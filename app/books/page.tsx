@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
+import { useCart } from '@/context/CartContext'
+import { useRouter } from 'next/navigation'
 
 const editions = [
   {
@@ -53,6 +55,8 @@ const editions = [
 ]
 
 export default function BooksPage() {
+  const { addItem } = useCart()
+  const router = useRouter()
   const [selectedFormats, setSelectedFormats] = useState<Record<string, string>>({})
 
   const handleBuy = (editionId: string) => {
@@ -65,8 +69,13 @@ export default function BooksPage() {
     if (edition && format) {
       const formatData = edition.formats.find(f => f.type === format)
       const price = formatData?.price.replace('$', '') || '9.99'
-      const checkoutUrl = '/checkout?service=' + encodeURIComponent(edition.language + ' Edition - ' + format) + '&price=' + price + '&format=' + format
-      window.location.href = checkoutUrl
+      addItem({
+        id: editionId + '-' + format,
+        name: edition.language + ' Edition - ' + format,
+        price: parseFloat(price),
+        note: 'Book purchase'
+      })
+      router.push('/cart')
     }
   }
 

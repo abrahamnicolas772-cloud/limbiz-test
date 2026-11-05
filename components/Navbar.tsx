@@ -5,8 +5,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import SearchBar from '@/components/SearchBar'
+import { useCart } from '@/context/CartContext'
 
 export default function Navbar() {
+  const { itemCount } = useCart()
   const supabase = createClient()
   const router = useRouter()
   const [user, setUser] = useState<any>(null)
@@ -154,6 +156,14 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-3">
             <SearchBar />
+              <Link href="/cart" className="relative p-2 text-white/60 hover:text-white transition">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                {itemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
+                    {itemCount}
+                  </span>
+                )}
+              </Link>
             <div className="relative">
               <button onClick={() => { setLangOpen(!langOpen); setServicesOpen(false); setEcosystemOpen(false); setDropdownOpen(false); window.dispatchEvent(new Event('closeSearch')) }} className="flex items-center gap-1 px-2 py-2 text-sm text-white/60 hover:text-white transition">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10"/></svg>EN

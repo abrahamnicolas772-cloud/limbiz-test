@@ -4,6 +4,7 @@ import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { getStateBySlug, calculatePrice, getStateFeeForMethod, calculateTennesseeFee, getDBAFee, packages } from '@/lib/pricing-config'
+import { useCart } from '@/context/CartContext'
 import { motion, AnimatePresence } from 'framer-motion'
 
 type Step = 'review' | 'payment' | 'processing' | 'success'
@@ -16,6 +17,8 @@ function CheckoutContent() {
   const bookPrice = parseFloat(searchParams.get('price') || '9.99')
   const bookFormat = searchParams.get('format') || 'eBook'
   const needsDBA = searchParams.get('dba') === 'yes'
+  const isFromCart = searchParams.get('cart') === 'true'
+  const { items: cartItems, total: cartTotal, clearCart } = useCart()
   
   const [step, setStep] = useState<Step>('review')
   const [paymentMethod, setPaymentMethod] = useState('card')
@@ -76,7 +79,7 @@ function CheckoutContent() {
   
   const selectedPlan = isBook ? bookPlan : businessPlan
   const dbaFee = needsDBA && !isBook && stateConfig ? getDBAFee(stateConfig.code) : 0
-  const total = isBook ? bookPrice : (businessPlan.price + dbaFee)
+  const total = isFromCart ? cartTotal : (isBook ? bookPrice : (businessPlan.price + dbaFee))
   
   // Detèmine si gen unresolved required inputs
   const hasUnresolvedInputs = !isBook && stateConfig && (
@@ -110,6 +113,7 @@ function CheckoutContent() {
 
   const handlePay = async () => {
     setStep('processing')
+    if (isFromCart) clearCart()
 
     if (paymentMethod === 'paypal') {
       try {
@@ -282,6 +286,25 @@ function CheckoutContent() {
           <div className="lg:col-span-2">
             <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06] rounded-3xl p-5">
               <h3 className="text-white font-semibold text-sm mb-3">Order Summary</h3>
+              {isFromCart ? (
+                <>
+                  <div className="space-y-1.5 mb-3 text-sm">
+                    {cartItems.map((item) => (
+                      <div key={item.id} className="flex justify-between">
+                        <span className="text-white/50 text-xs">{item.name}</span>
+                        <span className="text-white/70 text-xs">${item.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-white/[0.05] pt-2 mb-3">
+                    <div className="flex justify-between">
+                      <span className="text-white font-semibold">Total</span>
+                      <span className="text-blue-400 font-bold text-lg">${cartTotal.toFixed(2)}</span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
               <div className="flex items-center justify-between mb-1"><span className="text-white text-sm">{service || (selectedPlan.name + " Plan")}</span>{!isBook && <span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">Package + State Fee</span>}</div>
               <p className="text-white/25 text-xs mb-3">{isBook ? "Book Purchase" : state.toUpperCase()}</p>
               <div className="space-y-1.5 mb-3 text-sm">
@@ -314,6 +337,8 @@ function CheckoutContent() {
               <ul className="space-y-1 mb-3">
                 {selectedPlan.features.slice(0,5).map((f,i)=>(<li key={i} className="flex items-center gap-1.5 text-white/40 text-xs"><span className="text-blue-400">✓</span>{f}</li>))}
               </ul>
+                </>
+              )}
               <div className="flex gap-3 text-white/15 text-[10px]"><span>🔒 SSL</span><span>↩️ Guarantee</span><span>⚡ 24-48h</span></div>
             </div>
           </div>

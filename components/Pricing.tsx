@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useCart } from '@/context/CartContext'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { 
   states, 
@@ -21,6 +23,8 @@ interface PricingProps {
 }
 
 export default function Pricing({ initialState = 'florida', onStateSelect }: PricingProps) {
+  const { addItem } = useCart()
+  const router = useRouter()
   const [selectedState, setSelectedState] = useState(initialState)
   const [showStateDropdown, setShowStateDropdown] = useState(false)
   const [filingMethod, setFilingMethod] = useState<string>('')
@@ -316,10 +320,10 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
                   </div>
 
                   <div className="space-y-2.5">
-                    <Link href={`/checkout?plan=${pkg.id}&state=${currentState?.name.toLowerCase().replace(/\s+/g, '-')}${needsDBA !== null ? `&dba=${needsDBA ? 'yes' : 'no'}` : ''}`} className="w-full py-3 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 rounded-full text-white font-medium transition flex items-center justify-center gap-2 text-sm shadow-[0_4px_14px_rgba(59,130,246,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]">
-                      Start My Business Now
+                    <button onClick={() => { addItem({ id: pkg.id, name: pkg.name + ' Plan', price: total, note: currentState?.name + ' - ' + (needsDBA ? 'With DBA' : 'Without DBA') }); router.push('/cart') }} className="w-full py-3 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 rounded-full text-white font-medium transition flex items-center justify-center gap-2 text-sm shadow-[0_4px_14px_rgba(59,130,246,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]">
+                      Add to Cart
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </Link>
+                    </button>
                     <Link href="/contact" className="w-full py-2.5 border border-white/[0.1] text-white/60 hover:text-white hover:bg-white/[0.05] rounded-full text-sm transition text-center block backdrop-blur-sm">
                       Book a Consultation
                     </Link>
