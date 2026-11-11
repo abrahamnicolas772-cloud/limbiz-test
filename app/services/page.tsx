@@ -151,7 +151,7 @@ export default function ServicesPage() {
                         initial={{ opacity: 0, y: 10 }} 
                         animate={{ opacity: 1, y: 0 }} 
                         transition={{ delay: catIdx * 0.1 + idx * 0.03 }} 
-                        className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)] bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:border-blue-400/30 transition group flex flex-col h-full"
+                        className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)] bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:border-blue-400/30 transition group flex flex-col"
                       >
                         <div className="flex-1">
                           <h3 className="text-white font-semibold text-sm group-hover:text-blue-300 transition-colors">{service.name}</h3>

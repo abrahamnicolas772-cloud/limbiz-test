@@ -136,7 +136,7 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 z-10">
         <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
         <div className="h-px bg-gradient-to-r from-transparent via-purple-500/15 to-transparent mt-0.5" />
-      </div>
-    </section>
+     </div>
+     </section>
   )
 }

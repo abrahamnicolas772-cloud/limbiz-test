@@ -18,6 +18,7 @@ function CheckoutContent() {
   const bookFormat = searchParams.get('format') || 'eBook'
   const needsDBA = searchParams.get('dba') === 'yes'
   const isFromCart = searchParams.get('cart') === 'true'
+  const isSingleService = !!service && !isFromCart && !service.includes('Edition')
   const { items: cartItems, total: cartTotal, clearCart } = useCart()
   
   const [step, setStep] = useState<Step>('review')
@@ -79,7 +80,7 @@ function CheckoutContent() {
   
   const selectedPlan = isBook ? bookPlan : businessPlan
   const dbaFee = needsDBA && !isBook && stateConfig ? getDBAFee(stateConfig.code) : 0
-  const total = isFromCart ? cartTotal : (isBook ? bookPrice : (businessPlan.price + dbaFee))
+  const total = isSingleService ? bookPrice : (isFromCart ? cartTotal : (isBook ? bookPrice : (businessPlan.price + dbaFee)))
   
   // Detèmine si gen unresolved required inputs
   const hasUnresolvedInputs = !isBook && stateConfig && (
