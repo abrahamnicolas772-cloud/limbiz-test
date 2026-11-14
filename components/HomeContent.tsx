@@ -14,21 +14,40 @@ import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
 import CookieBanner from '@/components/CookieBanner'
 import ChatbotWidget from '@/components/ChatbotWidget'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 
 export default function HomeContent() {
   return (
     <main className="min-h-screen bg-black">
       <Navbar />
       <Hero />
-      <TrustedStats />
-      <Services />
-      <Pricing />
-      <WhyChooseUs />
-      <Roadmap />
-      <Testimonials />
-      <ComparisonTable />
-      <FAQ />
-      <FinalCTA />
+      <ScrollReveal>
+        <TrustedStats />
+      </ScrollReveal>
+      <ScrollReveal>
+        <Services />
+      </ScrollReveal>
+      <ScrollReveal>
+        <Pricing />
+      </ScrollReveal>
+      <ScrollReveal>
+        <WhyChooseUs />
+      </ScrollReveal>
+      <ScrollReveal>
+        <Roadmap />
+      </ScrollReveal>
+      <ScrollReveal>
+        <Testimonials />
+      </ScrollReveal>
+      <ScrollReveal>
+        <ComparisonTable />
+      </ScrollReveal>
+      <ScrollReveal>
+        <FAQ />
+      </ScrollReveal>
+      <ScrollReveal>
+        <FinalCTA />
+      </ScrollReveal>
       <Footer />
       <CookieBanner />
       <ChatbotWidget />

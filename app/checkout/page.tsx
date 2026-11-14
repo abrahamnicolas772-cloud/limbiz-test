@@ -287,7 +287,30 @@ function CheckoutContent() {
           <div className="lg:col-span-2">
             <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06] rounded-3xl p-5">
               <h3 className="text-white font-semibold text-sm mb-3">Order Summary</h3>
-              {isFromCart ? (
+              
+              {/* SÈVIS ENDIVIDYÈL */}
+              {isSingleService ? (
+                <>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-white text-sm">{service}</span>
+                    <span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">Individual Service</span>
+                  </div>
+                  <p className="text-white/25 text-xs mb-3">One-time service</p>
+                  <div className="space-y-1.5 mb-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-white/30">Service Price</span>
+                      <span className="text-white/50">${bookPrice}</span>
+                    </div>
+                  </div>
+                  <div className="border-t border-white/[0.05] pt-2 mb-3">
+                    <div className="flex justify-between">
+                      <span className="text-white font-semibold">Total</span>
+                      <span className="text-blue-400 font-bold text-lg">${total}</span>
+                    </div>
+                  </div>
+                </>
+              ) : isFromCart ? (
+                /* PANYE */
                 <>
                   <div className="space-y-1.5 mb-3 text-sm">
                     {cartItems.map((item) => (
@@ -304,43 +327,57 @@ function CheckoutContent() {
                     </div>
                   </div>
                 </>
-              ) : (
+              ) : isBook ? (
+                /* LIV */
                 <>
-              <div className="flex items-center justify-between mb-1"><span className="text-white text-sm">{service || (selectedPlan.name + " Plan")}</span>{!isBook && <span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">Package + State Fee</span>}</div>
-              <p className="text-white/25 text-xs mb-3">{isBook ? "Book Purchase" : state.toUpperCase()}</p>
-              <div className="space-y-1.5 mb-3 text-sm">
-                {isBook && (
-                  <div className="mb-3 pb-3 border-b border-white/[0.05]">
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={promoCode}
-                        onChange={(e) => setPromoCode(e.target.value)}
-                        placeholder="Promo Code"
-                        className="flex-1 px-3 py-2 bg-white/[0.03] border border-white/[0.08] rounded-lg text-white text-xs placeholder-white/30 focus:border-blue-400/50 focus:outline-none"
-                      />
-                      <button
-                        onClick={applyPromo}
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white text-xs font-semibold transition"
-                      >
-                        Apply
-                      </button>
-                    </div>
-                    {promoError && <p className="text-red-400 text-[10px] mt-1">{promoError}</p>}
-                    {promoApplied && <p className="text-emerald-400 text-[10px] mt-1">✓ Promo code applied!</p>}
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-white text-sm">{service}</span>
+                    <span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">Book Purchase</span>
                   </div>
-                )}
-                <div className="flex justify-between"><span className="text-white/30">{isBook ? "Book Price" : "Package Component"}</span><span className="text-white/50">${component}</span></div>
-                {!isBook && <div className="flex justify-between"><span className="text-white/30">State Fee ({stateConfig?.code})</span><span className="text-white/50">${displayStateFee}</span></div>}
-                {promoApplied && <div className="flex justify-between text-emerald-400"><span>Promo Discount</span><span>-10%</span></div>}
-              </div>
-              <div className="border-t border-white/[0.05] pt-2 mb-3"><div className="flex justify-between"><span className="text-white font-semibold">Total</span><span className="text-blue-400 font-bold text-lg">${total}</span></div></div>
-              <ul className="space-y-1 mb-3">
-                {selectedPlan.features.slice(0,5).map((f,i)=>(<li key={i} className="flex items-center gap-1.5 text-white/40 text-xs"><span className="text-blue-400">✓</span>{f}</li>))}
-              </ul>
+                  <p className="text-white/25 text-xs mb-3">{bookFormat} Edition</p>
+                  <div className="space-y-1.5 mb-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-white/30">Book Price</span>
+                      <span className="text-white/50">${bookPrice}</span>
+                    </div>
+                  </div>
+                  <div className="border-t border-white/[0.05] pt-2 mb-3">
+                    <div className="flex justify-between">
+                      <span className="text-white font-semibold">Total</span>
+                      <span className="text-blue-400 font-bold text-lg">${total}</span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                /* PACKAGE */
+                <>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-white text-sm">{selectedPlan.name} Plan</span>
+                    <span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">Package + State Fee</span>
+                  </div>
+                  <p className="text-white/25 text-xs mb-3">{state.toUpperCase()}</p>
+                  <div className="space-y-1.5 mb-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-white/30">Package Component</span>
+                      <span className="text-white/50">${component}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-white/30">State Fee ({stateConfig?.code})</span>
+                      <span className="text-white/50">${displayStateFee}</span>
+                    </div>
+                  </div>
+                  <div className="border-t border-white/[0.05] pt-2 mb-3">
+                    <div className="flex justify-between">
+                      <span className="text-white font-semibold">Total</span>
+                      <span className="text-blue-400 font-bold text-lg">${total}</span>
+                    </div>
+                  </div>
                 </>
               )}
-              <div className="flex gap-3 text-white/15 text-[10px]"><span>🔒 SSL</span><span>↩️ Guarantee</span><span>⚡ 24-48h</span></div>
+
+              <div className="flex gap-3 text-white/15 text-[10px]">
+                <span>SSL</span><span>Guarantee</span><span>24-48h</span>
+              </div>
             </div>
           </div>
         </div>

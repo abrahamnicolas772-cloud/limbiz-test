@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import SearchBar from '@/components/SearchBar'
 import { useCart } from '@/context/CartContext'
+import { serviceCategories } from '@/lib/services-data'
 
 export default function Navbar() {
   const { itemCount } = useCart()
@@ -77,13 +78,11 @@ export default function Navbar() {
   const displayName = profile?.full_name || user?.email?.split('@')[0] || 'Account'
   const avatarUrl = profile?.avatar_url || null
 
-  const submenus = [
-    { id: 'formation', title: 'Business Formation', links: ['LLC Filing', 'EIN Registration', 'Operating Agreement', 'DBA / Fictitious Name', 'S-Corporation Election', 'LLC Amendments', 'Foreign Qualification', 'Business Reinstatement', 'Business Dissolution'] },
-    { id: 'setup', title: 'Business Setup', links: ['Business Address', 'Registered Agent', 'Business Email', 'Google Business Profile', 'Licenses & Permits', 'Sales Tax Permit', 'D-U-N-S Number'] },
-    { id: 'growth', title: 'Growth & Compliance', links: ['Business Credit Building', 'Funding Assistance', 'Tax Filing Assistance', 'Annual Report Filing', 'Compliance Monitoring'] },
-    { id: 'international', title: 'International Services', links: ['ITIN Application', 'Intl Business Formation', 'Foreign-Owned LLC', 'EIN for Foreign Owners', 'U.S. Business Address', 'Registered Agent'] },
-    { id: 'protection', title: 'Protection & Digital', links: ['Trademark Application', 'Copyright Registration', 'Business Branding', 'Logo & Brand Identity', 'Website Development', 'Domain Registration', 'E-commerce Setup', 'Social Media Setup', 'Digital Business Card'] },
-  ]
+  const submenus = serviceCategories.map(cat => ({
+    id: cat.id,
+    title: cat.title,
+    links: cat.services.map(s => s.name)
+  }))
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-2xl' : 'bg-transparent'}`}>
