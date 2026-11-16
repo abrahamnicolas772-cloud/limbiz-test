@@ -5,7 +5,7 @@ export {
   ChevronDown, ChevronRight, ChevronLeft, ArrowRight, ArrowLeft, Menu, X, Search, Home,
   // Business / Services
   Briefcase, Building2, FileText, Shield, ShieldCheck, TrendingUp, Globe, DollarSign,
-  Users, UserCheck, CheckCircle2, Clock, Calendar, MapPin, Mail, Phone, MessageCircle,
+  Users, UserCheck, CheckCircle2, ListChecks, Clock, Calendar, MapPin, Mail, Phone, MessageCircle,
   Star, Sparkles, Zap, Target, Award, Trophy, Crown, Gem,
   // Actions / UI
   Download, Upload, ExternalLink, PlayCircle, PauseCircle, Lock, Unlock, LogOut, LogIn,
