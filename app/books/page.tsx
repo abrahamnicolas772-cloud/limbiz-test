@@ -6,52 +6,13 @@ import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
 import { useCart } from '@/context/CartContext'
 import { useRouter } from 'next/navigation'
+import { ArrowRight } from '@/lib/icons'
 
 const editions = [
-  {
-    id: 'english',
-    language: 'English',
-    flag: '🇺🇸',
-    formats: [
-      { type: 'eBook', price: '$9.99', freeShipping: false },
-      { type: 'Paperback', price: '$29.99', freeShipping: true },
-      { type: 'Hardcover', price: '$34.99', freeShipping: true },
-    ],
-    buyText: 'Buy Now',
-  },
-  {
-    id: 'haitian-creole',
-    language: 'Haitian Creole',
-    flag: '🇭🇹',
-    formats: [
-      { type: 'eBook', price: '$9.99', freeShipping: false },
-      { type: 'Paperback', price: '$29.99', freeShipping: true },
-      { type: 'Hardcover', price: '$34.99', freeShipping: true },
-    ],
-    buyText: 'Achte Kounye a',
-  },
-  {
-    id: 'french',
-    language: 'French',
-    flag: '🇫🇷',
-    formats: [
-      { type: 'eBook', price: '$9.99', freeShipping: false },
-      { type: 'Paperback', price: '$29.99', freeShipping: true },
-      { type: 'Hardcover', price: '$34.99', freeShipping: true },
-    ],
-    buyText: 'Acheter maintenant',
-  },
-  {
-    id: 'spanish',
-    language: 'Spanish',
-    flag: '🇪🇸',
-    formats: [
-      { type: 'eBook', price: '$9.99', freeShipping: false },
-      { type: 'Paperback', price: '$29.99', freeShipping: true },
-      { type: 'Hardcover', price: '$34.99', freeShipping: true },
-    ],
-    buyText: 'Comprar ahora',
-  },
+  { id: 'english', language: 'English', flag: '🇺🇸', formats: [{ type: 'eBook', price: '$9.99', freeShipping: false }, { type: 'Paperback', price: '$29.99', freeShipping: true }, { type: 'Hardcover', price: '$34.99', freeShipping: true }], buyText: 'Buy Now' },
+  { id: 'haitian-creole', language: 'Haitian Creole', flag: '🇭🇹', formats: [{ type: 'eBook', price: '$9.99', freeShipping: false }, { type: 'Paperback', price: '$29.99', freeShipping: true }, { type: 'Hardcover', price: '$34.99', freeShipping: true }], buyText: 'Achte Kounye a' },
+  { id: 'french', language: 'French', flag: '🇫🇷', formats: [{ type: 'eBook', price: '$9.99', freeShipping: false }, { type: 'Paperback', price: '$29.99', freeShipping: true }, { type: 'Hardcover', price: '$34.99', freeShipping: true }], buyText: 'Acheter maintenant' },
+  { id: 'spanish', language: 'Spanish', flag: '🇪🇸', formats: [{ type: 'eBook', price: '$9.99', freeShipping: false }, { type: 'Paperback', price: '$29.99', freeShipping: true }, { type: 'Hardcover', price: '$34.99', freeShipping: true }], buyText: 'Comprar ahora' },
 ]
 
 export default function BooksPage() {
@@ -62,19 +23,11 @@ export default function BooksPage() {
   const handleBuy = (editionId: string) => {
     const edition = editions.find(e => e.id === editionId)
     const format = selectedFormats[editionId]
-    if (!format) {
-      alert('Please select a format first')
-      return
-    }
+    if (!format) { alert('Please select a format first'); return }
     if (edition && format) {
       const formatData = edition.formats.find(f => f.type === format)
       const price = formatData?.price.replace('$', '') || '9.99'
-      addItem({
-        id: editionId + '-' + format,
-        name: edition.language + ' Edition - ' + format,
-        price: parseFloat(price),
-        note: 'Book purchase'
-      })
+      addItem({ id: editionId + '-' + format, name: edition.language + ' Edition - ' + format, price: parseFloat(price), note: 'Book purchase' })
       router.push('/cart')
     }
   }
@@ -102,40 +55,44 @@ export default function BooksPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-24 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0b1a2e] via-[#0f2847] to-[#0b1a2e]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(27,99,245,0.2),transparent_60%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(69,69,69,0.3),transparent_60%)]" />
+      <main className="min-h-screen pt-24 pb-16 relative overflow-hidden bg-black">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(30,58,138,0.25),_transparent_60%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-500/[0.08] rounded-full blur-[120px]" />
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[150px]" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[150px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.6)_100%)]" />
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(59,130,246,0.5) 0px, rgba(59,130,246,0.5) 1px, transparent 1px, transparent 20px)` }} />
+          <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`, backgroundSize: '180px 180px' }} />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* HERO */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#1b63f5]/10 border border-[#1b63f5]/20 rounded-full text-[#1b63f5] text-xs font-semibold uppercase tracking-wider mb-6">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-300 text-xs font-semibold uppercase tracking-wider mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
               LIMBIZ™ Books & Guides
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
               Build Smarter with<br />
-              <span className="text-[#1b63f5]">LIMBIZ™ Books & Guides</span>
+              <span className="text-blue-400">LIMBIZ™ Books & Guides</span>
             </h1>
             <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto mb-8">
               Practical business education designed to help entrepreneurs start, structure, fund, grow, and protect their businesses in the United States.
             </p>
-            <a href="#editions" className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#1b63f5] hover:bg-[#1557d6] rounded-full text-white font-semibold shadow-lg shadow-[#1b63f5]/20 transition">
+            <a href="#editions" className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-500/10 backdrop-blur-xl border border-blue-400/30 hover:border-blue-300/50 hover:bg-blue-500/20 rounded-full text-white font-semibold transition">
               Explore Books & Guides
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <ArrowRight className="w-4 h-4" strokeWidth={2} />
             </a>
           </motion.div>
 
-          {/* FEATURED BOOK */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] rounded-3xl p-6 md:p-10 mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-blue-950/40 backdrop-blur-xl border border-blue-400/20 rounded-3xl p-6 md:p-10 mb-16">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="relative">
                 <img src="/books/28-steps-english.jpg" alt="28 Essential Steps - English Edition" className="w-full max-w-sm h-auto rounded-2xl shadow-2xl mx-auto" />
               </div>
               <div>
-                <span className="text-[#1b63f5] text-xs font-bold uppercase tracking-wider">Featured Book</span>
+                <span className="text-blue-400 text-xs font-bold uppercase tracking-wider">Featured Book</span>
                 <h2 className="text-xl md:text-2xl font-bold text-white mt-2 mb-4">
                   28 Essential Steps to Build a Strong and<br />
                   Successful Business in the United States
@@ -151,14 +108,13 @@ export default function BooksPage() {
             </div>
           </motion.div>
 
-          {/* EDITIONS */}
           <div id="editions" className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">Available Languages & Formats</h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {editions.map((edition) => (
-                <motion.div key={edition.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-5 flex flex-col hover:border-[#1b63f5]/40 transition">
-                  <div className="aspect-[3/4] bg-gradient-to-br from-[#1b63f5]/15 to-[#454545]/25 rounded-xl mb-4 overflow-hidden">
+                <motion.div key={edition.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-blue-950/40 backdrop-blur-xl border border-blue-400/20 rounded-2xl p-5 flex flex-col hover:border-blue-400/40 transition">
+                  <div className="aspect-[3/4] bg-gradient-to-br from-blue-500/15 to-blue-900/25 rounded-xl mb-4 overflow-hidden">
                     <img src={getCoverImage(edition.id)} alt={edition.language} className="w-full h-full object-cover" />
                   </div>
 
@@ -172,7 +128,7 @@ export default function BooksPage() {
                         onClick={() => setSelectedFormats({ [edition.id]: format.type })}
                         className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition ${
                           selectedFormats[edition.id] === format.type
-                            ? 'bg-[#1b63f5]/20 border border-[#1b63f5]/50 text-white'
+                            ? 'bg-blue-500/20 border border-blue-400/50 text-white'
                             : 'bg-white/[0.02] border border-white/[0.05] text-white/40 hover:text-white'
                         }`}
                       >
@@ -189,7 +145,7 @@ export default function BooksPage() {
                     ))}
                   </div>
 
-                  <button onClick={() => handleBuy(edition.id)} className="mt-auto w-full py-2.5 bg-[#1b63f5] hover:bg-[#1557d6] rounded-xl text-white text-sm font-semibold transition">
+                  <button onClick={() => handleBuy(edition.id)} className="mt-auto w-full py-2.5 bg-blue-500/10 backdrop-blur-xl border border-blue-400/30 hover:border-blue-300/50 hover:bg-blue-500/20 rounded-xl text-white text-sm font-semibold transition">
                     {edition.buyText}
                   </button>
                 </motion.div>
@@ -199,7 +155,7 @@ export default function BooksPage() {
 
           <div className="text-center">
             <p className="text-white/30 text-sm mb-4">Questions about the book?</p>
-            <a href="/contact" className="text-[#1b63f5] hover:text-[#1557d6] font-semibold">Contact us →</a>
+            <a href="/contact" className="text-blue-400 hover:text-blue-300 font-semibold">Contact us →</a>
           </div>
         </div>
       </main>

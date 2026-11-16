@@ -23,49 +23,75 @@ export default function Roadmap() {
       </div>
 
       <section className="relative py-20 md:py-28 overflow-hidden bg-black">
+        {/* FOTO BACKGROUND ak <img> */}
+        <img
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
+          alt="Business skyline"
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+        />
+
+        {/* OVERLAY FONSE */}
+        <div className="absolute inset-0 bg-black/60" />
+
+        {/* BACKGROUND KOUCH (grid + glow + vignette + dyagonal + noise) */}
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:40px_40px]" />
-          <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-blue-500/8 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-purple-500/8 rounded-full blur-[120px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(30,58,138,0.25),_transparent_60%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-500/[0.08] rounded-full blur-[120px]" />
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[150px]" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[150px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.6)_100%)]" />
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `repeating-linear-gradient(45deg, rgba(59,130,246,0.5) 0px, rgba(59,130,246,0.5) 1px, transparent 1px, transparent 20px)`,
+            }}
+          />
+          <div
+            className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+              backgroundSize: '180px 180px',
+            }}
+          />
         </div>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <motion.p 
-              initial={{ opacity: 0, y: 10 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               className="text-blue-400/60 text-xs uppercase tracking-[0.3em] font-light mb-3"
             >
               Your Business Journey
             </motion.p>
-            <motion.h2 
-              initial={{ opacity: 0, y: 10 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               className="text-3xl md:text-4xl lg:text-5xl font-light text-white/90 tracking-tight"
             >
               From <span className="font-bold text-blue-400">Idea</span> to <span className="font-bold text-blue-400">Expansion</span>
             </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 10 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="mt-3 text-white/30 text-sm font-light tracking-wide"
             >
               Your complete business journey in one seamless platform
             </motion.p>
-            <motion.div 
-              initial={{ width: 0 }} 
-              whileInView={{ width: 40 }} 
-              viewport={{ once: true }} 
-              transition={{ duration: 0.8, delay: 0.3 }} 
-              className="h-px bg-gradient-to-r from-blue-400/50 to-purple-400/50 rounded-full mx-auto mt-4" 
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: 40 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="h-px bg-gradient-to-r from-blue-400/50 to-blue-400/30 rounded-full mx-auto mt-4"
             />
           </div>
 
-          {/* Timeline design premium */}
+          {/* Timeline */}
           <div className="relative">
-            {/* Ligne centrale */}
             <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/30 via-blue-500/10 to-blue-500/30 -translate-x-1/2" />
 
             <div className="space-y-0">
@@ -78,25 +104,23 @@ export default function Roadmap() {
                   transition={{ delay: idx * 0.05 }}
                   className={`relative flex items-center ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
                 >
-                  {/* Point central */}
                   <div className="absolute left-1/2 -translate-x-1/2 z-10">
                     <div className="w-4 h-4 rounded-full bg-blue-500/30 border-2 border-blue-400/50 shadow-[0_0_15px_rgba(59,130,246,0.3)] flex items-center justify-center">
                       <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                     </div>
                   </div>
 
-                  {/* Carte étape */}
                   <div className={`w-1/2 ${idx % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
                     <motion.div
                       whileHover={{ scale: 1.02, y: -2 }}
-                      className="inline-block bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-4 hover:border-blue-400/30 hover:bg-white/[0.06] transition-all duration-300 group"
+                      className="inline-block bg-blue-950/40 backdrop-blur-xl border border-blue-400/20 rounded-2xl p-4 hover:border-blue-400/40 hover:bg-blue-900/40 transition-all duration-300 group"
                     >
                       <div className={`flex items-center gap-3 ${idx % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}>
-                        <div className="p-2 bg-blue-500/10 rounded-xl text-blue-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
+                        <div className="p-2 bg-blue-500/10 rounded-xl text-blue-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-all duration-300">
                           {step.icon}
                         </div>
                         <div>
-                          <span className="text-white/20 text-[10px] font-mono block">0{step.id}</span>
+                          <span className="text-blue-300/40 text-[10px] font-mono block">0{step.id}</span>
                           <h4 className="text-white font-semibold text-sm group-hover:text-blue-300 transition-colors">{step.label}</h4>
                         </div>
                       </div>
@@ -106,9 +130,8 @@ export default function Roadmap() {
               ))}
             </div>
 
-            {/* Point final */}
             <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-4 z-10">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 shadow-[0_0_25px_rgba(59,130,246,0.5)] flex items-center justify-center">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.5)] flex items-center justify-center">
                 <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
             </div>
