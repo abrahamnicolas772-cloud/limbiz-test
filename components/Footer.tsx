@@ -78,10 +78,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-2.5 text-white/50 text-sm">
-              <li><Link href="/services/formation" className="hover:text-blue-400 transition">Business Formation</Link></li>
-              <li><Link href="/services/credit-hub" className="hover:text-blue-400 transition">Credit Hub</Link></li>
-              <li><Link href="/services/funding-center" className="hover:text-blue-400 transition">Funding Center</Link></li>
-              <li><Link href="/services/tax-filings" className="hover:text-blue-400 transition">Tax Filings</Link></li>
+              <li><Link href="/services" className="hover:text-blue-400 transition">Business Formation</Link></li>
+              <li><Link href="/credit-hub" className="hover:text-blue-400 transition">Credit Hub</Link></li>
+              <li><Link href="/funding-center" className="hover:text-blue-400 transition">Funding Center</Link></li>
+              <li><Link href="/tax-filings" className="hover:text-blue-400 transition">Tax Filings</Link></li>
               <li><Link href="/academy" className="hover:text-blue-400 transition">Academy</Link></li>
               <li><Link href="/rewards" className="hover:text-blue-400 transition">Rewards</Link></li>
             </ul>
@@ -91,16 +91,16 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Resources</h4>
             <ul className="space-y-2.5 text-white/50 text-sm">
-              <li><Link href="/resources/guides" className="hover:text-blue-400 transition">Startup Guides</Link></li>
-              <li><Link href="/resources/templates" className="hover:text-blue-400 transition">Templates</Link></li>
+              <li><Link href="/resources" className="hover:text-blue-400 transition">Startup Guides</Link></li>
+              <li><Link href="/resources" className="hover:text-blue-400 transition">Templates</Link></li>
               <li><Link href="/books" className="hover:text-blue-400 transition">Books & Guides</Link></li>
               <li><Link href="/tools" className="hover:text-blue-400 transition">Business Tools</Link></li>
-              <li><Link href="/faq" className="hover:text-blue-400 transition">FAQ</Link></li>
+              <li><Link href="/#faq" className="hover:text-blue-400 transition">FAQ</Link></li>
               <li><Link href="/pricing" className="hover:text-blue-400 transition">State Pricing</Link></li>
             </ul>
           </div>
 
-          {/* Colonne 4 : International (san flag) */}
+          {/* Colonne 4 : International */}
           <div>
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">International</h4>
             <ul className="space-y-2.5 text-white/50 text-sm">
@@ -188,9 +188,17 @@ export default function Footer() {
               </span>
           </div>
 
-          {/* Copyright */}
+          {/* Copyright ak lyen Nicolas */}
           <div className="text-white/20 text-xs text-center md:text-right">
-            © {currentYear} Limitless Biz Hub LLC. All Rights Reserved. Dev <button>By</button>  Nicolas
+            © {currentYear} Limitless Biz Hub LLC. All Rights Reserved. Dev{' '}
+            <a
+              href="https://nicolabs.space"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/30 hover:text-blue-400 transition underline-offset-2 hover:underline"
+            >
+              By Nicolas
+            </a>
           </div>
         </div>
 
