@@ -26,31 +26,31 @@ export default function Footer() {
     <footer className="relative bg-black border-t border-white/5 py-16 overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ===== HAUT : Logo + Newsletter ===== */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-white/5">
           <div className="flex items-center gap-3">
           </div>
-          
+
           <form onSubmit={handleSubscribe} className="flex gap-2 w-full max-w-md">
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              placeholder="Join the LIMBIZ Community..." 
-              className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 transition text-sm" 
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Join the LIMBIZ Community..."
+              className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 transition text-sm"
             />
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 rounded-xl text-white text-sm font-semibold flex items-center gap-1.5 transition shadow-lg shadow-blue-500/20"
             >
-              Subscribe 
+              Subscribe
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
           </form>
-          
+
           {error && <p className="text-red-400 text-xs">{error}</p>}
           {subscribed && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-green-400 text-xs">
@@ -59,9 +59,9 @@ export default function Footer() {
           )}
         </div>
 
-        {/* ===== 4 COLONNES (Company, Services, Resources, Legal) ===== */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10">
-          
+        {/* ===== 5 COLONNES ===== */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 py-10">
+
           {/* Colonne 1 : Company */}
           <div>
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Company</h4>
@@ -100,7 +100,29 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Colonne 4 : Legal */}
+          {/* Colonne 4 : International (san flag) */}
+          <div>
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">International</h4>
+            <ul className="space-y-2.5 text-white/50 text-sm">
+              <li>
+                <a href="https://limbiz.fr" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
+                  France <span className="text-white/20 text-xs">limbiz.fr</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://limbiz.ca" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
+                  Canada <span className="text-white/20 text-xs">limbiz.ca</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://limbiz.ht" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
+                  Haiti <span className="text-white/20 text-xs">limbiz.ht</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Colonne 5 : Legal */}
           <div>
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Legal</h4>
             <ul className="space-y-2.5 text-white/50 text-sm">
@@ -119,7 +141,7 @@ export default function Footer() {
 
         {/* ===== BAS : Social + Contact + Copyright ===== */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/5">
-          
+
           {/* Social Media */}
           <div className="flex items-center gap-4">
             <a href="https://www.tiktok.com/@limbiz00" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-blue-400 transition" aria-label="TikTok">
@@ -150,9 +172,9 @@ export default function Footer() {
               <a href="mailto:hello@golimbiz.com" className="hover:text-blue-400 transition flex items-center gap-1.5">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 <div>
-                  
+
                   <p className="text-white hover:text-blue-300 transition text-sm font-medium">hello@golimbiz.com</p>
-                
+
                 </div>
               </a>
             <a href="tel:+13212977988" className="hover:text-blue-400 transition flex items-center gap-1.5">
@@ -168,14 +190,14 @@ export default function Footer() {
 
           {/* Copyright */}
           <div className="text-white/20 text-xs text-center md:text-right">
-            © {currentYear} Limitless Biz Hub LLC. All Rights Reserved. Dev <button>By</button>  Nicolas 
+            © {currentYear} Limitless Biz Hub LLC. All Rights Reserved. Dev <button>By</button>  Nicolas
           </div>
         </div>
 
         {/* Disclaimer supplémentaire */}
         <div className="mt-6 text-center text-white/10 text-[10px] leading-relaxed max-w-4xl mx-auto">
-          LIMBIZ provides guidance, assistance, and support for business formation, credit readiness, funding preparation, 
-          tax setup, and digital presence. We do not guarantee funding, credit approval, tax outcomes, or government approval. 
+          LIMBIZ provides guidance, assistance, and support for business formation, credit readiness, funding preparation,
+          tax setup, and digital presence. We do not guarantee funding, credit approval, tax outcomes, or government approval.
           State filing fees and processing times are subject to change. Please review our policies for complete terms.
         </div>
       </div>

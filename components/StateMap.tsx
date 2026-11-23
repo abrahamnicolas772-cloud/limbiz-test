@@ -11,7 +11,6 @@ interface StateMapProps {
   selectedState?: string
 }
 
-// Centroïdes approximatifs pour les labels
 const centroids: Record<string, [number, number]> = {
   'AL': [-86.8, 32.7], 'AK': [-153, 63], 'AZ': [-112, 34.5], 'AR': [-92.4, 34.8],
   'CA': [-119.5, 36.8], 'CO': [-105.5, 39], 'CT': [-72.7, 41.6], 'DE': [-75.5, 39],
@@ -30,7 +29,24 @@ const centroids: Record<string, [number, number]> = {
 
 export default function StateMap({ onStateSelect, selectedState }: StateMapProps) {
   const [hoveredAbbr, setHoveredAbbr] = useState<string | null>(null)
-  const getAbbr = (geo: any) => geo.properties.iso_3166_2 || geo.properties.abbr || geo.properties.postal
+
+  const getAbbr = (geo: any) => {
+    const props = geo.properties
+    // Teste plizyè pwopriyete posib
+    if (props.iso_3166_2) return props.iso_3166_2
+    if (props.abbr) return props.abbr
+    if (props.postal) return props.postal
+    if (props.STUSPS) return props.STUSPS
+    // Si gen 'name' (ex: "California"), chèche abbr ki koresponn
+    if (props.name) {
+      const found = Object.entries(stateByAbbr).find(
+        ([abbr, s]) => s.name.toLowerCase() === props.name.toLowerCase()
+      )
+      if (found) return found[0]
+    }
+    return null
+  }
+
   const hoveredState = hoveredAbbr ? stateByAbbr[hoveredAbbr] : null
 
   return (
@@ -43,7 +59,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
           </div>
         ) : (
           <span className="text-white/15 text-xs font-light tracking-wide">
-            Hover over a state or use the dropdown to see specific pricing.
+            Click a state or use the dropdown to see specific pricing.
           </span>
         )}
       </div>
@@ -67,7 +83,12 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    // Pas de onClick - sélection par dropdown
+                    onClick={() => {
+                      console.log('KLIK:', abbr, 'state:', state, 'geo.properties:', geo.properties)
+                      if (state) {
+                        onStateSelect(state.slug)
+                      }
+                    }}
                     onMouseEnter={() => { if (isActive) setHoveredAbbr(abbr) }}
                     onMouseLeave={() => setHoveredAbbr(null)}
                     style={{
@@ -76,12 +97,14 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                         stroke: isSelected ? '#60a5fa' : isActive ? '#1a3050' : '#0d1525',
                         strokeWidth: isSelected ? 1.2 : 0.5,
                         outline: 'none',
+                        cursor: isActive ? 'pointer' : 'default',
                       },
                       hover: {
                         fill: isActive ? '#1e4d8c' : '#081020',
                         stroke: isActive ? '#3b7abf' : '#0d1525',
                         strokeWidth: 1,
                         outline: 'none',
+                        cursor: isActive ? 'pointer' : 'default',
                       },
                       pressed: {
                         fill: '#2563eb',
@@ -96,13 +119,12 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
             }
           </Geographies>
 
-          {/* Labels via Marker */}
           {Object.entries(centroids).map(([abbr, coords]) => {
             const state = stateByAbbr[abbr]
             if (!state) return null
             const isSelected = state.slug === selectedState
             const isHovered = hoveredAbbr === abbr
-            
+
             return (
               <Marker key={abbr} coordinates={coords}>
                 <text
@@ -117,6 +139,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
                     strokeWidth: "2px",
                     strokeLinecap: 'round',
                     strokeLinejoin: 'round',
+                    pointerEvents: 'none',
                   }}
                 >
                   {abbr}
@@ -128,7 +151,7 @@ export default function StateMap({ onStateSelect, selectedState }: StateMapProps
       </div>
 
       <p className="text-center text-white/15 text-[10px] font-light tracking-wide mt-3">
-        Hover over a state to see its abbreviation - Use dropdown to select
+        Click a state to select it — or use the dropdown above
       </p>
     </div>
   )
