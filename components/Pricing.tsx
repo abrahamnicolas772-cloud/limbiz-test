@@ -324,9 +324,7 @@ export default function Pricing({ initialState = 'florida', onStateSelect }: Pri
                       Add to Cart
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </button>
-                    <Link href="/contact" className="w-full py-2.5 border border-white/[0.1] text-white/60 hover:text-white hover:bg-white/[0.05] rounded-full text-sm transition text-center block backdrop-blur-sm">
-                      Book a Consultation
-                    </Link>
+                    
                   </div>
                 </motion.div>
               )

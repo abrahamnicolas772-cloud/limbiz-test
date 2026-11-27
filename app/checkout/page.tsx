@@ -9,6 +9,40 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 type Step = 'review' | 'payment' | 'processing' | 'success'
 
+const INTERNATIONAL_PACKAGES: Record<string, { name: string; price: number; features: string[] }> = {
+  starter: {
+    name: 'International Starter',
+    price: 1449,
+    features: [
+      'LLC filing assistance (one entity / one state)',
+      'Business name research (one selected state)',
+      'EIN application assistance',
+      'Initial setup consultation',
+      'Starter website: 1-4 pages',
+      'Simple logo (JPEG, PNG, editable files)',
+      'Registered agent referral & setup coordination',
+      'Filing records delivery',
+      'Startup next-steps checklist',
+      'Basic compliance checklist',
+    ],
+  },
+  plus: {
+    name: 'International Plus',
+    price: 2349,
+    features: [
+      'LLC filing assistance (one entity / one state)',
+      'Expanded name, domain and brand research',
+      'EIN application assistance',
+      'Initial + follow-up consultation and expanded planning',
+      'Professional website: 5-8 pages',
+      'Full brand guidelines (logo, colors, typography)',
+      'Registered agent onboarding coordination',
+      'Business address onboarding coordination',
+      'Comprehensive launch checklist',
+    ],
+  },
+}
+
 function CheckoutContent() {
   const searchParams = useSearchParams()
   const plan = searchParams.get('plan') || 'basic'
@@ -18,9 +52,11 @@ function CheckoutContent() {
   const bookFormat = searchParams.get('format') || 'eBook'
   const needsDBA = searchParams.get('dba') === 'yes'
   const isFromCart = searchParams.get('cart') === 'true'
-  const isSingleService = !!service && !isFromCart && !service.includes('Edition')
+  const internationalPkg = searchParams.get('international') || ''
+  const isInternational = !!internationalPkg && !!INTERNATIONAL_PACKAGES[internationalPkg]
+  const isSingleService = !!service && !isFromCart && !service.includes('Edition') && !isInternational
   const { items: cartItems, total: cartTotal, clearCart } = useCart()
-  
+
   const [step, setStep] = useState<Step>('review')
   const [paymentMethod, setPaymentMethod] = useState('card')
   const [cardNumber, setCardNumber] = useState('')
@@ -57,17 +93,20 @@ function CheckoutContent() {
     : bookFormat === 'Paperback'
     ? ['Free Shipping', 'Physical Book', 'Ships in 3-5 Days', 'Printed Edition']
     : ['Free Shipping', 'Premium Hardcover', 'Ships in 3-5 Days', 'Collector Edition']
-  
+
+  // === PAKÈ INTERNATIONAL ===
+  const internationalData = isInternational ? INTERNATIONAL_PACKAGES[internationalPkg] : null
+
   // Pou liv
-  const bookPlan = { 
-    name: service, 
-    price: bookPrice, 
-    component: bookPrice, 
-    stateFee: 0, 
-    features: bookFeatures 
+  const bookPlan = {
+    name: service,
+    price: bookPrice,
+    component: bookPrice,
+    stateFee: 0,
+    features: bookFeatures
   }
-  
-  // Pou plan biznis - itilize pricing config
+
+  // Pou plan biznis nòmal
   const packageConfig = packages[plan] || packages.basic
   const componentPrice = packageConfig.package_component_usd
   const businessPlan = {
@@ -77,31 +116,38 @@ function CheckoutContent() {
     price: componentPrice + stateFee,
     features: packageConfig.additional_services.map((s: any) => s.label_en)
   }
-  
+
   const selectedPlan = isBook ? bookPlan : businessPlan
   const dbaFee = needsDBA && !isBook && stateConfig ? getDBAFee(stateConfig.code) : 0
-  const total = isSingleService ? bookPrice : (isFromCart ? cartTotal : (isBook ? bookPrice : (businessPlan.price + dbaFee)))
-  
-  // Detèmine si gen unresolved required inputs
-  const hasUnresolvedInputs = !isBook && stateConfig && (
+
+  // Kalkil total selon tip
+  let total: number
+  if (isInternational && internationalData) {
+    total = internationalData.price
+  } else if (isSingleService) {
+    total = bookPrice
+  } else if (isFromCart) {
+    total = cartTotal
+  } else if (isBook) {
+    total = bookPrice
+  } else {
+    total = businessPlan.price + dbaFee
+  }
+
+  const hasUnresolvedInputs = !isBook && !isInternational && stateConfig && (
     stateConfig.required_inputs_before_final_quote.some(input => {
       if (input === 'filing_method') return !filingMethod
       if (input === 'member_count') return !memberCount || memberCount < 1
-      return true // Lòt inputs pa rezoud
+      return true
     }) ||
     (!stateConfig.baseline_is_final_checkout_amount && stateConfig.unresolved_outside_fee_may_apply)
   )
   const component = isBook ? bookPrice : businessPlan.component
   const displayStateFee = isBook ? 0 : businessPlan.stateFee
 
-
-  
   const applyPromo = () => {
     const validCodes: Record<string, number> = {
-      'LIMBIZ10': 10,
-      'LIMBIZ20': 20,
-      'WELCOME15': 15,
-      'BOOK5': 5,
+      'LIMBIZ10': 10, 'LIMBIZ20': 20, 'WELCOME15': 15, 'BOOK5': 5,
     }
     if (validCodes[promoCode.toUpperCase()]) {
       setPromoApplied(true)
@@ -123,9 +169,7 @@ function CheckoutContent() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ amount: total, currency: 'USD' }),
         })
-
         const data = await response.json()
-
         if (data.approvalUrl) {
           window.location.href = data.approvalUrl
         } else {
@@ -157,7 +201,7 @@ function CheckoutContent() {
 
       <div className="relative z-10 w-full max-w-4xl">
         <div className="flex items-center justify-between mb-6">
-          <Link href="/pricing" className="text-white/30 hover:text-white/60 text-xs flex items-center gap-1.5 transition">
+          <Link href={isInternational ? '/international' : '/pricing'} className="text-white/30 hover:text-white/60 text-xs flex items-center gap-1.5 transition">
             <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back
           </Link>
           <div className="flex items-center gap-2">
@@ -170,9 +214,9 @@ function CheckoutContent() {
           <div className="lg:col-span-3">
             <motion.div layout className="relative bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06] rounded-3xl p-6 shadow-2xl overflow-hidden">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              
+
               <AnimatePresence mode="wait">
-                                {step === 'review' && (
+                {step === 'review' && (
                   <motion.div key="review" initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-10}}>
                     {service && (
                       <div className="mb-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
@@ -180,7 +224,13 @@ function CheckoutContent() {
                         <p className="text-white text-sm">{service}</p>
                       </div>
                     )}
-                    {!isBook && stateConfig && stateConfig.required_inputs_before_final_quote && stateConfig.required_inputs_before_final_quote.length > 0 && (
+                    {isInternational && internationalData && (
+                      <div className="mb-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                        <p className="text-blue-300 text-xs font-semibold">International Package</p>
+                        <p className="text-white text-sm">{internationalData.name}</p>
+                      </div>
+                    )}
+                    {!isBook && !isInternational && stateConfig && stateConfig.required_inputs_before_final_quote && stateConfig.required_inputs_before_final_quote.length > 0 && (
                       <div className="mb-4 p-3 bg-amber-500/5 border border-amber-500/20 rounded-xl">
                         <p className="text-amber-300 text-[10px] uppercase tracking-wider font-semibold mb-2">Required for accurate quote</p>
                         {stateConfig.required_inputs_before_final_quote.includes('filing_method') && stateConfig.method_state_fee_usd && (
@@ -215,7 +265,7 @@ function CheckoutContent() {
                       </div>
                     )}
                     <h2 className="text-base font-bold text-white mb-0.5">Your Information</h2>
-<p className="text-white/30 text-xs mb-3">Fill in your details</p>
+                    <p className="text-white/30 text-xs mb-3">Fill in your details</p>
                     <div className="space-y-2.5">
                       <div className="grid grid-cols-2 gap-3">
                         <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white placeholder-white/15 text-sm focus:border-blue-400/50 focus:outline-none transition" />
@@ -225,7 +275,7 @@ function CheckoutContent() {
                       <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white placeholder-white/15 text-sm focus:border-blue-400/50 focus:outline-none transition" />
                       <div className="grid grid-cols-2 gap-3">
                         <input type="text" value={businessName} onChange={(e) => setBusinessName(e.target.value)} placeholder="Business Name" className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white placeholder-white/15 text-sm focus:border-blue-400/50 focus:outline-none transition" />
-                        <input type="text" value={isBook ? "Book Purchase" : state.toUpperCase()} disabled className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white/60 text-sm" />
+                        <input type="text" value={isBook ? "Book Purchase" : isInternational ? "International" : state.toUpperCase()} disabled className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl text-white/60 text-sm" />
                       </div>
                       <div className="flex items-center gap-2 text-white/15 text-[10px] pt-1"><span>We accept:</span> PayPal • Stripe • Visa • Mastercard • Bank</div>
                       <label className="flex items-start gap-2 cursor-pointer"><input type="checkbox" checked={agreeTerms} onChange={(e) => setAgreeTerms(e.target.checked)} className="mt-0.5 accent-blue-500" /><span className="text-white/30 text-xs">I agree to the <Link href="/terms" className="text-blue-400 underline">Terms</Link></span></label>
@@ -257,7 +307,7 @@ function CheckoutContent() {
                       </div>
                     )}
                     <button onClick={hasUnresolvedInputs ? () => window.location.href = '/contact?type=quote' : handlePay} className={`w-full mt-4 py-3 rounded-xl font-semibold text-sm transition ${hasUnresolvedInputs ? 'bg-amber-600 hover:bg-amber-500 text-white' : 'bg-blue-600 hover:bg-blue-500 text-white'}`}>
-                      {hasUnresolvedInputs ? 'Request a Quote' : `Pay ${total}`}
+                      {hasUnresolvedInputs ? 'Request a Quote' : `Pay $${total}`}
                     </button>
                   </motion.div>
                 )}
@@ -273,7 +323,9 @@ function CheckoutContent() {
                   <motion.div key="success" initial={{opacity:0,scale:0.9}} animate={{opacity:1,scale:1}} className="flex flex-col items-center justify-center py-12 text-center">
                     <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">✅</div>
                     <h3 className="text-xl font-bold text-white mb-2">Payment Successful!</h3>
-                    <p className="text-white/40 text-sm mb-6">{service || (selectedPlan.name + " Plan")} is now active.</p>
+                    <p className="text-white/40 text-sm mb-6">
+                      {isInternational && internationalData ? internationalData.name : service || (selectedPlan.name + " Plan")} is now active.
+                    </p>
                     <div className="flex gap-3">
                       <Link href="/dashboard" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 rounded-xl text-white text-xs transition">Dashboard</Link>
                       <Link href="/" className="px-5 py-2.5 border border-white/10 hover:border-white/20 rounded-xl text-white/50 text-xs transition">Home</Link>
@@ -284,12 +336,37 @@ function CheckoutContent() {
             </motion.div>
           </div>
 
+          {/* ORDER SUMMARY */}
           <div className="lg:col-span-2">
             <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06] rounded-3xl p-5">
               <h3 className="text-white font-semibold text-sm mb-3">Order Summary</h3>
-              
-              {/* SÈVIS ENDIVIDYÈL */}
-              {isSingleService ? (
+
+              {/* PAKÈ INTERNATIONAL */}
+              {isInternational && internationalData ? (
+                <>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-white text-sm">{internationalData.name}</span>
+                    <span className="bg-blue-500/15 text-blue-300 text-[10px] px-2 py-0.5 rounded-full">International</span>
+                  </div>
+                  <p className="text-white/25 text-xs mb-3">Complete U.S. business package</p>
+                  <div className="space-y-1.5 mb-3 text-sm max-h-40 overflow-y-auto">
+                    {internationalData.features.slice(0, 6).map((f, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <span className="text-emerald-400 text-xs mt-0.5">✓</span>
+                        <span className="text-white/50 text-xs">{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-white/[0.05] pt-2 mb-3">
+                    <div className="flex justify-between">
+                      <span className="text-white font-semibold">Total</span>
+                      <span className="text-blue-400 font-bold text-lg">${internationalData.price}</span>
+                    </div>
+                    <p className="text-white/25 text-[9px] mt-1">Plus state fees and applicable third-party charges.</p>
+                  </div>
+                </>
+              ) : isSingleService ? (
+                /* SÈVIS ENDIVIDYÈL */
                 <>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-white text-sm">{service}</span>
@@ -349,7 +426,7 @@ function CheckoutContent() {
                   </div>
                 </>
               ) : (
-                /* PACKAGE */
+                /* PACKAGE NÒMAL */
                 <>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-white text-sm">{selectedPlan.name} Plan</span>

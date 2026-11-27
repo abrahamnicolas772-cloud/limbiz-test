@@ -111,7 +111,7 @@ export default function Navbar() {
                       {openSubmenu === menu.id && (
                         <div className="ml-6 mt-1 space-y-0.5 border-l border-white/10 pl-3">
                           {menu.links.map((label) => (
-                            <Link key={label} href="/services" onClick={() => { setServicesOpen(false); setOpenSubmenu(null) }} className="block px-3 py-1.5 text-white/50 hover:text-white hover:bg-white/5 rounded-lg text-xs transition">
+                            <Link key={label} href="/#services" onClick={() => { setServicesOpen(false); setOpenSubmenu(null) }} className="block px-3 py-1.5 text-white/50 hover:text-white hover:bg-white/5 rounded-lg text-xs transition">
                               {label}
                             </Link>
                           ))}
@@ -205,7 +205,7 @@ export default function Navbar() {
         <div className="md:hidden bg-black/95 border-t border-white/10 py-4">
           <div className="flex flex-col items-center gap-3">
             <Link href="/" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Home</Link>
-            <Link href="/services" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Services</Link>
+            <Link href="/#services" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Services</Link>
             <Link href="/pricing" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Pricing</Link>
             <Link href="/ecosystem" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Ecosystem</Link>
             <Link href="/books" onClick={()=>setIsOpen(false)} className="text-white/70 text-sm">Books & Guides</Link>

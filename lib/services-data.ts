@@ -63,7 +63,6 @@ export const serviceCategories: ServiceCategory[] = [
     title: 'International Services',
     description: 'Supporting international entrepreneurs with U.S. business formation.',
     services: [
-      { name: 'ITIN Application Assistance', price: '$450', unit: '/applicant', note: 'Application assistance, case coordination and follow-up through LIMBIZ and its ITIN partner.' },
       { name: 'Foreign-Owned U.S. LLC Formation', price: '$499', unit: '', note: 'One U.S. LLC in one state. State fees, EIN, address, Registered Agent and tax reporting are separate services.' },
       { name: 'EIN for Foreign Owners', price: '$199', unit: '', note: 'One international EIN application handled by LIMBIZ with client authorization.' },
       { name: 'International Business Formation', price: 'Custom quote', unit: '', note: 'Other countries or entity structures. Route standard foreign-owned U.S. LLC requests to the $499 service.' },

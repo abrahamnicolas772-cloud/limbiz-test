@@ -5,7 +5,8 @@ import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
-import { ArrowRight, Check, MessageCircle, MapPin, FileText, Globe } from 'lucide-react'
+import { ArrowRight, Check, MessageCircle, MapPin, FileText, Globe, ShoppingCart } from 'lucide-react'
+import { useCart } from '@/context/CartContext'
 
 // WhatsApp LIMBIZ — ranplase ak nimewo ofisyèl la
 const WHATSAPP_NUMBER = '50912345678'
@@ -64,17 +65,28 @@ const countries = [
 
 export default function InternationalPage() {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null)
+  const { addItem } = useCart()
+
+  const handleAddToCart = (pkg: typeof packages[0]) => {
+    addItem({
+      id: `international-${pkg.id}`,
+      name: pkg.name,
+      price: parseInt(pkg.price.replace('$', '').replace(',', '')),
+      unit: 'USD',
+      note: 'International Business Package'
+    })
+    setSelectedPackage(pkg.id)
+  }
 
   const handleLaunch = () => {
     const pkg = selectedPackage || 'starter'
-    window.location.href = `/checkout?package=international-${pkg}&price=${pkg === 'starter' ? 1449 : 2349}`
+    window.location.href = `/checkout?international=${pkg}`
   }
 
   return (
     <>
       <Navbar />
       <main className="min-h-screen pt-16 md:pt-20 pb-16 relative overflow-hidden bg-black">
-        {/* Background 8 kouch */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(30,58,138,0.25),_transparent_60%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -87,7 +99,6 @@ export default function InternationalPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* HERO */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -106,7 +117,6 @@ export default function InternationalPage() {
             <div className="h-px w-20 bg-gradient-to-r from-transparent via-blue-400/60 to-transparent mx-auto mt-6" />
           </motion.div>
 
-          {/* 2 PAKÈ YO */}
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-12">
             {packages.map((pkg, idx) => (
               <motion.div
@@ -121,11 +131,9 @@ export default function InternationalPage() {
                 }`}
               >
                 <div className="relative bg-blue-950/60 backdrop-blur-xl rounded-2xl p-6 md:p-8 flex flex-col h-full overflow-hidden">
-                  {/* Top highlight */}
                   <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-300/40 to-transparent" />
                   <div className="absolute -top-16 -right-16 w-32 h-32 bg-blue-400/15 rounded-full blur-3xl" />
 
-                  {/* Header */}
                   <div className="relative mb-6">
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{pkg.name}</h3>
                     <div className="flex items-baseline gap-2">
@@ -137,7 +145,6 @@ export default function InternationalPage() {
                     </p>
                   </div>
 
-                  {/* Features */}
                   <div className="relative flex-1 space-y-2 mb-6">
                     {pkg.features.map((f, i) => (
                       <div key={i} className="flex items-start gap-2 text-xs">
@@ -150,17 +157,26 @@ export default function InternationalPage() {
                     ))}
                   </div>
 
-                  {/* Bouton chwazi */}
-                  <button
-                    onClick={() => setSelectedPackage(pkg.id)}
-                    className={`relative w-full py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                      selectedPackage === pkg.id
-                        ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30'
-                        : 'bg-white/[0.04] border border-white/10 text-white/70 hover:bg-white/[0.08] hover:text-white'
-                    }`}
-                  >
-                    {selectedPackage === pkg.id ? '✓ Selected' : 'Select Package'}
-                  </button>
+                  {/* Bouton yo */}
+                  <div className="relative space-y-2">
+                    <button
+                      onClick={() => handleAddToCart(pkg)}
+                      className="w-full py-3 bg-blue-500/20 backdrop-blur-sm border border-blue-400/40 hover:border-blue-300/60 hover:bg-blue-500/30 rounded-xl text-white text-sm font-semibold transition inline-flex items-center justify-center gap-2"
+                    >
+                      <ShoppingCart className="w-4 h-4" strokeWidth={2} />
+                      Add to Cart
+                    </button>
+                    <button
+                      onClick={() => setSelectedPackage(pkg.id)}
+                      className={`w-full py-2.5 rounded-xl text-xs font-medium transition-all duration-300 ${
+                        selectedPackage === pkg.id
+                          ? 'bg-blue-500/10 border border-blue-400/40 text-blue-300'
+                          : 'bg-white/[0.02] border border-white/10 text-white/50 hover:text-white'
+                      }`}
+                    >
+                      {selectedPackage === pkg.id ? '✓ Selected' : 'Select Package'}
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}

@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useCart } from '@/context/CartContext'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { serviceCategories } from '@/lib/services-data'
 import { ArrowRight, ShoppingCart, Check, FileText, ChevronDown } from 'lucide-react'
@@ -46,9 +47,17 @@ export default function ServicesPage() {
     return parseFloat(price.replace('$', '').replace('From ', '').replace(',', ''))
   }
 
-  const handleGetStarted = (service: any) => {
-    const price = parsePrice(service.price)
-    router.push(`/checkout?service=${encodeURIComponent(service.name)}&price=${price}`)
+  const handleGetStarted = (service: any, categoryId: string) => {
+    // Scroll nan kategori a epi ouvri l si li fèmen
+    if (openCategory !== categoryId) {
+      setOpenCategory(categoryId)
+    }
+    setTimeout(() => {
+      const element = document.getElementById(`category-${categoryId}`)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 100)
   }
 
   const handleAddToCart = (service: any) => {
@@ -67,7 +76,7 @@ export default function ServicesPage() {
     setOpenCategory(prev => prev === id ? null : id)
   }
 
-  const renderServiceCard = (service: any, idx: number) => {
+  const renderServiceCard = (service: any, idx: number, categoryId: string) => {
     const isFrom = service.price.includes('From') || service.price.includes('Custom')
     const isAdded = addedId === service.name || items.some(i => i.id === service.name)
 
@@ -115,7 +124,7 @@ export default function ServicesPage() {
             ) : (
               <div className="flex gap-2">
                 <button
-                  onClick={() => handleGetStarted(service)}
+                  onClick={() => handleGetStarted(service, categoryId)}
                   className="flex-1 px-3 py-2 bg-blue-500/20 backdrop-blur-sm border border-blue-400/40 hover:border-blue-300/60 hover:bg-blue-500/30 rounded-full text-white text-xs font-medium transition inline-flex items-center justify-center gap-1"
                 >
                   Get Started
@@ -144,6 +153,13 @@ export default function ServicesPage() {
               </div>
             )}
           </div>
+
+          {service.name === 'DBA / Fictitious Name' && (
+            <Link href='/services/dba' className='mt-3 text-blue-400 hover:text-blue-300 text-[11px] inline-flex items-center gap-1 transition-colors'>
+              Learn more about DBA
+              <ArrowRight className='w-2.5 h-2.5' strokeWidth={2} />
+            </Link>
+          )}
         </div>
       </motion.div>
     )
@@ -165,7 +181,6 @@ export default function ServicesPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* HERO — pi gwo, mwens espas anlè */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -184,7 +199,6 @@ export default function ServicesPage() {
             <div className="h-px w-20 bg-gradient-to-r from-transparent via-blue-400/60 to-transparent mx-auto mt-6" />
           </motion.div>
 
-          {/* KATEGORI */}
           <div className="space-y-8 w-full max-w-6xl mx-auto">
             {serviceCategories.map((category, catIdx) => {
               const isOpen = openCategory === category.id
@@ -194,12 +208,12 @@ export default function ServicesPage() {
               return (
                 <motion.div
                   key={category.id}
+                  id={`category-${category.id}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: catIdx * 0.08 }}
-                  className="overflow-hidden"
+                  className="overflow-hidden scroll-mt-24"
                 >
-                  {/* TIT KATEGORI — SANTRE */}
                   <button
                     onClick={() => toggleCategory(category.id)}
                     className="w-full flex flex-col items-center gap-3 py-6 group"
@@ -231,7 +245,6 @@ export default function ServicesPage() {
                     </p>
                   </button>
 
-                  {/* KONTNI */}
                   <AnimatePresence initial={false}>
                     {isOpen && (
                       <motion.div
@@ -261,7 +274,7 @@ export default function ServicesPage() {
                                   className={`grid grid-cols-1 ${colClass} gap-4 mx-auto`}
                                 >
                                   {rowServices.map((service, idx) =>
-                                    renderServiceCard(service, startIdx + idx)
+                                    renderServiceCard(service, startIdx + idx, category.id)
                                   )}
                                 </div>
                               )

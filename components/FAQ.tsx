@@ -36,7 +36,7 @@ export default function FAQ() {
         <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
       </div>
 
-      <section className="relative py-24 overflow-hidden bg-black">
+      <section id="faq" className="relative py-24 overflow-hidden bg-black">
         {/* 1. FOTO BACKGROUND (menm ak Roadmap) */}
         <img
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
